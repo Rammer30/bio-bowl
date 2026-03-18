@@ -287,6 +287,7 @@ function BioBowl() {
   const [finalPhase, setFinalPhase] = useState("category");
   const [finalWagers, setFinalWagers] = useState({});
   const [showFinalEdit, setShowFinalEdit] = useState(false);
+  const [attemptedTeams, setAttemptedTeams] = useState([]);
 
   const gameTimerRef = useRef(null);
   const qTimerRef = useRef(null);
@@ -323,15 +324,28 @@ function BioBowl() {
   const startGame = () => { placeDailyDoubles(); setGamePhase("playing"); setGameRunning(true); setGameTime(0); setQuestionsAnswered(0); };
   const openQuestion = (ci, qi) => {
     const q = categories[ci].questions[qi]; if (q.revealed) return;
-    setCurrentQ({ ci, qi, ...q }); setShowAnswer(false); setSelectedTeam(null); setQTimeLeft(qTimerDuration); setQTimerRunning(false);
+    setCurrentQ({ ci, qi, ...q }); setShowAnswer(false); setSelectedTeam(null); setQTimeLeft(qTimerDuration); setQTimerRunning(false); setAttemptedTeams([]);
     if (q.isDailyDouble) { setDdWagerPhase(true); setDdWager(0); } else setDdWagerPhase(false);
   };
   const markRevealed = () => { if (!currentQ) return; const c = [...categories]; c[currentQ.ci].questions[currentQ.qi].revealed = true; setCategories(c); setQuestionsAnswered(q => q+1); };
   const scoreAnswer = (correct) => {
     if (!selectedTeam) return;
     const pts = currentQ.isDailyDouble && ddWager > 0 ? ddWager : currentQ.value;
-    setTeams(prev => prev.map(t => { if (t.id !== selectedTeam) return t; return correct ? {...t, score: t.score+pts} : (deductOnWrong ? {...t, score: t.score-pts} : t); }));
-    markRevealed(); setCurrentQ(null); setQTimerRunning(false); setDdWagerPhase(false);
+    if (correct) {
+      setTeams(prev => prev.map(t => t.id === selectedTeam ? {...t, score: t.score+pts} : t));
+      markRevealed(); setCurrentQ(null); setQTimerRunning(false); setDdWagerPhase(false); setAttemptedTeams([]);
+    } else {
+      // Incorrect — deduct if enabled, mark as attempted, keep question open
+      if (deductOnWrong) setTeams(prev => prev.map(t => t.id === selectedTeam ? {...t, score: t.score-pts} : t));
+      const newAttempted = [...attemptedTeams, selectedTeam];
+      setAttemptedTeams(newAttempted);
+      setSelectedTeam(null);
+      // If it's a daily double OR all active teams have tried, close the question
+      const remainingTeams = activeTeams.filter(t => !newAttempted.includes(t.id));
+      if (currentQ.isDailyDouble || remainingTeams.length === 0) {
+        markRevealed(); setCurrentQ(null); setQTimerRunning(false); setDdWagerPhase(false); setAttemptedTeams([]);
+      }
+    }
   };
   const skipQuestion = () => { markRevealed(); setCurrentQ(null); setQTimerRunning(false); setDdWagerPhase(false); };
   const adjustScore = (tid, amt) => setTeams(prev => prev.map(t => t.id === tid ? {...t, score: t.score+amt} : t));
@@ -551,6 +565,7 @@ function BioBowl() {
             <button onClick={() => setGameRunning(!gameRunning)} style={{background:"none", border:"none", cursor:"pointer", fontSize:13, color:gameRunning?"#ef4444":"#22c55e"}}>{gameRunning?"⏸":"▶"}</button>
           </div>
           <button onClick={() => setShowSettings(!showSettings)} style={{...S.btnGhost, padding:"4px 10px"}}>⚙</button>
+          <button onClick={() => setDeductOnWrong(!deductOnWrong)} style={{background:deductOnWrong?"#fee2e2":"#f0fdf4", border:"1px solid "+(deductOnWrong?"#fca5a5":"#86efac"), color:deductOnWrong?"#dc2626":"#16a34a", padding:"4px 10px", borderRadius:8, cursor:"pointer", fontSize:11, fontWeight:700, fontFamily:"inherit"}}>{deductOnWrong?"−pts ON":"−pts OFF"}</button>
           <button onClick={startFinalJeopardy} style={{background:"#fefce8", border:"1px solid #fde047", color:"#a16207", padding:"4px 10px", borderRadius:8, cursor:"pointer", fontSize:11, fontWeight:700, fontFamily:"inherit"}}>Final Jeopardy →</button>
         </div>
       </div>
@@ -645,8 +660,11 @@ function BioBowl() {
               }
 
               {!currentQ.isDailyDouble && (
-                <div style={{display:"flex", gap:6, justifyContent:"center", marginBottom:12, flexWrap:"wrap"}}>
-                  {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; return <button key={t.id} onClick={() => setSelectedTeam(t.id)} style={{background:selectedTeam===t.id?c.mid:c.bg, border:selectedTeam===t.id?"3px solid #1e293b":"2px solid "+c.border, borderRadius:8, padding:"6px 18px", color:selectedTeam===t.id?"#fff":c.dark, fontWeight:700, cursor:"pointer", fontSize:13, fontFamily:"inherit"}}>{t.name}</button>; })}
+                <div style={{marginBottom:12}}>
+                  <div style={{display:"flex", gap:6, justifyContent:"center", flexWrap:"wrap"}}>
+                    {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; const tried=attemptedTeams.includes(t.id); return <button key={t.id} onClick={() => !tried && setSelectedTeam(t.id)} disabled={tried} style={{background:tried?"#f1f5f9":selectedTeam===t.id?c.mid:c.bg, border:selectedTeam===t.id?"3px solid #1e293b":tried?"2px dashed #cbd5e1":"2px solid "+c.border, borderRadius:8, padding:"6px 18px", color:tried?"#94a3b8":selectedTeam===t.id?"#fff":c.dark, fontWeight:700, cursor:tried?"not-allowed":"pointer", fontSize:13, fontFamily:"inherit", opacity:tried?0.5:1, textDecoration:tried?"line-through":"none"}}>{t.name}{tried?" ✗":""}</button>; })}
+                  </div>
+                  {attemptedTeams.length > 0 && <div style={{textAlign:"center", fontSize:11, color:"#94a3b8", marginTop:4}}>{activeTeams.length - attemptedTeams.length} team{activeTeams.length - attemptedTeams.length !== 1 ? "s" : ""} remaining</div>}
                 </div>
               )}
 
