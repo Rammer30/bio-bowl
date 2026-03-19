@@ -475,14 +475,14 @@ function BioBowl() {
             <div style={{fontSize:34, fontWeight:900, color:"#ca8a04", marginBottom:32, padding:"16px 32px", background:"#fefce8", borderRadius:12, border:"2px solid #fde047", animation:"ddGlow 2s ease-in-out infinite"}}>{finalCategory}</div>
             <p style={{fontSize:13, color:"#94a3b8", marginBottom:16}}>Have teams place their wagers now.</p>
             <div style={{display:"flex", gap:14, flexWrap:"wrap", justifyContent:"center", marginBottom:24}}>
-              {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; return (
+              {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; const wv = finalWagers.hasOwnProperty(t.id) ? finalWagers[t.id] : ""; return (
                 <div key={t.id} style={{background:c.bg, borderRadius:12, padding:14, minWidth:160, textAlign:"center", border:"2px solid "+c.border}}>
                   <div style={{fontWeight:800, color:c.dark, marginBottom:6}}>{t.name}: {t.score}</div>
-                  <input type="number" min={0} placeholder="Wager" value={finalWagers[t.id] ?? ""} onChange={e => setFinalWagers(p => ({...p, [t.id]: e.target.value}))} style={{...S.input, textAlign:"center", fontWeight:800, fontSize:16, color:c.dark}} />
+                  <input type="text" inputMode="numeric" pattern="[0-9]*" placeholder="Wager" value={wv} onChange={e => { const v = e.target.value.replace(/[^0-9]/g, ""); setFinalWagers(function(p) { var n = Object.assign({}, p); n[t.id] = v; return n; }); }} style={{...S.input, textAlign:"center", fontWeight:800, fontSize:16, color:c.dark}} />
                 </div>
               ); })}
             </div>
-            <button onClick={() => { setTeams(prev => prev.map(t => ({...t, finalWager: parseInt(finalWagers[t.id]) || 0}))); setFinalPhase("question"); }} style={S.btnPrimary}>Reveal Question →</button>
+            <button onClick={() => { setTeams(prev => prev.map(t => { var w = parseInt(finalWagers[t.id]); return Object.assign({}, t, {finalWager: isNaN(w) ? 0 : w}); })); setFinalPhase("question"); }} style={S.btnPrimary}>Reveal Question →</button>
           </div>
         )}
 
