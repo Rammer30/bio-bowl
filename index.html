@@ -646,40 +646,78 @@ const QUESTION_BANK = {
 const CATEGORY_NAMES = Object.keys(QUESTION_BANK);
 
 // ═══════════════════════════════════════════════
-// FINAL BIO BOWL — HONORS LEVEL (AP/Advanced)
+// FINAL BIO BOWL — TIERED BY DIFFICULTY
 // ═══════════════════════════════════════════════
-const FINAL_JEOPARDY_BANK = [
-  { category: "Molecular Biology", question: "This enzyme unwinds the DNA double helix at the replication fork, breaking the hydrogen bonds between complementary base pairs.", answer: "What is helicase?" },
-  { category: "Cell Signaling", question: "In this type of signaling, a cell releases chemical messengers that affect only neighboring cells, as seen in neurotransmitter release at a synapse.", answer: "What is paracrine signaling?" },
-  { category: "Biochemistry", question: "This cycle, occurring in the mitochondrial matrix, produces NADH and FADH₂ as electron carriers from the oxidation of acetyl-CoA.", answer: "What is the Krebs cycle (or citric acid cycle)?" },
-  { category: "Genetics", question: "This phenomenon occurs when a single gene influences multiple, seemingly unrelated phenotypic traits, such as in Marfan syndrome.", answer: "What is pleiotropy?" },
-  { category: "Immunology", question: "These proteins on the surface of nearly all nucleated cells present intracellular antigens to cytotoxic T cells and are critical for organ transplant compatibility.", answer: "What are MHC class I molecules (or HLA)?" },
-  { category: "Ecology", question: "This hypothesis proposes that a moderate frequency of disturbance in an ecosystem maximizes species diversity by preventing competitive exclusion.", answer: "What is the intermediate disturbance hypothesis?" },
-  { category: "Evolution", question: "This pattern of evolution occurs when a single ancestral species rapidly diversifies into many new species to fill different ecological niches, as seen in Darwin's finches.", answer: "What is adaptive radiation?" },
-  { category: "Cellular Respiration", question: "This process in the inner mitochondrial membrane uses the flow of hydrogen ions down their concentration gradient through ATP synthase to produce ATP.", answer: "What is chemiosmosis (or oxidative phosphorylation)?" },
-  { category: "Plant Biology", question: "This plant hormone promotes cell elongation, causes phototropism toward light, and is produced primarily in the apical meristem.", answer: "What is auxin?" },
-  { category: "Protein Structure", question: "The four levels of protein structure are primary, secondary, tertiary, and this level, which involves multiple polypeptide chains assembling into a functional complex.", answer: "What is quaternary structure?" },
-  { category: "Neuroscience", question: "This all-or-nothing electrical signal travels down an axon when voltage-gated sodium channels open and the membrane potential reaches threshold.", answer: "What is an action potential?" },
-  { category: "Photosynthesis", question: "In the light-dependent reactions, water molecules are split at this photosystem, releasing oxygen, electrons, and hydrogen ions.", answer: "What is Photosystem II (PSII)?" },
-  { category: "Molecular Genetics", question: "This regulatory mechanism in gene expression involves small RNA molecules binding to mRNA to prevent translation, effectively silencing gene expression.", answer: "What is RNA interference (RNAi)?" },
-  { category: "Anatomy", question: "This specialized cardiac tissue, located in the right atrium, generates the electrical impulse that initiates each heartbeat and is called the natural pacemaker.", answer: "What is the sinoatrial (SA) node?" },
-  { category: "Microbiology", question: "This horizontal gene transfer mechanism occurs when a bacteriophage accidentally packages host DNA and transfers it to a new bacterial cell during infection.", answer: "What is transduction?" },
-  { category: "Developmental Biology", question: "These clusters of genes control the body plan of an embryo along the head-to-tail axis and are remarkably conserved across animal species.", answer: "What are Hox genes (homeobox genes)?" },
-  { category: "Endocrinology", question: "This feedback loop involving the hypothalamus, anterior pituitary, and target endocrine gland maintains hormone homeostasis through three levels of hormonal signaling.", answer: "What is the hypothalamic-pituitary axis (HPA/HPT/HPG axis)?" },
-  { category: "Biogeochemistry", question: "In this step of the nitrogen cycle, anaerobic bacteria convert nitrates back into nitrogen gas, returning it to the atmosphere.", answer: "What is denitrification?" },
-  { category: "Cell Division", question: "This checkpoint protein, often called the 'guardian of the genome,' can halt the cell cycle, activate DNA repair, or trigger apoptosis when mutations are detected.", answer: "What is p53?" },
-  { category: "Enzymology", question: "This model of enzyme function proposes that the enzyme changes shape slightly when the substrate binds, creating an optimal fit at the active site.", answer: "What is the induced fit model?" },
-  { category: "Taxonomy", question: "This method of classification groups organisms based on shared derived characteristics called synapomorphies, creating branching diagrams called cladograms.", answer: "What is cladistics?" },
-  { category: "Marine Biology", question: "These symbiotic photosynthetic algae living within coral tissue provide up to 90% of the coral's energy, and their loss causes coral bleaching.", answer: "What are zooxanthellae?" },
-  { category: "Population Genetics", question: "This principle states that allele frequencies in a population remain constant across generations only if five specific conditions are met, including no mutation and random mating.", answer: "What is Hardy-Weinberg equilibrium?" },
-  { category: "Membrane Biology", question: "This transport protein uses the energy from ATP hydrolysis to pump 3 sodium ions out of the cell and 2 potassium ions in, maintaining the resting membrane potential.", answer: "What is the sodium-potassium pump (Na⁺/K⁺-ATPase)?" },
-  { category: "Virology", question: "In this phase of the viral life cycle, the viral genome integrates into the host chromosome and can remain dormant for generations before activating.", answer: "What is the lysogenic cycle?" },
-  { category: "Human Physiology", question: "This countercurrent multiplication system in the loop of Henle creates an osmotic gradient in the kidney medulla essential for concentrating urine.", answer: "What is the countercurrent multiplier?" },
-  { category: "Organic Chemistry of Life", question: "This type of chemical bond forms between amino acids during a dehydration synthesis reaction, linking the carboxyl group of one to the amino group of another.", answer: "What is a peptide bond?" },
-  { category: "Evolutionary Biology", question: "This type of reproductive isolation occurs after mating when hybrid offspring are either inviable or infertile, as in the case of mules.", answer: "What is postzygotic isolation?" },
-  { category: "Bioinformatics", question: "This large-scale collaborative project, completed in 2003, determined the sequence of approximately 3 billion base pairs in the human genome.", answer: "What is the Human Genome Project?" },
-  { category: "Earth Systems", question: "This hypothesis, proposed by James Lovelock, suggests that living organisms interact with their inorganic surroundings to form a self-regulating system that maintains conditions for life.", answer: "What is the Gaia hypothesis?" },
-];
+const FINAL_BANK_TIERS = {
+  "k5": [
+    { category: "Animals", question: "This is the largest animal on Earth — it lives in the ocean and can be as long as three school buses.", answer: "What is the blue whale?" },
+    { category: "Plants", question: "Most plants need three things to make their own food: sunlight, water, and this gas from the air.", answer: "What is carbon dioxide?" },
+    { category: "The Human Body", question: "You have five of these: sight, hearing, smell, taste, and touch.", answer: "What are the senses?" },
+    { category: "Habitats", question: "This frozen place near the top and bottom of the Earth is home to polar bears and penguins.", answer: "What is the Arctic (or polar region)?" },
+    { category: "Life Cycles", question: "A caterpillar goes into a chrysalis and comes out as this beautiful insect with colorful wings.", answer: "What is a butterfly?" },
+    { category: "Weather", question: "This big, bright star gives Earth its light and heat every single day.", answer: "What is the sun?" },
+    { category: "Dinosaurs", question: "These giant reptiles went extinct about 65 million years ago, and we learn about them from fossils.", answer: "What are dinosaurs?" },
+    { category: "Ocean Life", question: "This sea creature has eight arms, three hearts, and blue blood.", answer: "What is an octopus?" },
+    { category: "Healthy Bodies", question: "This organ inside your chest never stops beating, even when you sleep.", answer: "What is the heart?" },
+    { category: "Earth", question: "About 70% of our planet is covered by this, which is why Earth looks blue from space.", answer: "What is water (or the ocean)?" },
+  ],
+  "ms": [
+    { category: "Cells", question: "Every living thing is made of these basic building blocks, first observed by Robert Hooke in 1665.", answer: "What are cells?" },
+    { category: "The Skeleton", question: "Adult humans have exactly this many bones in their body.", answer: "What is 206?" },
+    { category: "Ecosystems", question: "In a food chain, energy flows from the sun to producers to consumers. The organisms that break down dead material are called this.", answer: "What are decomposers?" },
+    { category: "Earth Layers", question: "The four main layers of the Earth from outside to inside are the crust, mantle, outer core, and this.", answer: "What is the inner core?" },
+    { category: "Blood", question: "These blood cells are shaped like tiny donuts without holes and carry oxygen throughout the body.", answer: "What are red blood cells?" },
+    { category: "Rocks", question: "The continuous process where rocks are formed, broken down, and reformed into new rocks is called this.", answer: "What is the rock cycle?" },
+    { category: "Adaptation", question: "A polar bear's white fur and thick blubber are examples of this — features that help it survive in its environment.", answer: "What are adaptations?" },
+    { category: "Space", question: "This planet in our solar system is known as the Red Planet because of iron oxide on its surface.", answer: "What is Mars?" },
+    { category: "Classification", question: "Animals with backbones are called vertebrates. Animals without backbones are called this.", answer: "What are invertebrates?" },
+    { category: "Water Cycle", question: "The process where liquid water is heated by the sun and turns into water vapor rising into the air.", answer: "What is evaporation?" },
+  ],
+  "standard": [
+    { category: "The Human Body", question: "This organ is the largest organ in the human body by surface area and serves as the first line of defense against pathogens.", answer: "What is the skin?" },
+    { category: "Evolution", question: "This naturalist sailed on the HMS Beagle and proposed the theory of natural selection after studying finches in the Galapagos.", answer: "Who is Charles Darwin?" },
+    { category: "Fungi", question: "This kingdom of life includes organisms that decompose dead material and can be single-celled or multicellular, like mushrooms and yeast.", answer: "What is Fungi?" },
+    { category: "Geology", question: "This supercontinent existed approximately 250 million years ago before breaking apart into the continents we know today.", answer: "What is Pangaea?" },
+    { category: "Blood", question: "This blood type is called the universal donor because it can be given to patients of any blood type.", answer: "What is O negative (O-)?" },
+    { category: "Biomes", question: "This biome is the most biodiverse on Earth, with warm temperatures year-round and over 80 inches of rainfall annually.", answer: "What is the tropical rainforest?" },
+    { category: "Digestion", question: "This organ is the longest part of the digestive tract at roughly 20 feet and is where most nutrient absorption occurs.", answer: "What is the small intestine?" },
+    { category: "Atmosphere", question: "This layer of gas in Earth's stratosphere absorbs most of the sun's harmful ultraviolet radiation.", answer: "What is the ozone layer?" },
+    { category: "Genetics", question: "Humans have this many pairs of chromosomes in each body cell, for a total of 46.", answer: "What is 23 pairs?" },
+    { category: "Water Properties", question: "This property of water allows insects like water striders to walk on its surface without sinking.", answer: "What is surface tension?" },
+  ],
+  "honors": [
+    { category: "Cell Biology", question: "This organelle modifies, sorts, and packages proteins into vesicles for transport, acting as the cell's post office.", answer: "What is the Golgi apparatus?" },
+    { category: "Genetics", question: "This phenomenon occurs when a single gene influences multiple, seemingly unrelated phenotypic traits, such as in sickle cell disease.", answer: "What is pleiotropy?" },
+    { category: "Ecology", question: "Only about this percentage of energy is transferred from one trophic level to the next in an energy pyramid.", answer: "What is 10 percent?" },
+    { category: "Evolution", question: "Structures with similar bone structure but different functions, like a whale flipper and a human arm, are called this.", answer: "What are homologous structures?" },
+    { category: "Anatomy", question: "This specialized cardiac tissue in the right atrium generates the electrical impulse that initiates each heartbeat.", answer: "What is the sinoatrial (SA) node?" },
+    { category: "Microbiology", question: "Bacteria reproduce asexually by splitting in half through this rapid process, which can double a population in just 20 minutes.", answer: "What is binary fission?" },
+    { category: "Plant Biology", question: "These tiny pores on the underside of leaves open and close to control gas exchange and water loss through transpiration.", answer: "What are stomata?" },
+    { category: "Immunology", question: "These Y-shaped proteins produced by B cells bind to specific antigens on pathogens to neutralize or tag them for destruction.", answer: "What are antibodies?" },
+    { category: "Classification", question: "The three domains of life are Bacteria, Eukarya, and this domain of extremophile single-celled organisms.", answer: "What is Archaea?" },
+    { category: "Enzymes", question: "This model of enzyme function proposes that the enzyme changes shape slightly when the substrate binds, creating an optimal fit.", answer: "What is the induced fit model?" },
+  ],
+  "ap": [
+    { category: "Molecular Biology", question: "This enzyme unwinds the DNA double helix at the replication fork, breaking hydrogen bonds between complementary base pairs.", answer: "What is helicase?" },
+    { category: "Biochemistry", question: "This cycle in the mitochondrial matrix produces NADH and FADH2 as electron carriers from the oxidation of acetyl-CoA.", answer: "What is the Krebs cycle (citric acid cycle)?" },
+    { category: "Cellular Respiration", question: "This process in the inner mitochondrial membrane uses hydrogen ions flowing through ATP synthase to produce ATP.", answer: "What is chemiosmosis (oxidative phosphorylation)?" },
+    { category: "Photosynthesis", question: "In the light-dependent reactions, water molecules are split at this photosystem, releasing oxygen, electrons, and hydrogen ions.", answer: "What is Photosystem II (PSII)?" },
+    { category: "Neuroscience", question: "This all-or-nothing electrical signal travels down an axon when voltage-gated sodium channels open and the membrane reaches threshold.", answer: "What is an action potential?" },
+    { category: "Molecular Genetics", question: "This regulatory mechanism involves small RNA molecules binding to mRNA to prevent translation, effectively silencing gene expression.", answer: "What is RNA interference (RNAi)?" },
+    { category: "Developmental Biology", question: "These clusters of genes control the body plan of an embryo along the head-to-tail axis and are conserved across animal species.", answer: "What are Hox genes (homeobox genes)?" },
+    { category: "Population Genetics", question: "This principle states that allele frequencies remain constant across generations only if five conditions are met, including no mutation and random mating.", answer: "What is Hardy-Weinberg equilibrium?" },
+    { category: "Cell Division", question: "This checkpoint protein, called the guardian of the genome, can halt the cell cycle, activate DNA repair, or trigger apoptosis.", answer: "What is p53?" },
+    { category: "Membrane Biology", question: "This transport protein uses ATP to pump 3 sodium ions out and 2 potassium ions in, maintaining the resting membrane potential.", answer: "What is the sodium-potassium pump (Na+/K+-ATPase)?" },
+  ],
+};
+
+const FINAL_LEVEL_LABELS = {
+  "k5": "K-5th Grade",
+  "ms": "6th-8th Grade",
+  "standard": "High School (Non-Honors)",
+  "honors": "Honors Science",
+  "ap": "AP Science",
+};
 
 
 const TEAM_COLORS = {
@@ -740,9 +778,11 @@ function BioBowl() {
   const [deductOnWrong, setDeductOnWrong] = useState(true);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
   const [finalBankIdx, setFinalBankIdx] = useState(0);
-  const [finalCategory, setFinalCategory] = useState(FINAL_JEOPARDY_BANK[0].category);
-  const [finalQuestion, setFinalQuestion] = useState(FINAL_JEOPARDY_BANK[0].question);
-  const [finalAnswer, setFinalAnswer] = useState(FINAL_JEOPARDY_BANK[0].answer);
+  const [finalLevel, setFinalLevel] = useState("standard");
+  const finalBank = FINAL_BANK_TIERS[finalLevel] || FINAL_BANK_TIERS["standard"];
+  const [finalCategory, setFinalCategory] = useState(FINAL_BANK_TIERS["standard"][0].category);
+  const [finalQuestion, setFinalQuestion] = useState(FINAL_BANK_TIERS["standard"][0].question);
+  const [finalAnswer, setFinalAnswer] = useState(FINAL_BANK_TIERS["standard"][0].answer);
   const [finalPhase, setFinalPhase] = useState("category");
   const [finalWagers, setFinalWagers] = useState({});
   const [showFinalEdit, setShowFinalEdit] = useState(false);
@@ -888,10 +928,19 @@ function BioBowl() {
 
           {/* Final Bio Bowl */}
           <div style={{...S.card, padding:20, marginBottom:20}}>
-            <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14, flexWrap:"wrap", gap:8}}>
-              <div style={{fontWeight:800, fontSize:16}}>Final Bio Bowl</div>
-              <select value={finalBankIdx} onChange={e => { const idx=Number(e.target.value); setFinalBankIdx(idx); if(idx<FINAL_JEOPARDY_BANK.length){ setFinalCategory(FINAL_JEOPARDY_BANK[idx].category); setFinalQuestion(FINAL_JEOPARDY_BANK[idx].question); setFinalAnswer(FINAL_JEOPARDY_BANK[idx].answer); } }} style={{...S.select, width:"auto", maxWidth:300}}>
-                {FINAL_JEOPARDY_BANK.map((fj,i) => <option key={i} value={i}>{fj.category}</option>)}
+            <div style={{fontWeight:800, fontSize:16, marginBottom:12}}>Final Bio Bowl</div>
+            <div style={{marginBottom:14}}>
+              <label style={S.label}>Difficulty Level</label>
+              <div style={{display:"flex", gap:4, flexWrap:"wrap"}}>
+                {Object.keys(FINAL_LEVEL_LABELS).map(function(key) { return (
+                  <button key={key} onClick={function() { setFinalLevel(key); setFinalBankIdx(0); var bank = FINAL_BANK_TIERS[key]; setFinalCategory(bank[0].category); setFinalQuestion(bank[0].question); setFinalAnswer(bank[0].answer); }} style={{padding:"8px 14px", borderRadius:8, border:finalLevel===key?"2px solid #4338ca":"1px solid #cbd5e1", background:finalLevel===key?"#eef2ff":"#fff", color:finalLevel===key?"#4338ca":"#64748b", fontWeight:finalLevel===key?800:600, fontSize:13, cursor:"pointer", fontFamily:"inherit"}}>{FINAL_LEVEL_LABELS[key]}</button>
+                ); })}
+              </div>
+            </div>
+            <div style={{marginBottom:12}}>
+              <label style={S.label}>Select Question</label>
+              <select value={finalBankIdx} onChange={e => { const idx=Number(e.target.value); setFinalBankIdx(idx); if(idx<finalBank.length){ setFinalCategory(finalBank[idx].category); setFinalQuestion(finalBank[idx].question); setFinalAnswer(finalBank[idx].answer); } }} style={S.select}>
+                {finalBank.map((fj,i) => <option key={i} value={i}>{fj.category}</option>)}
                 <option value={99}>✏️ Custom</option>
               </select>
             </div>
@@ -916,8 +965,8 @@ function BioBowl() {
         <button onClick={() => setShowFinalEdit(!showFinalEdit)} style={{...S.btnGhost, marginBottom:16, fontSize:12}}>{showFinalEdit?"Close Editor":"✏️ Edit Final Q"}</button>
         {showFinalEdit && (
           <div style={{...S.card, padding:16, marginBottom:20, width:"100%", maxWidth:600}}>
-            <div style={{marginBottom:8}}><label style={S.label}>Pick from bank</label><select value={finalBankIdx} onChange={e => { const idx=Number(e.target.value); setFinalBankIdx(idx); if(idx<FINAL_JEOPARDY_BANK.length){ setFinalCategory(FINAL_JEOPARDY_BANK[idx].category); setFinalQuestion(FINAL_JEOPARDY_BANK[idx].question); setFinalAnswer(FINAL_JEOPARDY_BANK[idx].answer); } }} style={S.select}>
-              {FINAL_JEOPARDY_BANK.map((fj,i) => <option key={i} value={i}>{fj.category}</option>)}
+            <div style={{marginBottom:8}}><label style={S.label}>Pick from bank</label><select value={finalBankIdx} onChange={e => { const idx=Number(e.target.value); setFinalBankIdx(idx); if(idx<finalBank.length){ setFinalCategory(finalBank[idx].category); setFinalQuestion(finalBank[idx].question); setFinalAnswer(finalBank[idx].answer); } }} style={S.select}>
+              {finalBank.map((fj,i) => <option key={i} value={i}>{fj.category}</option>)}
               <option value={99}>✏️ Custom</option>
             </select></div>
             <div style={{display:"flex", flexDirection:"column", gap:8}}>
