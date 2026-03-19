@@ -478,11 +478,11 @@ function BioBowl() {
               {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; return (
                 <div key={t.id} style={{background:c.bg, borderRadius:12, padding:14, minWidth:160, textAlign:"center", border:"2px solid "+c.border}}>
                   <div style={{fontWeight:800, color:c.dark, marginBottom:6}}>{t.name}: {t.score}</div>
-                  <input type="number" min={0} placeholder="Wager" value={finalWagers[t.id]||""} onChange={e => setFinalWagers(p => ({...p, [t.id]: Number(e.target.value)}))} style={{...S.input, textAlign:"center", fontWeight:800, fontSize:16, color:c.dark}} />
+                  <input type="number" min={0} placeholder="Wager" value={finalWagers[t.id] ?? ""} onChange={e => setFinalWagers(p => ({...p, [t.id]: e.target.value}))} style={{...S.input, textAlign:"center", fontWeight:800, fontSize:16, color:c.dark}} />
                 </div>
               ); })}
             </div>
-            <button onClick={() => { setTeams(prev => prev.map(t => ({...t, finalWager: finalWagers[t.id]||0}))); setFinalPhase("question"); }} style={S.btnPrimary}>Reveal Question →</button>
+            <button onClick={() => { setTeams(prev => prev.map(t => ({...t, finalWager: parseInt(finalWagers[t.id]) || 0}))); setFinalPhase("question"); }} style={S.btnPrimary}>Reveal Question →</button>
           </div>
         )}
 
