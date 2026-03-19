@@ -34,38 +34,94 @@ const { useState, useEffect, useRef, useCallback } = React;
 // ═══════════════════════════════════════════════
 const QUESTION_BANK = {
   "Body Systems": {
-    standard: [
-      { value: 200, question: "This system is made up of bones and provides structure, support, and protection for organs.", answer: "What is the skeletal system?", imageUrl: "" },
-      { value: 400, question: "This organ pumps blood throughout the entire body and is about the size of your fist.", answer: "What is the heart?", imageUrl: "" },
-      { value: 600, question: "These tiny air sacs in the lungs are where oxygen and carbon dioxide are exchanged.", answer: "What are alveoli?", imageUrl: "" },
-      { value: 800, question: "This part of the nervous system includes the brain and spinal cord.", answer: "What is the central nervous system (CNS)?", imageUrl: "" },
-      { value: 1000, question: "This feedback mechanism helps the body maintain a stable internal temperature of approximately 98.6°F.", answer: "What is negative feedback (thermoregulation)?", imageUrl: "" },
-    ],
-    easy: [
+    k5: [
       { value: 200, question: "These hard parts inside your body help you stand up straight and protect your organs.", answer: "What are bones?", imageUrl: "" },
       { value: 400, question: "This organ in your chest beats all day and night to push blood around your body.", answer: "What is the heart?", imageUrl: "" },
       { value: 600, question: "These two organs in your chest fill up with air every time you breathe in.", answer: "What are the lungs?", imageUrl: "" },
       { value: 800, question: "This body system lets you move your arms, legs, and body by pulling on your bones.", answer: "What is the muscular system?", imageUrl: "" },
       { value: 1000, question: "This organ in your head controls everything you think, feel, and do.", answer: "What is the brain?", imageUrl: "" },
-    ]
+    ],
+    ms: [
+      { value: 200, question: "This body system includes the heart, blood, and blood vessels that carry nutrients to cells.", answer: "What is the circulatory system?", imageUrl: "" },
+      { value: 400, question: "The stomach and intestines are part of this system that breaks down food for energy.", answer: "What is the digestive system?", imageUrl: "" },
+      { value: 600, question: "This system uses hormones as chemical messengers to control growth, mood, and metabolism.", answer: "What is the endocrine system?", imageUrl: "" },
+      { value: 800, question: "The kidneys are the main organs of this system that filters waste from the blood.", answer: "What is the excretory (or urinary) system?", imageUrl: "" },
+      { value: 1000, question: "This system includes the skin, hair, and nails and protects the body from the outside environment.", answer: "What is the integumentary system?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "This system is made up of bones and provides structure, support, and protection for organs.", answer: "What is the skeletal system?", imageUrl: "" },
+      { value: 400, question: "This organ pumps blood throughout the entire body and is about the size of your fist.", answer: "What is the heart?", imageUrl: "" },
+      { value: 600, question: "These tiny air sacs in the lungs are where oxygen and carbon dioxide are exchanged.", answer: "What are alveoli?", imageUrl: "" },
+      { value: 800, question: "This part of the nervous system includes the brain and spinal cord.", answer: "What is the central nervous system (CNS)?", imageUrl: "" },
+      { value: 1000, question: "This feedback mechanism helps the body maintain a stable internal temperature of approximately 98.6 degrees F.", answer: "What is negative feedback (thermoregulation)?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "This system returns excess interstitial fluid to the bloodstream and houses immune cells in lymph nodes.", answer: "What is the lymphatic system?", imageUrl: "" },
+      { value: 400, question: "These two divisions of the autonomic nervous system have opposite effects: one activates fight-or-flight, the other rest-and-digest.", answer: "What are sympathetic and parasympathetic?", imageUrl: "" },
+      { value: 600, question: "This serous membrane surrounds the lungs and reduces friction during breathing.", answer: "What is the pleura?", imageUrl: "" },
+      { value: 800, question: "This system's organs include the thymus, spleen, and tonsils, all involved in immune defense.", answer: "What is the lymphatic (immune) system?", imageUrl: "" },
+      { value: 1000, question: "The somatic and autonomic divisions are the two branches of this part of the nervous system.", answer: "What is the peripheral nervous system (PNS)?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "In the nephron, this process uses hydrostatic pressure to force water and solutes from blood into Bowman's capsule.", answer: "What is glomerular filtration?", imageUrl: "" },
+      { value: 400, question: "This portion of the nephron creates a concentration gradient in the renal medulla through countercurrent multiplication.", answer: "What is the loop of Henle?", imageUrl: "" },
+      { value: 600, question: "Cardiac output is calculated by multiplying heart rate by this volume of blood ejected per beat.", answer: "What is stroke volume?", imageUrl: "" },
+      { value: 800, question: "This structure in the brainstem regulates involuntary functions like heart rate, breathing, and blood pressure.", answer: "What is the medulla oblongata?", imageUrl: "" },
+      { value: 1000, question: "The Frank-Starling law states that increased venous return stretches cardiac muscle, leading to this response.", answer: "What is increased force of contraction (increased stroke volume)?", imageUrl: "" },
+    ],
   },
   "Cells & Life": {
-    standard: [
-      { value: 200, question: "This is the basic unit of life found in all living organisms.", answer: "What is a cell?", imageUrl: "" },
-      { value: 400, question: "This organelle is known as the 'powerhouse of the cell' because it produces ATP energy.", answer: "What is the mitochondria?", imageUrl: "" },
-      { value: 600, question: "This type of cell division produces two identical daughter cells for growth and repair.", answer: "What is mitosis?", imageUrl: "" },
-      { value: 800, question: "This molecule shaped like a twisted ladder carries the genetic instructions for all living organisms.", answer: "What is DNA?", imageUrl: "" },
-      { value: 1000, question: "In this process, messenger RNA is read by ribosomes to build a chain of amino acids into a protein.", answer: "What is translation?", imageUrl: "" },
-    ],
-    easy: [
+    k5: [
       { value: 200, question: "All living things are made up of tiny building blocks called this.", answer: "What are cells?", imageUrl: "" },
       { value: 400, question: "Plant cells have this green substance that helps them make food from sunlight.", answer: "What is chlorophyll?", imageUrl: "" },
       { value: 600, question: "This part of the cell is like the boss — it tells the cell what to do.", answer: "What is the nucleus?", imageUrl: "" },
       { value: 800, question: "Unlike animal cells, plant cells have a stiff outer layer called this.", answer: "What is the cell wall?", imageUrl: "" },
       { value: 1000, question: "When one cell splits into two new cells, this process is how living things grow.", answer: "What is cell division?", imageUrl: "" },
-    ]
+    ],
+    ms: [
+      { value: 200, question: "This thin outer layer of a cell controls what enters and leaves.", answer: "What is the cell membrane?", imageUrl: "" },
+      { value: 400, question: "The jelly-like material that fills a cell and surrounds all the organelles.", answer: "What is cytoplasm?", imageUrl: "" },
+      { value: 600, question: "Plant cells have these green organelles where photosynthesis takes place.", answer: "What are chloroplasts?", imageUrl: "" },
+      { value: 800, question: "These organelles are the energy factories of the cell, found in both plant and animal cells.", answer: "What are mitochondria?", imageUrl: "" },
+      { value: 1000, question: "Cells that have a nucleus surrounded by a membrane are called this type of cell.", answer: "What are eukaryotic cells?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "This is the basic unit of life found in all living organisms.", answer: "What is a cell?", imageUrl: "" },
+      { value: 400, question: "This organelle is known as the powerhouse of the cell because it produces ATP energy.", answer: "What is the mitochondria?", imageUrl: "" },
+      { value: 600, question: "This type of cell division produces two identical daughter cells for growth and repair.", answer: "What is mitosis?", imageUrl: "" },
+      { value: 800, question: "This molecule shaped like a twisted ladder carries the genetic instructions for all living organisms.", answer: "What is DNA?", imageUrl: "" },
+      { value: 1000, question: "In this process, messenger RNA is read by ribosomes to build a chain of amino acids into a protein.", answer: "What is translation?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "This organelle modifies, sorts, and ships proteins in vesicles — it acts like the cell's post office.", answer: "What is the Golgi apparatus?", imageUrl: "" },
+      { value: 400, question: "These small organelles contain digestive enzymes that break down waste and old cell parts.", answer: "What are lysosomes?", imageUrl: "" },
+      { value: 600, question: "This network of membranes comes in rough (with ribosomes) and smooth (without) varieties.", answer: "What is the endoplasmic reticulum (ER)?", imageUrl: "" },
+      { value: 800, question: "During this phase of the cell cycle, the cell copies all of its DNA in preparation for division.", answer: "What is S phase (synthesis)?", imageUrl: "" },
+      { value: 1000, question: "This process of programmed cell death eliminates damaged or unneeded cells in an orderly way.", answer: "What is apoptosis?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "The fluid mosaic model describes the cell membrane as a dynamic structure of phospholipids with embedded this.", answer: "What are proteins?", imageUrl: "" },
+      { value: 400, question: "During cytokinesis in plant cells, this structure forms at the midline to divide the cytoplasm.", answer: "What is the cell plate?", imageUrl: "" },
+      { value: 600, question: "These motor proteins walk along microtubules to transport vesicles and organelles within the cell.", answer: "What are kinesins and dyneins?", imageUrl: "" },
+      { value: 800, question: "This checkpoint between G1 and S phase determines whether a cell has the resources and signals to proceed with division.", answer: "What is the G1/S checkpoint (restriction point)?", imageUrl: "" },
+      { value: 1000, question: "Cyclin-dependent kinases must bind to these regulatory proteins whose levels rise and fall to drive the cell cycle.", answer: "What are cyclins?", imageUrl: "" },
+    ],
   },
   "Ecology": {
+    k5: [
+      { value: 200, question: "A rabbit eating grass is an example of this kind of animal that only eats plants.", answer: "What is a herbivore?", imageUrl: "" },
+      { value: 400, question: "A pond with fish, frogs, plants, water, and sunlight is an example of this.", answer: "What is an ecosystem?", imageUrl: "" },
+      { value: 600, question: "Grass, Rabbit, Fox is an example of this, showing who eats whom.", answer: "What is a food chain?", imageUrl: "" },
+      { value: 800, question: "An animal that hunts and eats other animals is called this.", answer: "What is a predator?", imageUrl: "" },
+      { value: 1000, question: "When all members of a species die and none are left anywhere on Earth, this has happened.", answer: "What is extinction?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "All the members of one species living in the same area at the same time is called this.", answer: "What is a population?", imageUrl: "" },
+      { value: 400, question: "Organisms that make their own food using sunlight are at the bottom of the food chain and called this.", answer: "What are producers?", imageUrl: "" },
+      { value: 600, question: "Mushrooms and bacteria that break down dead organisms and recycle nutrients are called this.", answer: "What are decomposers?", imageUrl: "" },
+      { value: 800, question: "When two species compete for the same food or territory, this type of interaction is occurring.", answer: "What is competition?", imageUrl: "" },
+      { value: 1000, question: "A relationship where both organisms benefit, like bees pollinating flowers for nectar, is called this.", answer: "What is mutualism?", imageUrl: "" },
+    ],
     standard: [
       { value: 200, question: "Animals that eat only plants are classified as this type of consumer.", answer: "What are herbivores?", imageUrl: "" },
       { value: 400, question: "This term describes all the living and nonliving things that interact in a particular area.", answer: "What is an ecosystem?", imageUrl: "" },
@@ -73,15 +129,36 @@ const QUESTION_BANK = {
       { value: 800, question: "This ecological relationship benefits one organism while harming another, such as a tick on a deer.", answer: "What is parasitism?", imageUrl: "" },
       { value: 1000, question: "This term describes the maximum population an environment can sustain indefinitely with available resources.", answer: "What is carrying capacity?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "A rabbit eating grass is an example of this kind of animal that only eats plants.", answer: "What is a herbivore?", imageUrl: "" },
-      { value: 400, question: "A pond with fish, frogs, plants, water, and sunlight is an example of this.", answer: "What is an ecosystem?", imageUrl: "" },
-      { value: 600, question: "Grass → Rabbit → Fox is an example of this, showing who eats whom.", answer: "What is a food chain?", imageUrl: "" },
-      { value: 800, question: "An animal that hunts and eats other animals is called this.", answer: "What is a predator?", imageUrl: "" },
-      { value: 1000, question: "When all members of a species die and none are left anywhere on Earth, this has happened.", answer: "What is extinction?", imageUrl: "" },
-    ]
+    honors: [
+      { value: 200, question: "This principle states that no two species can occupy the exact same niche in the same habitat indefinitely.", answer: "What is competitive exclusion (Gause's principle)?", imageUrl: "" },
+      { value: 400, question: "The gradual change of species composition in an area after a disturbance, starting with pioneer species, is called this.", answer: "What is ecological succession?", imageUrl: "" },
+      { value: 600, question: "This type of species has a disproportionately large effect on its ecosystem relative to its abundance.", answer: "What is a keystone species?", imageUrl: "" },
+      { value: 800, question: "Only about 10% of energy transfers between trophic levels. This concept is called the 10% rule or this type of efficiency.", answer: "What is ecological efficiency (or trophic efficiency)?", imageUrl: "" },
+      { value: 1000, question: "This growth model shows a population increasing rapidly then leveling off at carrying capacity, forming an S-shaped curve.", answer: "What is logistic growth?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "In this type of survivorship curve (Type III), most offspring die young, but survivors live long lives, as in sea turtles.", answer: "What is a Type III survivorship curve?", imageUrl: "" },
+      { value: 400, question: "This mathematical equation models population growth: dN/dt = rN(K-N)/K, where K is carrying capacity.", answer: "What is the logistic growth equation?", imageUrl: "" },
+      { value: 600, question: "Nitrogen fixation, nitrification, and denitrification are key steps in this biogeochemical cycle.", answer: "What is the nitrogen cycle?", imageUrl: "" },
+      { value: 800, question: "This concept measures species diversity using both richness (number of species) and evenness (relative abundance).", answer: "What is the Shannon diversity index (or species diversity)?", imageUrl: "" },
+      { value: 1000, question: "This hypothesis states that moderate levels of disturbance maximize species diversity in a community.", answer: "What is the intermediate disturbance hypothesis?", imageUrl: "" },
+    ],
   },
   "Earth Science": {
+    k5: [
+      { value: 200, question: "These three types of rocks are called igneous, sedimentary, and this third type formed by heat and pressure.", answer: "What is metamorphic?", imageUrl: "" },
+      { value: 400, question: "A mountain that can erupt with hot lava, ash, and gases is called this.", answer: "What is a volcano?", imageUrl: "" },
+      { value: 600, question: "When the ground shakes because rocks underground suddenly move, this is happening.", answer: "What is an earthquake?", imageUrl: "" },
+      { value: 800, question: "Rain, snow, sleet, and hail are all forms of this, when water falls from clouds.", answer: "What is precipitation?", imageUrl: "" },
+      { value: 1000, question: "This process slowly wears away rock and soil by wind, water, and ice over time.", answer: "What is erosion?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "The Earth has four main layers: crust, mantle, outer core, and this innermost layer.", answer: "What is the inner core?", imageUrl: "" },
+      { value: 400, question: "This continuous process where rocks change from one type to another over time is called this.", answer: "What is the rock cycle?", imageUrl: "" },
+      { value: 600, question: "The movement of Earth's large crustal plates is called plate this.", answer: "What is plate tectonics?", imageUrl: "" },
+      { value: 800, question: "When water seeps into cracks in rock and freezes, it expands and breaks the rock apart. This is called this type of weathering.", answer: "What is physical (or mechanical) weathering?", imageUrl: "" },
+      { value: 1000, question: "This scale, ranging from 1 to 10, is used to measure an earthquake's magnitude.", answer: "What is the Richter scale?", imageUrl: "" },
+    ],
     standard: [
       { value: 200, question: "These three rock types are classified by formation: from heat/pressure, from sediment layers, or from cooling magma.", answer: "What are metamorphic, sedimentary, and igneous?", imageUrl: "" },
       { value: 400, question: "This layer of the Earth is a solid sphere of iron and nickel at the very center.", answer: "What is the inner core?", imageUrl: "" },
@@ -89,31 +166,36 @@ const QUESTION_BANK = {
       { value: 800, question: "This process describes how water continuously moves between the atmosphere, land, and oceans.", answer: "What is the water cycle (hydrologic cycle)?", imageUrl: "" },
       { value: 1000, question: "These large slabs of Earth's lithosphere move over the asthenosphere, causing earthquakes and volcanism.", answer: "What are tectonic plates?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "These three types of rocks are called igneous, sedimentary, and this third type formed by heat and pressure.", answer: "What is metamorphic?", imageUrl: "" },
-      { value: 400, question: "A mountain that can erupt with hot lava, ash, and gases is called this.", answer: "What is a volcano?", imageUrl: "" },
-      { value: 600, question: "When the ground shakes because rocks underground suddenly move, this is happening.", answer: "What is an earthquake?", imageUrl: "" },
-      { value: 800, question: "Rain, snow, sleet, and hail are all forms of this, when water falls from clouds.", answer: "What is precipitation?", imageUrl: "" },
-      { value: 1000, question: "This process slowly wears away rock and soil by wind, water, and ice over time.", answer: "What is erosion?", imageUrl: "" },
-    ]
-  },
-  "Anatomy Deep Dive": {
-    standard: [
-      { value: 200, question: "This liquid tissue carries oxygen, nutrients, and waste products throughout the body.", answer: "What is blood?", imageUrl: "" },
-      { value: 400, question: "This long tube connects the mouth to the stomach using wave-like contractions called peristalsis.", answer: "What is the esophagus?", imageUrl: "" },
-      { value: 600, question: "These white blood cells are the body's primary defense against infection and disease.", answer: "What are leukocytes (white blood cells)?", imageUrl: "" },
-      { value: 800, question: "This gland in the brain is called the 'master gland' because it controls many other endocrine glands.", answer: "What is the pituitary gland?", imageUrl: "" },
-      { value: 1000, question: "This structure in the nephron of the kidney filters blood under high pressure to begin urine formation.", answer: "What is the glomerulus?", imageUrl: "" },
+    honors: [
+      { value: 200, question: "This type of plate boundary occurs where two plates slide horizontally past each other, like the San Andreas Fault.", answer: "What is a transform boundary?", imageUrl: "" },
+      { value: 400, question: "This principle states that in undisturbed rock layers, the oldest layers are at the bottom.", answer: "What is the Law of Superposition?", imageUrl: "" },
+      { value: 600, question: "This type of volcano has broad, gently sloping sides built from many layers of fluid basaltic lava flows.", answer: "What is a shield volcano?", imageUrl: "" },
+      { value: 800, question: "Radioactive decay of isotopes like carbon-14 and uranium-238 is used in this dating method to determine absolute age.", answer: "What is radiometric dating?", imageUrl: "" },
+      { value: 1000, question: "When an oceanic plate collides with a continental plate, the denser oceanic plate sinks beneath in this process.", answer: "What is subduction?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "This red liquid flows through your veins and arteries and carries oxygen to your body.", answer: "What is blood?", imageUrl: "" },
-      { value: 400, question: "After you chew and swallow food, it goes down this tube to reach your stomach.", answer: "What is the esophagus?", imageUrl: "" },
-      { value: 600, question: "This organ breaks down food using acid and squeezing motions after you swallow it.", answer: "What is the stomach?", imageUrl: "" },
-      { value: 800, question: "These tubes carry blood away from the heart to the rest of your body.", answer: "What are arteries?", imageUrl: "" },
-      { value: 1000, question: "This large organ on your right side helps clean your blood and break down harmful substances.", answer: "What is the liver?", imageUrl: "" },
-    ]
+    ap: [
+      { value: 200, question: "This layer of the Earth behaves plastically and allows tectonic plates to move over it.", answer: "What is the asthenosphere?", imageUrl: "" },
+      { value: 400, question: "P-waves and S-waves differ in that S-waves cannot travel through this state of matter, helping map Earth's interior.", answer: "What is liquid?", imageUrl: "" },
+      { value: 600, question: "Seafloor spreading at mid-ocean ridges provides evidence for plate tectonics through this pattern in magnetic minerals.", answer: "What is magnetic striping (paleomagnetic reversal)?", imageUrl: "" },
+      { value: 800, question: "Alfred Wegener proposed continental drift but lacked a mechanism; this convection in the mantle was later identified as the driver.", answer: "What is mantle convection?", imageUrl: "" },
+      { value: 1000, question: "This supereon spans from Earth's formation 4.6 billion years ago to 541 million years ago, before the Cambrian explosion.", answer: "What is the Precambrian?", imageUrl: "" },
+    ],
   },
   "Genetics & Heredity": {
+    k5: [
+      { value: 200, question: "The reason you might have the same eye color as your mom or dad is because of these, passed from parent to child.", answer: "What are genes?", imageUrl: "" },
+      { value: 400, question: "Baby animals look similar to their parents because of this process.", answer: "What is heredity (or inheritance)?", imageUrl: "" },
+      { value: 600, question: "Some traits like eye color and hair color are passed down in families — these are called this type of trait.", answer: "What are inherited traits?", imageUrl: "" },
+      { value: 800, question: "A learned skill like riding a bike is NOT inherited — it is this type of trait.", answer: "What is an acquired (or learned) trait?", imageUrl: "" },
+      { value: 1000, question: "Even though puppies in the same litter have the same parents, they can look different because of this.", answer: "What is variation?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "This molecule inside the nucleus of your cells contains the instructions for building and running your body.", answer: "What is DNA?", imageUrl: "" },
+      { value: 400, question: "A section of DNA that codes for a specific trait, like eye color, is called this.", answer: "What is a gene?", imageUrl: "" },
+      { value: 600, question: "Humans have 23 pairs of these thread-like structures in the nucleus that carry genes.", answer: "What are chromosomes?", imageUrl: "" },
+      { value: 800, question: "When a trait requires two copies of the same allele to show up, that trait is called this.", answer: "What is recessive?", imageUrl: "" },
+      { value: 1000, question: "This simple grid, named after a scientist, predicts the possible combinations of alleles in offspring.", answer: "What is a Punnett square?", imageUrl: "" },
+    ],
     standard: [
       { value: 200, question: "These twisted structures in the nucleus carry genes and are made of DNA.", answer: "What are chromosomes?", imageUrl: "" },
       { value: 400, question: "This term describes a trait that is hidden when a dominant allele is present.", answer: "What is recessive?", imageUrl: "" },
@@ -121,143 +203,110 @@ const QUESTION_BANK = {
       { value: 800, question: "This type of cell division produces four genetically unique haploid cells for reproduction.", answer: "What is meiosis?", imageUrl: "" },
       { value: 1000, question: "This occurs when a section of DNA is incorrectly copied, potentially changing a protein's structure.", answer: "What is a mutation?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "The reason you might have the same eye color as your mom or dad is because of these, passed from parent to child.", answer: "What are genes?", imageUrl: "" },
-      { value: 400, question: "Baby animals look similar to their parents because of this process.", answer: "What is heredity (or inheritance)?", imageUrl: "" },
-      { value: 600, question: "Some traits like eye color and hair color are passed down in families — these are called this type of trait.", answer: "What are inherited traits?", imageUrl: "" },
-      { value: 800, question: "A learned skill like riding a bike is NOT inherited — it is this type of trait.", answer: "What is an acquired (or learned) trait?", imageUrl: "" },
-      { value: 1000, question: "Even though puppies in the same litter have the same parents, they can look different because of this.", answer: "What is variation?", imageUrl: "" },
-    ]
-  },
-  "Human Health": {
-    standard: [
-      { value: 200, question: "These microscopic organisms, including bacteria and viruses, can cause infectious diseases.", answer: "What are pathogens (or germs)?", imageUrl: "" },
-      { value: 400, question: "This body system produces antibodies and includes white blood cells, the spleen, and lymph nodes.", answer: "What is the immune system?", imageUrl: "" },
-      { value: 600, question: "This medical treatment introduces a weakened or inactive form of a pathogen to build immunity.", answer: "What is a vaccine?", imageUrl: "" },
-      { value: 800, question: "These six essential nutrient categories are: carbohydrates, proteins, fats, vitamins, minerals, and this.", answer: "What is water?", imageUrl: "" },
-      { value: 1000, question: "This condition occurs when the body's cells do not respond properly to insulin or the pancreas doesn't produce enough.", answer: "What is diabetes?", imageUrl: "" },
+    honors: [
+      { value: 200, question: "When both alleles are expressed equally in a heterozygote, such as AB blood type, this pattern of inheritance occurs.", answer: "What is codominance?", imageUrl: "" },
+      { value: 400, question: "Traits like skin color and height are controlled by many genes. This is called this type of inheritance.", answer: "What is polygenic inheritance?", imageUrl: "" },
+      { value: 600, question: "This phenomenon occurs when one gene affects multiple traits, as seen in sickle cell disease.", answer: "What is pleiotropy?", imageUrl: "" },
+      { value: 800, question: "Crossing over during meiosis I increases genetic variation by exchanging segments between these paired structures.", answer: "What are homologous chromosomes?", imageUrl: "" },
+      { value: 1000, question: "This condition occurs when an organism has three copies of a chromosome instead of two, as in Down syndrome (trisomy 21).", answer: "What is trisomy (or nondisjunction)?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Tiny living things too small to see that can make you sick are called this.", answer: "What are germs?", imageUrl: "" },
-      { value: 400, question: "Washing your hands with soap helps get rid of these invisible things that cause illness.", answer: "What are germs (or bacteria)?", imageUrl: "" },
-      { value: 600, question: "A shot you get at the doctor that helps your body fight off a disease before you get it.", answer: "What is a vaccine?", imageUrl: "" },
-      { value: 800, question: "Eating fruits, vegetables, and proteins is important because your body needs these to grow strong.", answer: "What are nutrients?", imageUrl: "" },
-      { value: 1000, question: "Getting enough sleep, eating healthy food, and exercising are all parts of having good this.", answer: "What is health (or wellness)?", imageUrl: "" },
-    ]
+    ap: [
+      { value: 200, question: "In this type of inheritance, genes located close together on the same chromosome tend to be inherited together.", answer: "What is genetic linkage?", imageUrl: "" },
+      { value: 400, question: "The chi-square test is used to determine if observed genetic ratios differ significantly from this type of ratio.", answer: "What are expected (Mendelian) ratios?", imageUrl: "" },
+      { value: 600, question: "This law states that alleles for different genes assort independently during gamete formation, provided genes are on different chromosomes.", answer: "What is the Law of Independent Assortment?", imageUrl: "" },
+      { value: 800, question: "Epigenetic modifications like DNA methylation can silence genes without changing this actual sequence.", answer: "What is the DNA (nucleotide) sequence?", imageUrl: "" },
+      { value: 1000, question: "In the lac operon model, this regulatory protein binds to the operator when lactose is absent, blocking transcription.", answer: "What is the lac repressor?", imageUrl: "" },
+    ],
   },
   "Plants & Photosynthesis": {
-    standard: [
-      { value: 200, question: "This process allows plants to convert sunlight, water, and CO₂ into glucose and oxygen.", answer: "What is photosynthesis?", imageUrl: "" },
-      { value: 400, question: "This green pigment in chloroplasts absorbs sunlight for photosynthesis.", answer: "What is chlorophyll?", imageUrl: "" },
-      { value: 600, question: "These tiny pores on the underside of leaves open and close to control gas exchange and water loss.", answer: "What are stomata?", imageUrl: "" },
-      { value: 800, question: "This tissue in vascular plants transports water and minerals upward from roots to leaves.", answer: "What is xylem?", imageUrl: "" },
-      { value: 1000, question: "The companion tissue to xylem, this transports sugars made during photosynthesis throughout the plant.", answer: "What is phloem?", imageUrl: "" },
-    ],
-    easy: [
+    k5: [
       { value: 200, question: "Plants make their own food using sunlight in a process called this.", answer: "What is photosynthesis?", imageUrl: "" },
       { value: 400, question: "Plants need sunlight, water, and this gas from the air to make their food.", answer: "What is carbon dioxide?", imageUrl: "" },
       { value: 600, question: "This part of the plant is underground and soaks up water and nutrients from the soil.", answer: "What are roots?", imageUrl: "" },
       { value: 800, question: "The flat green parts of a plant that catch sunlight are called this.", answer: "What are leaves?", imageUrl: "" },
       { value: 1000, question: "When a tiny new plant starts to grow out of a seed, this process is happening.", answer: "What is germination?", imageUrl: "" },
-    ]
-  },
-  "Oceans & Water": {
-    standard: [
-      { value: 200, question: "This is the largest ocean on Earth, covering more area than all the land combined.", answer: "What is the Pacific Ocean?", imageUrl: "" },
-      { value: 400, question: "The rise and fall of ocean water levels twice daily is caused primarily by this celestial body's gravity.", answer: "What is the moon?", imageUrl: "" },
-      { value: 600, question: "This ocean zone receives no sunlight and is home to bioluminescent organisms.", answer: "What is the midnight (or aphotic / abyssal) zone?", imageUrl: "" },
-      { value: 800, question: "This global pattern of ocean water movement is driven by differences in temperature and salinity.", answer: "What is thermohaline circulation (ocean conveyor belt)?", imageUrl: "" },
-      { value: 1000, question: "These underwater volcanic mountain chains form where tectonic plates pull apart on the ocean floor.", answer: "What are mid-ocean ridges?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "About 70% of the Earth's surface is covered by this.", answer: "What is water (or the ocean)?", imageUrl: "" },
-      { value: 400, question: "Ocean water tastes salty because it contains a lot of this substance.", answer: "What is salt?", imageUrl: "" },
-      { value: 600, question: "The ocean gets higher and lower on the beach each day — these are called this.", answer: "What are tides?", imageUrl: "" },
-      { value: 800, question: "This is the name for a huge wave caused by an underwater earthquake.", answer: "What is a tsunami?", imageUrl: "" },
-      { value: 1000, question: "Coral, fish, and sea turtles all live in these colorful underwater structures made by tiny animals.", answer: "What are coral reefs?", imageUrl: "" },
-    ]
-  },
-  "Weather & Atmosphere": {
-    standard: [
-      { value: 200, question: "This layer of the atmosphere is where all weather occurs and where we live.", answer: "What is the troposphere?", imageUrl: "" },
-      { value: 400, question: "This type of front forms when a cold air mass overtakes a warm air mass, often causing thunderstorms.", answer: "What is a cold front?", imageUrl: "" },
-      { value: 600, question: "This instrument measures atmospheric pressure and helps forecast weather changes.", answer: "What is a barometer?", imageUrl: "" },
-      { value: 800, question: "This effect causes moving air and water to curve due to Earth's rotation.", answer: "What is the Coriolis effect?", imageUrl: "" },
-      { value: 1000, question: "This greenhouse gas is the most significant contributor to human-caused climate change.", answer: "What is carbon dioxide (CO₂)?", imageUrl: "" },
+    ms: [
+      { value: 200, question: "During photosynthesis, plants take in carbon dioxide and release this gas that animals need.", answer: "What is oxygen?", imageUrl: "" },
+      { value: 400, question: "Water travels up from the roots through the stem in tiny tubes called this tissue.", answer: "What is xylem?", imageUrl: "" },
+      { value: 600, question: "The colorful part of a flower that attracts pollinators like bees is called this.", answer: "What are petals?", imageUrl: "" },
+      { value: 800, question: "Plants that have tubes (vascular tissue) for carrying water and food are called this type of plant.", answer: "What are vascular plants?", imageUrl: "" },
+      { value: 1000, question: "This green pigment inside chloroplasts captures light energy for photosynthesis.", answer: "What is chlorophyll?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Rain, sunshine, wind, and snow are all examples of this.", answer: "What is weather?", imageUrl: "" },
-      { value: 400, question: "These white or gray fluffy things in the sky are made of tiny water droplets.", answer: "What are clouds?", imageUrl: "" },
-      { value: 600, question: "A flash of light in the sky during a storm, caused by electricity, is called this.", answer: "What is lightning?", imageUrl: "" },
-      { value: 800, question: "This spinning column of air that touches the ground during severe storms is very dangerous.", answer: "What is a tornado?", imageUrl: "" },
-      { value: 1000, question: "This tool measures temperature and tells you how hot or cold it is outside.", answer: "What is a thermometer?", imageUrl: "" },
-    ]
-  },
-  "Chemistry of Life": {
     standard: [
-      { value: 200, question: "Water is considered a universal solvent and has the chemical formula H₂O. The H stands for this element.", answer: "What is hydrogen?", imageUrl: "" },
-      { value: 400, question: "These four elements — carbon, hydrogen, oxygen, and nitrogen — make up about 96% of the human body.", answer: "What are CHON?", imageUrl: "" },
-      { value: 600, question: "This pH value is considered neutral, and pure water has this pH.", answer: "What is 7?", imageUrl: "" },
-      { value: 800, question: "These biological catalysts speed up chemical reactions in the body without being consumed.", answer: "What are enzymes?", imageUrl: "" },
-      { value: 1000, question: "This type of bond forms when atoms share electrons, and it holds together molecules like water and glucose.", answer: "What is a covalent bond?", imageUrl: "" },
+      { value: 200, question: "This process allows plants to convert sunlight, water, and CO2 into glucose and oxygen.", answer: "What is photosynthesis?", imageUrl: "" },
+      { value: 400, question: "This green pigment in chloroplasts absorbs sunlight for photosynthesis.", answer: "What is chlorophyll?", imageUrl: "" },
+      { value: 600, question: "These tiny pores on the underside of leaves open and close to control gas exchange and water loss.", answer: "What are stomata?", imageUrl: "" },
+      { value: 800, question: "This tissue in vascular plants transports water and minerals upward from roots to leaves.", answer: "What is xylem?", imageUrl: "" },
+      { value: 1000, question: "The companion tissue to xylem, this transports sugars made during photosynthesis throughout the plant.", answer: "What is phloem?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Everything around you — your desk, the air, your body — is made up of tiny particles called this.", answer: "What are atoms (or matter)?", imageUrl: "" },
-      { value: 400, question: "Water is made of two types of atoms: oxygen and this gas that is the lightest element.", answer: "What is hydrogen?", imageUrl: "" },
-      { value: 600, question: "When you mix sugar into water and it disappears, the sugar has done this.", answer: "What is dissolving?", imageUrl: "" },
-      { value: 800, question: "Ice, liquid water, and steam are three forms of water called states of this.", answer: "What is matter?", imageUrl: "" },
-      { value: 1000, question: "When you combine baking soda and vinegar and it fizzes, this type of change is happening.", answer: "What is a chemical reaction (or chemical change)?", imageUrl: "" },
-    ]
+    honors: [
+      { value: 200, question: "The light-dependent reactions of photosynthesis occur in these flattened membrane sacs inside chloroplasts.", answer: "What are thylakoids?", imageUrl: "" },
+      { value: 400, question: "The Calvin cycle fixes carbon dioxide into glucose and takes place in this fluid-filled space of the chloroplast.", answer: "What is the stroma?", imageUrl: "" },
+      { value: 600, question: "This plant hormone promotes cell elongation and causes stems to bend toward light.", answer: "What is auxin?", imageUrl: "" },
+      { value: 800, question: "Guard cells regulate the opening and closing of these pores to balance gas exchange with water conservation.", answer: "What are stomata?", imageUrl: "" },
+      { value: 1000, question: "These plants have adapted to hot, dry environments by opening their stomata only at night to fix CO2.", answer: "What are CAM plants?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "In the light reactions, water is split at Photosystem II, releasing electrons, protons, and this gas.", answer: "What is oxygen?", imageUrl: "" },
+      { value: 400, question: "This enzyme in the Calvin cycle catalyzes the fixation of CO2 to RuBP and is the most abundant protein on Earth.", answer: "What is RuBisCO?", imageUrl: "" },
+      { value: 600, question: "C4 plants avoid photorespiration by first fixing CO2 into a 4-carbon compound in these cells before passing it to bundle sheath cells.", answer: "What are mesophyll cells?", imageUrl: "" },
+      { value: 800, question: "The chemiosmotic synthesis of ATP in chloroplasts occurs as H+ ions flow through ATP synthase from the thylakoid lumen into this.", answer: "What is the stroma?", imageUrl: "" },
+      { value: 1000, question: "When oxygen instead of CO2 binds to RuBisCO, this wasteful process occurs, reducing photosynthetic efficiency.", answer: "What is photorespiration?", imageUrl: "" },
+    ],
   },
   "Evolution & Adaptation": {
-    standard: [
-      { value: 200, question: "This process proposed by Darwin explains how organisms with favorable traits survive and reproduce more successfully.", answer: "What is natural selection?", imageUrl: "" },
-      { value: 400, question: "Structures that have a similar bone structure but different functions, like a whale flipper and a human arm, are called this.", answer: "What are homologous structures?", imageUrl: "" },
-      { value: 600, question: "This type of evolution occurs when two unrelated species develop similar traits due to similar environments.", answer: "What is convergent evolution?", imageUrl: "" },
-      { value: 800, question: "The preserved remains or traces of ancient organisms found in rock layers are called this.", answer: "What are fossils?", imageUrl: "" },
-      { value: 1000, question: "This term describes the evolution of a new species from an ancestral population, often due to geographic isolation.", answer: "What is speciation?", imageUrl: "" },
-    ],
-    easy: [
+    k5: [
       { value: 200, question: "A polar bear's white fur helps it hide in the snow. This helpful feature is called this.", answer: "What is an adaptation?", imageUrl: "" },
       { value: 400, question: "Over a very long time, animals can change to better survive in their homes. This slow change is called this.", answer: "What is evolution?", imageUrl: "" },
       { value: 600, question: "Dinosaur bones found in rocks are examples of this, which teach us about animals that lived long ago.", answer: "What are fossils?", imageUrl: "" },
       { value: 800, question: "A cactus stores water in its thick stem so it can live in the desert. This is an example of this.", answer: "What is an adaptation?", imageUrl: "" },
-      { value: 1000, question: "Animals that can't find enough food or escape from predators are less likely to survive. This idea is sometimes called 'survival of the' this.", answer: "What is the fittest?", imageUrl: "" },
-    ]
-  },
-  "The Nervous System": {
-    standard: [
-      { value: 200, question: "These specialized cells carry electrical signals throughout the nervous system.", answer: "What are neurons (nerve cells)?", imageUrl: "" },
-      { value: 400, question: "This part of the brain is responsible for balance, coordination, and fine motor movement.", answer: "What is the cerebellum?", imageUrl: "" },
-      { value: 600, question: "This gap between two neurons is where neurotransmitters carry signals from one cell to the next.", answer: "What is a synapse?", imageUrl: "" },
-      { value: 800, question: "This largest part of the brain is divided into two hemispheres and controls thinking, memory, and voluntary movement.", answer: "What is the cerebrum?", imageUrl: "" },
-      { value: 1000, question: "This automatic, rapid response to a stimulus bypasses the brain and is processed in the spinal cord.", answer: "What is a reflex arc?", imageUrl: "" },
+      { value: 1000, question: "Animals that can't find enough food or escape from predators are less likely to survive. This idea is sometimes called survival of the this.", answer: "What is the fittest?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Your brain sends messages to the rest of your body through special cells called these.", answer: "What are nerves?", imageUrl: "" },
-      { value: 400, question: "When you accidentally touch something hot, you pull your hand back really fast without thinking. This is called this.", answer: "What is a reflex?", imageUrl: "" },
-      { value: 600, question: "This organ protected inside your skull controls your thoughts, feelings, and movements.", answer: "What is the brain?", imageUrl: "" },
-      { value: 800, question: "This long cord inside your backbone carries messages between your brain and the rest of your body.", answer: "What is the spinal cord?", imageUrl: "" },
-      { value: 1000, question: "Your five senses — sight, hearing, smell, taste, and touch — all send information to this organ.", answer: "What is the brain?", imageUrl: "" },
-    ]
-  },
-  "The Digestive System": {
-    standard: [
-      { value: 200, question: "Digestion begins in the mouth where this enzyme in saliva starts breaking down starches.", answer: "What is amylase?", imageUrl: "" },
-      { value: 400, question: "This muscular wave-like motion moves food through the esophagus and intestines.", answer: "What is peristalsis?", imageUrl: "" },
-      { value: 600, question: "This organ produces bile, which helps break down fats in the small intestine.", answer: "What is the liver?", imageUrl: "" },
-      { value: 800, question: "These finger-like projections in the small intestine increase surface area for nutrient absorption.", answer: "What are villi?", imageUrl: "" },
-      { value: 1000, question: "This organ stores and concentrates bile produced by the liver until it is needed for digestion.", answer: "What is the gallbladder?", imageUrl: "" },
+    ms: [
+      { value: 200, question: "Charles Darwin is famous for developing this theory explaining how species change over time.", answer: "What is the theory of evolution (by natural selection)?", imageUrl: "" },
+      { value: 400, question: "Animals with helpful traits are more likely to survive and pass those traits to babies. This process is called this.", answer: "What is natural selection?", imageUrl: "" },
+      { value: 600, question: "A chameleon changing color and an arctic fox turning white in winter are both examples of this.", answer: "What are adaptations?", imageUrl: "" },
+      { value: 800, question: "The preserved remains or traces of organisms from millions of years ago, often found in sedimentary rock.", answer: "What are fossils?", imageUrl: "" },
+      { value: 1000, question: "When humans choose which animals or plants to breed for desired traits, like bigger corn or friendlier dogs, this is called this.", answer: "What is artificial selection?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Digestion starts in your mouth when you chew food with these hard white things.", answer: "What are teeth?", imageUrl: "" },
-      { value: 400, question: "After you swallow, food travels down a tube to reach this bag-shaped organ that mashes it up with acid.", answer: "What is the stomach?", imageUrl: "" },
-      { value: 600, question: "This watery liquid in your mouth helps soften food and start breaking it down.", answer: "What is saliva (or spit)?", imageUrl: "" },
-      { value: 800, question: "After your stomach, food moves into this long, curvy tube where your body absorbs the good stuff from food.", answer: "What is the small intestine?", imageUrl: "" },
-      { value: 1000, question: "The parts of food your body can't use leave your body as waste, which is stored here before leaving.", answer: "What is the large intestine (or colon)?", imageUrl: "" },
-    ]
+    standard: [
+      { value: 200, question: "This process proposed by Darwin explains how organisms with favorable traits survive and reproduce more successfully.", answer: "What is natural selection?", imageUrl: "" },
+      { value: 400, question: "Structures with similar bone structure but different functions, like a whale flipper and a human arm, are called this.", answer: "What are homologous structures?", imageUrl: "" },
+      { value: 600, question: "This type of evolution occurs when two unrelated species develop similar traits due to similar environments.", answer: "What is convergent evolution?", imageUrl: "" },
+      { value: 800, question: "The preserved remains or traces of ancient organisms found in rock layers are called this.", answer: "What are fossils?", imageUrl: "" },
+      { value: 1000, question: "This term describes the evolution of a new species from an ancestral population, often due to geographic isolation.", answer: "What is speciation?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "This pattern of evolution occurs when one species rapidly diversifies into many to fill ecological niches, as with Darwin's finches.", answer: "What is adaptive radiation?", imageUrl: "" },
+      { value: 400, question: "Structures with no apparent function in one species but functional in related species, like the human appendix, are called this.", answer: "What are vestigial structures?", imageUrl: "" },
+      { value: 600, question: "This type of selection favors individuals at both extremes of a trait, potentially splitting a population in two.", answer: "What is disruptive selection?", imageUrl: "" },
+      { value: 800, question: "Random changes in allele frequency in small populations, not caused by selection, are called this.", answer: "What is genetic drift?", imageUrl: "" },
+      { value: 1000, question: "This event occurs when a small group colonizes a new area, carrying only a fraction of the original population's genetic diversity.", answer: "What is the founder effect?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "This equilibrium model predicts that allele frequencies remain constant if there is no mutation, selection, migration, drift, or nonrandom mating.", answer: "What is Hardy-Weinberg equilibrium?", imageUrl: "" },
+      { value: 400, question: "In the Hardy-Weinberg equation p2 + 2pq + q2 = 1, the term 2pq represents the frequency of this genotype.", answer: "What is heterozygous?", imageUrl: "" },
+      { value: 600, question: "This type of reproductive isolation occurs before mating, such as differences in mating calls or habitat preferences.", answer: "What is prezygotic isolation?", imageUrl: "" },
+      { value: 800, question: "The evolution of antibiotic resistance in bacteria is an example of natural selection acting on this type of variation.", answer: "What is genetic (heritable) variation?", imageUrl: "" },
+      { value: 1000, question: "Evo-devo studies show that changes in the expression of these developmental regulatory genes can produce major morphological changes.", answer: "What are Hox genes?", imageUrl: "" },
+    ],
   },
   "Heart & Circulation": {
+    k5: [
+      { value: 200, question: "Put your hand on your chest — you can feel this organ beating to pump blood.", answer: "What is the heart?", imageUrl: "" },
+      { value: 400, question: "These tiny tubes carry blood to every part of your body, from your toes to your fingers.", answer: "What are blood vessels?", imageUrl: "" },
+      { value: 600, question: "If you look at the inside of your wrist, you might see blue lines. These are called this.", answer: "What are veins?", imageUrl: "" },
+      { value: 800, question: "Blood carries this invisible gas from your lungs to the rest of your body so your cells can work.", answer: "What is oxygen?", imageUrl: "" },
+      { value: 1000, question: "When a doctor uses a stethoscope, they are listening to the sounds of this organ.", answer: "What is the heart?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "The heart has four chambers. The upper two are called atria and the lower two are called this.", answer: "What are ventricles?", imageUrl: "" },
+      { value: 400, question: "These blood vessels carry oxygen-rich blood AWAY from the heart to the body.", answer: "What are arteries?", imageUrl: "" },
+      { value: 600, question: "The tiniest blood vessels where oxygen and nutrients are exchanged with body cells are called this.", answer: "What are capillaries?", imageUrl: "" },
+      { value: 800, question: "Red blood cells get their color from this iron-containing protein that carries oxygen.", answer: "What is hemoglobin?", imageUrl: "" },
+      { value: 1000, question: "The left side of the heart pumps blood to the whole body, while the right side pumps blood to these organs.", answer: "What are the lungs?", imageUrl: "" },
+    ],
     standard: [
       { value: 200, question: "The heart has four of these compartments — two upper atria and two lower ventricles.", answer: "What are chambers?", imageUrl: "" },
       { value: 400, question: "These blood vessels carry oxygen-poor blood back to the heart from the body.", answer: "What are veins?", imageUrl: "" },
@@ -265,143 +314,332 @@ const QUESTION_BANK = {
       { value: 800, question: "This side of the heart pumps blood to the lungs to pick up oxygen.", answer: "What is the right side?", imageUrl: "" },
       { value: 1000, question: "This largest artery in the body carries oxygenated blood from the left ventricle to the rest of the body.", answer: "What is the aorta?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Put your hand on your chest — you can feel this organ beating to pump blood.", answer: "What is the heart?", imageUrl: "" },
-      { value: 400, question: "These tiny tubes carry blood to every part of your body, from your toes to your fingers.", answer: "What are blood vessels?", imageUrl: "" },
-      { value: 600, question: "If you look at the inside of your wrist, you might see blue lines. These are this type of blood vessel.", answer: "What are veins?", imageUrl: "" },
-      { value: 800, question: "Blood carries this invisible gas from your lungs to the rest of your body so your cells can work.", answer: "What is oxygen?", imageUrl: "" },
-      { value: 1000, question: "When a doctor uses a stethoscope, they are listening to the sounds of this organ.", answer: "What is the heart?", imageUrl: "" },
-    ]
-  },
-  "The Immune System": {
-    standard: [
-      { value: 200, question: "These Y-shaped proteins are produced by B cells and attach to specific antigens to help destroy pathogens.", answer: "What are antibodies?", imageUrl: "" },
-      { value: 400, question: "This type of immunity develops after you recover from an illness or receive a vaccination.", answer: "What is acquired (or adaptive) immunity?", imageUrl: "" },
-      { value: 600, question: "These immune cells directly attack and kill virus-infected cells and cancer cells.", answer: "What are T cells (or killer T cells)?", imageUrl: "" },
-      { value: 800, question: "This is the body's first line of defense, including skin, mucous membranes, and stomach acid.", answer: "What are innate (nonspecific) defenses?", imageUrl: "" },
-      { value: 1000, question: "This inflammatory response causes redness, swelling, heat, and pain at the site of an infection or injury.", answer: "What is inflammation?", imageUrl: "" },
+    honors: [
+      { value: 200, question: "This natural pacemaker in the right atrium initiates the heartbeat's electrical impulse.", answer: "What is the sinoatrial (SA) node?", imageUrl: "" },
+      { value: 400, question: "Blood pressure is measured as systolic over diastolic. Systolic measures pressure when the heart does this.", answer: "What is contracts (beats)?", imageUrl: "" },
+      { value: 600, question: "This circuit carries blood from the right ventricle to the lungs and back to the left atrium.", answer: "What is the pulmonary circuit?", imageUrl: "" },
+      { value: 800, question: "These valves between the atria and ventricles prevent backflow. The left one has two flaps and is called this.", answer: "What is the bicuspid (mitral) valve?", imageUrl: "" },
+      { value: 1000, question: "This component of blood, a yellowish fluid, carries dissolved nutrients, hormones, and waste products.", answer: "What is plasma?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Your body has a system that fights off germs and keeps you from getting sick. This is called this.", answer: "What is the immune system?", imageUrl: "" },
-      { value: 400, question: "When you get a fever, your body temperature goes up to help fight these tiny invaders.", answer: "What are germs (or bacteria/viruses)?", imageUrl: "" },
-      { value: 600, question: "A scab forms over a cut to protect it while your body does this underneath.", answer: "What is healing?", imageUrl: "" },
-      { value: 800, question: "After you get chicken pox, your body remembers the germ so you probably won't get it again. This is called this.", answer: "What is immunity?", imageUrl: "" },
-      { value: 1000, question: "White blood cells are like tiny soldiers in your blood that fight off this.", answer: "What are germs (or infections)?", imageUrl: "" },
-    ]
-  },
-  "Bones & Muscles": {
-    standard: [
-      { value: 200, question: "This type of muscle is found only in the heart and contracts involuntarily to pump blood.", answer: "What is cardiac muscle?", imageUrl: "" },
-      { value: 400, question: "This tough, flexible connective tissue cushions the ends of bones at joints.", answer: "What is cartilage?", imageUrl: "" },
-      { value: 600, question: "These strong bands of tissue connect bones to other bones at joints.", answer: "What are ligaments?", imageUrl: "" },
-      { value: 800, question: "Muscles can only pull, not push. This means they must work in these types of pairs to create movement.", answer: "What are antagonistic pairs?", imageUrl: "" },
-      { value: 1000, question: "This condition occurs when bones lose density and become fragile, especially common in older adults.", answer: "What is osteoporosis?", imageUrl: "" },
+    ap: [
+      { value: 200, question: "Cardiac output equals heart rate multiplied by this measurement of blood volume pumped per beat.", answer: "What is stroke volume?", imageUrl: "" },
+      { value: 400, question: "The Frank-Starling mechanism states that increased venous return stretches cardiac fibers, leading to this response.", answer: "What is a stronger contraction?", imageUrl: "" },
+      { value: 600, question: "This delay node between the atria and ventricles ensures the atria finish contracting before the ventricles begin.", answer: "What is the atrioventricular (AV) node?", imageUrl: "" },
+      { value: 800, question: "The electrocardiogram (ECG) QRS complex represents the electrical depolarization of these chambers.", answer: "What are the ventricles?", imageUrl: "" },
+      { value: 1000, question: "Baroreceptors in the carotid sinus and aortic arch detect changes in this and signal the medulla to adjust heart rate.", answer: "What is blood pressure?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "You have over 200 of these hard parts inside your body that make up your skeleton.", answer: "What are bones?", imageUrl: "" },
-      { value: 400, question: "When you bend your arm, this muscle on the front of your upper arm gets shorter and harder.", answer: "What is the bicep?", imageUrl: "" },
-      { value: 600, question: "The place where two bones meet and can bend or move is called this.", answer: "What is a joint?", imageUrl: "" },
-      { value: 800, question: "This strong, stretchy tissue connects your muscles to your bones so you can move.", answer: "What are tendons?", imageUrl: "" },
-      { value: 1000, question: "Drinking milk and eating cheese helps keep your bones strong because they contain this mineral.", answer: "What is calcium?", imageUrl: "" },
-    ]
   },
-  "Reproduction & Development": {
-    standard: [
-      { value: 200, question: "This type of reproduction requires two parents and produces genetically unique offspring.", answer: "What is sexual reproduction?", imageUrl: "" },
-      { value: 400, question: "In human development, this structure connects the developing fetus to the mother's uterine wall for nutrient exchange.", answer: "What is the placenta?", imageUrl: "" },
-      { value: 600, question: "This is the term for an organism in the first eight weeks of development after fertilization.", answer: "What is an embryo?", imageUrl: "" },
-      { value: 800, question: "This process occurs when a sperm cell and egg cell combine to form a zygote.", answer: "What is fertilization?", imageUrl: "" },
-      { value: 1000, question: "This type of reproduction produces genetically identical offspring from a single parent, common in bacteria.", answer: "What is asexual reproduction?", imageUrl: "" },
+  "The Digestive System": {
+    k5: [
+      { value: 200, question: "Digestion starts in your mouth when you chew food with these hard white things.", answer: "What are teeth?", imageUrl: "" },
+      { value: 400, question: "After you swallow, food travels down a tube to reach this bag-shaped organ that mashes it up.", answer: "What is the stomach?", imageUrl: "" },
+      { value: 600, question: "This watery liquid in your mouth helps soften food and start breaking it down.", answer: "What is saliva (or spit)?", imageUrl: "" },
+      { value: 800, question: "After your stomach, food moves into this long, curvy tube where your body absorbs nutrients.", answer: "What is the small intestine?", imageUrl: "" },
+      { value: 1000, question: "The parts of food your body can't use leave your body as waste, stored in this organ.", answer: "What is the large intestine (or colon)?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Baby chicks hatch from these hard-shelled objects laid by a hen.", answer: "What are eggs?", imageUrl: "" },
-      { value: 400, question: "A tadpole grows legs and loses its tail as it slowly turns into this animal.", answer: "What is a frog?", imageUrl: "" },
-      { value: 600, question: "A caterpillar wraps itself in a chrysalis and comes out as this beautiful flying insect.", answer: "What is a butterfly?", imageUrl: "" },
-      { value: 800, question: "Most baby mammals grow inside their mother before being born alive, instead of hatching from this.", answer: "What is an egg?", imageUrl: "" },
-      { value: 1000, question: "The stages an animal goes through from birth to adulthood is called a life this.", answer: "What is a life cycle?", imageUrl: "" },
-    ]
-  },
-  "Microorganisms": {
-    standard: [
-      { value: 200, question: "These single-celled organisms lack a nucleus and include bacteria.", answer: "What are prokaryotes?", imageUrl: "" },
-      { value: 400, question: "This type of microorganism is not considered living because it can only reproduce inside a host cell.", answer: "What is a virus?", imageUrl: "" },
-      { value: 600, question: "These rod-shaped, sphere-shaped, and spiral-shaped forms describe the three main shapes of bacteria.", answer: "What are bacilli, cocci, and spirilla?", imageUrl: "" },
-      { value: 800, question: "This beneficial process uses bacteria or yeast to convert sugars into alcohol or acids, used in making bread and yogurt.", answer: "What is fermentation?", imageUrl: "" },
-      { value: 1000, question: "This type of relationship between gut bacteria and humans benefits both organisms.", answer: "What is mutualism?", imageUrl: "" },
+    ms: [
+      { value: 200, question: "This muscular tube connects the mouth to the stomach and uses squeezing motions to push food down.", answer: "What is the esophagus?", imageUrl: "" },
+      { value: 400, question: "The stomach uses this strong acid to break down food and kill bacteria.", answer: "What is hydrochloric acid (stomach acid)?", imageUrl: "" },
+      { value: 600, question: "This large organ produces bile, which helps break down fats.", answer: "What is the liver?", imageUrl: "" },
+      { value: 800, question: "Most nutrients from food are absorbed in this organ, not the stomach.", answer: "What is the small intestine?", imageUrl: "" },
+      { value: 1000, question: "The main job of the large intestine is to absorb this substance from leftover food before waste is eliminated.", answer: "What is water?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "These living things are so tiny you need a microscope to see them.", answer: "What are germs (or microorganisms)?", imageUrl: "" },
-      { value: 400, question: "This kitchen tool keeps food cold to slow down the germs that make food go bad.", answer: "What is a refrigerator?", imageUrl: "" },
-      { value: 600, question: "Not all tiny organisms are bad — the good bacteria in yogurt help your this stay healthy.", answer: "What is your stomach (or digestive system)?", imageUrl: "" },
-      { value: 800, question: "When bread dough rises and gets puffy, this tiny living thing is making bubbles of gas inside.", answer: "What is yeast?", imageUrl: "" },
-      { value: 1000, question: "If you leave bread out too long, fuzzy green stuff grows on it. This is a type of this.", answer: "What is mold?", imageUrl: "" },
-    ]
-  },
-  "Animal Behavior": {
     standard: [
-      { value: 200, question: "This seasonal movement of animals from one region to another for food or breeding is called this.", answer: "What is migration?", imageUrl: "" },
-      { value: 400, question: "This sleep-like state allows animals like bears to conserve energy during winter months.", answer: "What is hibernation?", imageUrl: "" },
-      { value: 600, question: "This type of learned behavior occurs when a young animal forms a strong attachment to the first moving object it sees.", answer: "What is imprinting?", imageUrl: "" },
-      { value: 800, question: "This behavior, where an animal marks and defends an area from others of the same species, is called this.", answer: "What is territoriality?", imageUrl: "" },
-      { value: 1000, question: "This type of behavior is present from birth and does not need to be learned, like a spider spinning a web.", answer: "What is instinct (or innate behavior)?", imageUrl: "" },
+      { value: 200, question: "Digestion begins in the mouth where this enzyme in saliva starts breaking down starches.", answer: "What is amylase?", imageUrl: "" },
+      { value: 400, question: "This muscular wave-like motion moves food through the esophagus and intestines.", answer: "What is peristalsis?", imageUrl: "" },
+      { value: 600, question: "This organ produces bile, which helps break down fats in the small intestine.", answer: "What is the liver?", imageUrl: "" },
+      { value: 800, question: "These finger-like projections in the small intestine increase surface area for nutrient absorption.", answer: "What are villi?", imageUrl: "" },
+      { value: 1000, question: "This organ stores and concentrates bile produced by the liver until it is needed for digestion.", answer: "What is the gallbladder?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Birds fly south in the fall and come back in the spring. This long journey is called this.", answer: "What is migration?", imageUrl: "" },
-      { value: 400, question: "Bears sleep through most of the winter in a deep sleep called this.", answer: "What is hibernation?", imageUrl: "" },
-      { value: 600, question: "A dog learning to sit when you say 'sit' is an example of this kind of behavior.", answer: "What is a learned behavior (or training)?", imageUrl: "" },
-      { value: 800, question: "Some animals change their color to blend in with their surroundings. This hiding trick is called this.", answer: "What is camouflage?", imageUrl: "" },
-      { value: 1000, question: "Baby sea turtles know to crawl toward the ocean as soon as they hatch, even though no one teaches them. This is called this.", answer: "What is instinct?", imageUrl: "" },
-    ]
-  },
-  "Classification & Taxonomy": {
-    standard: [
-      { value: 200, question: "This Swedish scientist developed the two-part naming system used to classify all living organisms.", answer: "Who is Carolus Linnaeus?", imageUrl: "" },
-      { value: 400, question: "In the classification system, this level falls between phylum and order.", answer: "What is class?", imageUrl: "" },
-      { value: 600, question: "Organisms in this kingdom are multicellular, have cell walls made of chitin, and absorb nutrients externally.", answer: "What is Fungi?", imageUrl: "" },
-      { value: 800, question: "This two-word naming system gives each organism a genus and species name, such as Homo sapiens.", answer: "What is binomial nomenclature?", imageUrl: "" },
-      { value: 1000, question: "The three domains of life are Bacteria, Eukarya, and this domain of extremophile single-celled organisms.", answer: "What is Archaea?", imageUrl: "" },
+    honors: [
+      { value: 200, question: "The pancreas secretes this bicarbonate-rich fluid to neutralize stomach acid as chyme enters the duodenum.", answer: "What is pancreatic juice?", imageUrl: "" },
+      { value: 400, question: "This hormone, released by the stomach lining, stimulates the secretion of hydrochloric acid and pepsinogen.", answer: "What is gastrin?", imageUrl: "" },
+      { value: 600, question: "Pepsinogen is activated into this protein-digesting enzyme by hydrochloric acid in the stomach.", answer: "What is pepsin?", imageUrl: "" },
+      { value: 800, question: "Microvilli on the surface of villi create this border that vastly increases absorptive surface area.", answer: "What is the brush border?", imageUrl: "" },
+      { value: 1000, question: "This sphincter between the stomach and duodenum controls the release of chyme into the small intestine.", answer: "What is the pyloric sphincter?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Scientists sort living things into groups based on how they are alike. This sorting is called this.", answer: "What is classification?", imageUrl: "" },
-      { value: 400, question: "Dogs, cats, and elephants are all part of this kingdom of living things that move and eat food.", answer: "What is the animal kingdom?", imageUrl: "" },
-      { value: 600, question: "Trees, flowers, and grass are all part of this kingdom of living things that make their own food.", answer: "What is the plant kingdom?", imageUrl: "" },
-      { value: 800, question: "Animals with backbones like fish, birds, and humans are called this.", answer: "What are vertebrates?", imageUrl: "" },
-      { value: 1000, question: "Insects, spiders, and worms do NOT have a backbone, so they are called this.", answer: "What are invertebrates?", imageUrl: "" },
-    ]
+    ap: [
+      { value: 200, question: "CCK (cholecystokinin) is released by the duodenum in response to fats and causes this organ to contract and release bile.", answer: "What is the gallbladder?", imageUrl: "" },
+      { value: 400, question: "This hormone released by the duodenum stimulates the pancreas to secrete bicarbonate, neutralizing acidic chyme.", answer: "What is secretin?", imageUrl: "" },
+      { value: 600, question: "Lipids are absorbed as monoglycerides and fatty acids, then reassembled into triglycerides and packaged into these lipoprotein particles.", answer: "What are chylomicrons?", imageUrl: "" },
+      { value: 800, question: "The enteric nervous system, sometimes called the second brain, independently controls motility and secretion in this organ system.", answer: "What is the gastrointestinal (digestive) system?", imageUrl: "" },
+      { value: 1000, question: "Amino acids and monosaccharides are absorbed into blood capillaries of villi, while fats enter these lymphatic vessels.", answer: "What are lacteals?", imageUrl: "" },
+    ],
   },
   "Biomes & Habitats": {
+    k5: [
+      { value: 200, question: "A hot, dry place with very little rain and lots of sand, like the Sahara, is called this.", answer: "What is a desert?", imageUrl: "" },
+      { value: 400, question: "A place with many tall trees, lots of rain, and animals like monkeys and parrots is called a rain this.", answer: "What is a rainforest?", imageUrl: "" },
+      { value: 600, question: "The icy cold area around the North Pole where polar bears live is called this.", answer: "What is the Arctic?", imageUrl: "" },
+      { value: 800, question: "A flat area with lots of grass but very few trees is called this.", answer: "What is a grassland (or prairie)?", imageUrl: "" },
+      { value: 1000, question: "The specific place where an animal lives, finds food, and raises its babies is called its this.", answer: "What is a habitat?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "A large area of Earth with a specific climate and types of plants and animals is called this.", answer: "What is a biome?", imageUrl: "" },
+      { value: 400, question: "The tundra biome is known for being extremely cold and having permanently frozen ground called this.", answer: "What is permafrost?", imageUrl: "" },
+      { value: 600, question: "Freshwater biomes include ponds, lakes, streams, and these slow-moving bodies of water.", answer: "What are rivers (or wetlands)?", imageUrl: "" },
+      { value: 800, question: "The taiga biome is dominated by these cone-bearing, needle-leaved trees like spruce and pine.", answer: "What are coniferous trees (conifers)?", imageUrl: "" },
+      { value: 1000, question: "Where a river meets the ocean, creating a mix of fresh and salt water, you find this ecosystem.", answer: "What is an estuary?", imageUrl: "" },
+    ],
     standard: [
       { value: 200, question: "This frozen biome has permafrost, very little precipitation, and is home to caribou and arctic foxes.", answer: "What is the tundra?", imageUrl: "" },
       { value: 400, question: "This biome has the greatest biodiversity on Earth and receives more than 80 inches of rain per year.", answer: "What is the tropical rainforest?", imageUrl: "" },
       { value: 600, question: "This grassland biome found in Africa is home to large herds of grazing animals and their predators.", answer: "What is the savanna?", imageUrl: "" },
-      { value: 800, question: "This biome is dominated by coniferous trees like spruce and fir, forming a belt across northern North America and Eurasia.", answer: "What is the taiga (boreal forest)?", imageUrl: "" },
+      { value: 800, question: "This biome is dominated by coniferous trees, forming a belt across northern North America and Eurasia.", answer: "What is the taiga (boreal forest)?", imageUrl: "" },
       { value: 1000, question: "These transitional ecosystems where freshwater meets saltwater are among the most productive on Earth.", answer: "What are estuaries?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "A hot, dry place with very little rain and lots of sand, like the Sahara, is called this.", answer: "What is a desert?", imageUrl: "" },
-      { value: 400, question: "A place with many tall trees, lots of rain, and animals like monkeys and parrots is called a rain this.", answer: "What is a rainforest?", imageUrl: "" },
-      { value: 600, question: "The icy cold area around the North Pole and South Pole where polar bears and penguins live is called this.", answer: "What is the Arctic (or polar region)?", imageUrl: "" },
-      { value: 800, question: "A flat area with lots of grass but very few trees, where bison and prairie dogs live, is called this.", answer: "What is a grassland (or prairie)?", imageUrl: "" },
-      { value: 1000, question: "The specific place where an animal lives, finds food, and raises its babies is called its this.", answer: "What is a habitat?", imageUrl: "" },
-    ]
-  },
-  "Energy in Ecosystems": {
-    standard: [
-      { value: 200, question: "Organisms that make their own food through photosynthesis are at the base of every food chain and are called this.", answer: "What are producers (autotrophs)?", imageUrl: "" },
-      { value: 400, question: "Only about this percentage of energy is transferred from one trophic level to the next.", answer: "What is 10 percent?", imageUrl: "" },
-      { value: 600, question: "These organisms break down dead organic matter and recycle nutrients back into the ecosystem.", answer: "What are decomposers?", imageUrl: "" },
-      { value: 800, question: "This type of pyramid shows the decreasing amount of energy available at each trophic level.", answer: "What is an energy pyramid?", imageUrl: "" },
-      { value: 1000, question: "Unlike energy, this is recycled through ecosystems via biogeochemical cycles rather than flowing in one direction.", answer: "What is matter (or nutrients)?", imageUrl: "" },
+    honors: [
+      { value: 200, question: "This zone in a lake or ocean is the open water area where sunlight penetrates, supporting photosynthesis.", answer: "What is the photic zone?", imageUrl: "" },
+      { value: 400, question: "This biome experiences four distinct seasons, moderate rainfall, and is dominated by deciduous trees that shed leaves.", answer: "What is the temperate deciduous forest?", imageUrl: "" },
+      { value: 600, question: "This aquatic biome exists near hydrothermal vents on the ocean floor, supporting life through chemosynthesis.", answer: "What is the deep-sea vent community?", imageUrl: "" },
+      { value: 800, question: "As altitude increases on a mountain, biomes change in a pattern similar to traveling from the equator toward this.", answer: "What are the poles (higher latitudes)?", imageUrl: "" },
+      { value: 1000, question: "The concept that species diversity increases as you move from the poles toward the equator is called the latitudinal this gradient.", answer: "What is the latitudinal diversity gradient?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "Plants get their energy from this big, bright thing in the sky.", answer: "What is the sun?", imageUrl: "" },
-      { value: 400, question: "When a deer eats grass, the deer gets its energy from the grass. The grass is called this in a food chain.", answer: "What is a producer?", imageUrl: "" },
-      { value: 600, question: "Animals that eat plants or other animals to get energy are called this in a food chain.", answer: "What are consumers?", imageUrl: "" },
-      { value: 800, question: "Mushrooms and bacteria that break down dead leaves and logs are called this.", answer: "What are decomposers?", imageUrl: "" },
-      { value: 1000, question: "All the energy in most food chains can be traced back to this original source.", answer: "What is the sun?", imageUrl: "" },
-    ]
+    ap: [
+      { value: 200, question: "Net primary productivity (NPP) is highest in tropical rainforests and this aquatic biome known for nursery habitat.", answer: "What are estuaries (or coral reefs)?", imageUrl: "" },
+      { value: 400, question: "This biogeographic concept explains why islands farther from the mainland have fewer species and higher extinction rates.", answer: "What is island biogeography?", imageUrl: "" },
+      { value: 600, question: "In the open ocean, this nutrient is often the limiting factor for phytoplankton growth in surface waters.", answer: "What is nitrogen (or iron/phosphorus)?", imageUrl: "" },
+      { value: 800, question: "Lake turnover occurs in temperate lakes when surface water cools to 4C and sinks, mixing nutrients. This happens in these two seasons.", answer: "What are spring and fall?", imageUrl: "" },
+      { value: 1000, question: "The Hubbard Brook experiment demonstrated that deforestation dramatically increases the loss of this element through stream runoff.", answer: "What is nitrogen (nitrate)?", imageUrl: "" },
+    ],
+  },
+  "DNA & Biotechnology": {
+    k5: [
+      { value: 200, question: "Inside almost every cell in your body, there is a special code that makes you YOU. This code is called this.", answer: "What is DNA?", imageUrl: "" },
+      { value: 400, question: "Your DNA comes from both of your parents, which is why you might look like a mix of mom and dad.", answer: "What are genes (or heredity)?", imageUrl: "" },
+      { value: 600, question: "Scientists can look at DNA to help solve crimes or find family members. DNA is like a blueprint for this.", answer: "What is your body?", imageUrl: "" },
+      { value: 800, question: "Every person's DNA is unique, except for identical ones of these, who share the same DNA.", answer: "What are twins?", imageUrl: "" },
+      { value: 1000, question: "DNA is shaped like a twisted ladder. Scientists call this shape a double this.", answer: "What is a double helix?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "DNA stands for deoxyribonucleic acid and is found inside this part of the cell.", answer: "What is the nucleus?", imageUrl: "" },
+      { value: 400, question: "DNA has four chemical bases: adenine, thymine, guanine, and this fourth base that pairs with guanine.", answer: "What is cytosine?", imageUrl: "" },
+      { value: 600, question: "When scientists copy DNA in a lab using a technique called PCR, they can make millions of copies from a tiny this.", answer: "What is a sample?", imageUrl: "" },
+      { value: 800, question: "Genetically modified organisms (GMOs) are created by adding genes from one organism into this.", answer: "What is another organism?", imageUrl: "" },
+      { value: 1000, question: "Forensic scientists use DNA fingerprinting to match evidence to suspects because everyone's DNA pattern is this.", answer: "What is unique?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "These four bases make up the rungs of the DNA ladder: adenine, thymine, guanine, and this.", answer: "What is cytosine?", imageUrl: "" },
+      { value: 400, question: "This process makes an exact copy of a DNA molecule before cell division.", answer: "What is DNA replication?", imageUrl: "" },
+      { value: 600, question: "This technology allows scientists to cut and paste DNA from one organism into another.", answer: "What is genetic engineering (or recombinant DNA)?", imageUrl: "" },
+      { value: 800, question: "This laboratory technique separates DNA fragments by size using an electric current through a gel.", answer: "What is gel electrophoresis?", imageUrl: "" },
+      { value: 1000, question: "An organism that has received genes from another species is called this.", answer: "What is a transgenic organism (or GMO)?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "This enzyme cuts DNA at specific recognition sequences and is essential for genetic engineering.", answer: "What is a restriction enzyme (restriction endonuclease)?", imageUrl: "" },
+      { value: 400, question: "This technique rapidly amplifies small quantities of DNA by using repeated heating and cooling cycles.", answer: "What is PCR (polymerase chain reaction)?", imageUrl: "" },
+      { value: 600, question: "Small, circular DNA molecules in bacteria that can carry additional genes and are used as vectors in cloning.", answer: "What are plasmids?", imageUrl: "" },
+      { value: 800, question: "The process of reading the order of nucleotide bases in a strand of DNA is called DNA this.", answer: "What is DNA sequencing?", imageUrl: "" },
+      { value: 1000, question: "In RNA, this base replaces thymine and pairs with adenine.", answer: "What is uracil?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "CRISPR-Cas9 technology uses a guide RNA to direct the Cas9 enzyme to cut DNA at this type of specific location.", answer: "What is a target sequence?", imageUrl: "" },
+      { value: 400, question: "In a Northern blot, this type of nucleic acid is separated and detected, as opposed to DNA in a Southern blot.", answer: "What is RNA?", imageUrl: "" },
+      { value: 600, question: "This process of converting mRNA instructions into a polypeptide chain occurs at ribosomes.", answer: "What is translation?", imageUrl: "" },
+      { value: 800, question: "After transcription, this process removes introns and joins exons before mRNA leaves the nucleus.", answer: "What is RNA splicing?", imageUrl: "" },
+      { value: 1000, question: "Alternative splicing of the same pre-mRNA can produce different proteins, contributing to this type of diversity from a single gene.", answer: "What is protein (or proteomic) diversity?", imageUrl: "" },
+    ],
+  },
+  "Weather & Climate": {
+    k5: [
+      { value: 200, question: "Rain, sunshine, wind, and snow are all examples of this.", answer: "What is weather?", imageUrl: "" },
+      { value: 400, question: "These white or gray fluffy things in the sky are made of tiny water droplets.", answer: "What are clouds?", imageUrl: "" },
+      { value: 600, question: "A flash of light in the sky during a storm, caused by electricity, is called this.", answer: "What is lightning?", imageUrl: "" },
+      { value: 800, question: "This spinning column of air that touches the ground during severe storms is very dangerous.", answer: "What is a tornado?", imageUrl: "" },
+      { value: 1000, question: "This tool measures temperature and tells you how hot or cold it is outside.", answer: "What is a thermometer?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "The layer of the atmosphere closest to Earth's surface where all weather occurs is called this.", answer: "What is the troposphere?", imageUrl: "" },
+      { value: 400, question: "When warm, moist air rises quickly and thunderstorms form along the boundary of two air masses, this is called a this.", answer: "What is a front?", imageUrl: "" },
+      { value: 600, question: "This instrument measures air pressure and helps predict whether weather will improve or worsen.", answer: "What is a barometer?", imageUrl: "" },
+      { value: 800, question: "Climate describes average weather patterns over a long time, while this describes conditions on a single day.", answer: "What is weather?", imageUrl: "" },
+      { value: 1000, question: "This gas makes up about 78% of Earth's atmosphere — it is not oxygen.", answer: "What is nitrogen?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "This layer of the atmosphere is where all weather occurs and where we live.", answer: "What is the troposphere?", imageUrl: "" },
+      { value: 400, question: "This type of front forms when a cold air mass overtakes a warm air mass, often causing thunderstorms.", answer: "What is a cold front?", imageUrl: "" },
+      { value: 600, question: "This instrument measures atmospheric pressure and helps forecast weather changes.", answer: "What is a barometer?", imageUrl: "" },
+      { value: 800, question: "This effect causes moving air and water to curve due to Earth's rotation.", answer: "What is the Coriolis effect?", imageUrl: "" },
+      { value: 1000, question: "This greenhouse gas is the most significant contributor to human-caused climate change.", answer: "What is carbon dioxide (CO2)?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "These large-scale atmospheric circulation cells between the equator and 30 degrees latitude drive trade winds.", answer: "What are Hadley cells?", imageUrl: "" },
+      { value: 400, question: "The El Nino-Southern Oscillation affects global weather by changing sea surface temperatures in this ocean.", answer: "What is the Pacific Ocean?", imageUrl: "" },
+      { value: 600, question: "This layer of the atmosphere contains the ozone layer and is directly above the troposphere.", answer: "What is the stratosphere?", imageUrl: "" },
+      { value: 800, question: "The albedo effect describes how much solar radiation is reflected. Fresh snow has a high albedo meaning it does this.", answer: "What is reflects most sunlight?", imageUrl: "" },
+      { value: 1000, question: "These fast-moving bands of air at high altitude influence the movement of weather systems across continents.", answer: "What are jet streams?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "Milankovitch cycles describe three orbital variations — eccentricity, axial tilt, and precession — that affect this over millennia.", answer: "What is Earth's climate?", imageUrl: "" },
+      { value: 400, question: "Rising global temperatures are causing this feedback loop: warming melts ice, reducing albedo, which causes more warming.", answer: "What is the ice-albedo feedback (positive feedback)?", imageUrl: "" },
+      { value: 600, question: "Ocean acidification occurs when CO2 dissolves in seawater and forms this acid, lowering pH.", answer: "What is carbonic acid?", imageUrl: "" },
+      { value: 800, question: "This index measures the relative greenhouse effect of gases. Methane scores about 28 times higher than CO2 over 100 years.", answer: "What is Global Warming Potential (GWP)?", imageUrl: "" },
+      { value: 1000, question: "The thermohaline circulation is driven by differences in water density caused by temperature and this property.", answer: "What is salinity?", imageUrl: "" },
+    ],
+  },
+  "Science in Real Life": {
+    k5: [
+      { value: 200, question: "When you put on sunscreen at the beach, you are protecting your skin from these invisible rays from the sun.", answer: "What are UV rays (ultraviolet light)?", imageUrl: "" },
+      { value: 400, question: "The bubbles in soda pop are made of this gas, which is also what you breathe out.", answer: "What is carbon dioxide?", imageUrl: "" },
+      { value: 600, question: "When you mix baking soda and vinegar and it fizzes, you just created a chemical this.", answer: "What is a chemical reaction?", imageUrl: "" },
+      { value: 800, question: "Recycling paper, plastic, and glass helps protect this place where all living things live.", answer: "What is the environment (or Earth)?", imageUrl: "" },
+      { value: 1000, question: "Farmers plant different crops each year to keep the soil healthy. This practice is called crop this.", answer: "What is crop rotation?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "Pasteurized milk is heated to kill harmful bacteria. This process is named after this French scientist.", answer: "Who is Louis Pasteur?", imageUrl: "" },
+      { value: 400, question: "Wearing a seatbelt protects you in a car crash because of this law — a body in motion stays in motion.", answer: "What is Newton's first law (inertia)?", imageUrl: "" },
+      { value: 600, question: "Doctors use X-rays to look at broken bones because X-rays can pass through soft tissue but not this.", answer: "What is bone (dense tissue)?", imageUrl: "" },
+      { value: 800, question: "Fluoride is added to toothpaste and water because it strengthens this part of your teeth.", answer: "What is enamel?", imageUrl: "" },
+      { value: 1000, question: "The reason food spoils more slowly in a refrigerator is that cold temperatures slow down these living things.", answer: "What are bacteria (or microorganisms)?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "Vaccines work by training your immune system to recognize pathogens using a weakened or inactive form of this.", answer: "What is the virus or bacteria (pathogen)?", imageUrl: "" },
+      { value: 400, question: "Lactose intolerance occurs when the body does not produce enough of this enzyme to break down milk sugar.", answer: "What is lactase?", imageUrl: "" },
+      { value: 600, question: "This medical imaging technique uses strong magnets and radio waves instead of radiation to see inside the body.", answer: "What is an MRI?", imageUrl: "" },
+      { value: 800, question: "Antibiotics kill bacteria but do NOT work against these much smaller pathogens that cause the flu and common cold.", answer: "What are viruses?", imageUrl: "" },
+      { value: 1000, question: "Forensic scientists can identify a person from a single hair because it contains cells with this unique molecule.", answer: "What is DNA?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "CRISPR gene editing technology was adapted from a natural defense system found in these single-celled organisms.", answer: "What are bacteria?", imageUrl: "" },
+      { value: 400, question: "The process of using living organisms like bacteria to clean up oil spills and pollution is called this.", answer: "What is bioremediation?", imageUrl: "" },
+      { value: 600, question: "Insulin for diabetic patients was historically harvested from pigs, but is now produced using genetically modified this.", answer: "What are bacteria (E. coli)?", imageUrl: "" },
+      { value: 800, question: "Carbon dating works by measuring the ratio of carbon-14 to carbon-12 in formerly living material, using this concept.", answer: "What is radioactive decay (half-life)?", imageUrl: "" },
+      { value: 1000, question: "Antibiotic resistance is accelerated by the overuse of antibiotics, allowing resistant bacteria to survive by this process.", answer: "What is natural selection?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "Gel electrophoresis is routinely used in forensic labs to compare DNA samples from crime scenes using these variable repeating regions.", answer: "What are STRs (short tandem repeats)?", imageUrl: "" },
+      { value: 400, question: "CAR-T cell therapy engineers a patient's own T cells to express chimeric antigen receptors that target this type of cell.", answer: "What are cancer cells?", imageUrl: "" },
+      { value: 600, question: "The polymerase chain reaction (PCR) is used in COVID testing to amplify tiny amounts of viral this from a nasal swab.", answer: "What is RNA (converted to DNA)?", imageUrl: "" },
+      { value: 800, question: "In pharmacogenomics, doctors tailor drug doses based on a patient's genetic variations in these drug-metabolizing enzymes.", answer: "What are cytochrome P450 enzymes?", imageUrl: "" },
+      { value: 1000, question: "The Human Microbiome Project revealed that humans carry approximately this many times more microbial cells than human cells.", answer: "What is about equal (previously thought to be 10x, now revised to roughly 1:1)?", imageUrl: "" },
+    ],
+  },
+  "Science Through History": {
+    k5: [
+      { value: 200, question: "This scientist is famous for watching an apple fall and figuring out why things fall down to the ground.", answer: "Who is Isaac Newton?", imageUrl: "" },
+      { value: 400, question: "Long before modern medicine, people did not know that washing hands could prevent the spread of these.", answer: "What are germs?", imageUrl: "" },
+      { value: 600, question: "This planet was considered the ninth planet until 2006 when scientists reclassified it as a dwarf planet.", answer: "What is Pluto?", imageUrl: "" },
+      { value: 800, question: "Ancient people thought the sun revolved around the Earth, but this astronomer showed Earth goes around the sun.", answer: "Who is Copernicus (or Galileo)?", imageUrl: "" },
+      { value: 1000, question: "The dinosaurs went extinct about 65 million years ago, likely because of a giant space rock hitting Earth called this.", answer: "What is an asteroid (or meteor)?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "This scientist sailed to the Galapagos Islands and developed the theory of evolution by natural selection.", answer: "Who is Charles Darwin?", imageUrl: "" },
+      { value: 400, question: "This doctor in the 1840s proved that doctors washing their hands before delivering babies saved lives.", answer: "Who is Ignaz Semmelweis?", imageUrl: "" },
+      { value: 600, question: "Marie Curie won two Nobel Prizes for her research on this phenomenon where atoms give off energy.", answer: "What is radioactivity?", imageUrl: "" },
+      { value: 800, question: "In 1953, Watson and Crick discovered the double helix structure of this molecule using data from Rosalind Franklin.", answer: "What is DNA?", imageUrl: "" },
+      { value: 1000, question: "Before germ theory, most people believed diseases were caused by bad air or bad smells, a theory called this.", answer: "What is miasma theory?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "Alexander Fleming accidentally discovered this first antibiotic in 1928 when mold killed bacteria in his petri dish.", answer: "What is penicillin?", imageUrl: "" },
+      { value: 400, question: "Gregor Mendel used pea plants in the 1800s to discover the basic rules of heredity, earning him the title Father of this.", answer: "What is genetics?", imageUrl: "" },
+      { value: 600, question: "Edward Jenner developed the first vaccine in 1796 by using material from cowpox to protect against this deadly disease.", answer: "What is smallpox?", imageUrl: "" },
+      { value: 800, question: "The 1918 influenza pandemic killed an estimated 50 million people worldwide and was caused by this type of pathogen.", answer: "What is a virus?", imageUrl: "" },
+      { value: 1000, question: "Rachel Carson's 1962 book 'Silent Spring' warned about the environmental dangers of this pesticide, leading to its ban.", answer: "What is DDT?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "Rosalind Franklin's X-ray diffraction Photo 51 was crucial evidence for determining the structure of this molecule.", answer: "What is DNA?", imageUrl: "" },
+      { value: 400, question: "This 1952 experiment by Hershey and Chase used bacteriophages to prove that DNA, not protein, is the genetic material.", answer: "What is the Hershey-Chase experiment?", imageUrl: "" },
+      { value: 600, question: "Robert Koch established these four criteria, still used today, for proving that a specific microbe causes a specific disease.", answer: "What are Koch's postulates?", imageUrl: "" },
+      { value: 800, question: "The Human Genome Project, completed in 2003, sequenced approximately 3 billion base pairs of human this.", answer: "What is DNA?", imageUrl: "" },
+      { value: 1000, question: "In 1996, Dolly the sheep became famous as the first mammal cloned from an adult somatic cell using this technique.", answer: "What is somatic cell nuclear transfer?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "The Miller-Urey experiment (1953) simulated early Earth conditions and produced amino acids from inorganic molecules, supporting this hypothesis.", answer: "What is abiogenesis (or chemical origin of life)?", imageUrl: "" },
+      { value: 400, question: "Lynn Margulis proposed that mitochondria and chloroplasts originated from free-living prokaryotes in this theory.", answer: "What is endosymbiotic theory?", imageUrl: "" },
+      { value: 600, question: "Meselson and Stahl's 1958 experiment using nitrogen isotopes proved that DNA replication follows this model.", answer: "What is semiconservative replication?", imageUrl: "" },
+      { value: 800, question: "The Cambrian explosion, roughly 541 million years ago, is significant because of the rapid appearance of most major animal this.", answer: "What are phyla?", imageUrl: "" },
+      { value: 1000, question: "Frederick Griffith's 1928 experiment with Streptococcus pneumoniae demonstrated this process where bacteria acquire DNA from dead cells.", answer: "What is transformation?", imageUrl: "" },
+    ],
+  },
+  "The Nervous System": {
+    k5: [
+      { value: 200, question: "Your brain sends messages to the rest of your body through special cells called these.", answer: "What are nerves?", imageUrl: "" },
+      { value: 400, question: "When you accidentally touch something hot, you pull your hand back really fast. This is called this.", answer: "What is a reflex?", imageUrl: "" },
+      { value: 600, question: "This organ protected inside your skull controls your thoughts, feelings, and movements.", answer: "What is the brain?", imageUrl: "" },
+      { value: 800, question: "This long cord inside your backbone carries messages between your brain and the rest of your body.", answer: "What is the spinal cord?", imageUrl: "" },
+      { value: 1000, question: "Your five senses — sight, hearing, smell, taste, and touch — all send information to this organ.", answer: "What is the brain?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "The brain and spinal cord together make up this division of the nervous system.", answer: "What is the central nervous system (CNS)?", imageUrl: "" },
+      { value: 400, question: "The specialized cells that carry electrical signals in the nervous system are called this.", answer: "What are neurons?", imageUrl: "" },
+      { value: 600, question: "The part of the brain that controls balance and coordination of movement is called this.", answer: "What is the cerebellum?", imageUrl: "" },
+      { value: 800, question: "The largest part of the brain, divided into two halves, is responsible for thinking and voluntary movement.", answer: "What is the cerebrum?", imageUrl: "" },
+      { value: 1000, question: "This automatic response happens so fast that the signal goes to the spinal cord and back without reaching the brain.", answer: "What is a reflex arc?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "These specialized cells carry electrical signals throughout the nervous system.", answer: "What are neurons (nerve cells)?", imageUrl: "" },
+      { value: 400, question: "This part of the brain is responsible for balance, coordination, and fine motor movement.", answer: "What is the cerebellum?", imageUrl: "" },
+      { value: 600, question: "This gap between two neurons is where neurotransmitters carry signals from one cell to the next.", answer: "What is a synapse?", imageUrl: "" },
+      { value: 800, question: "This largest part of the brain is divided into two hemispheres and controls thinking, memory, and voluntary movement.", answer: "What is the cerebrum?", imageUrl: "" },
+      { value: 1000, question: "This automatic, rapid response to a stimulus bypasses the brain and is processed in the spinal cord.", answer: "What is a reflex arc?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "This fatty insulating layer around axons speeds up nerve impulse transmission.", answer: "What is the myelin sheath?", imageUrl: "" },
+      { value: 400, question: "These chemical messengers are released at synapses to transmit signals between neurons.", answer: "What are neurotransmitters?", imageUrl: "" },
+      { value: 600, question: "The resting membrane potential of a neuron is approximately this voltage, maintained by ion pumps.", answer: "What is -70 millivolts?", imageUrl: "" },
+      { value: 800, question: "This lobe at the front of the brain is responsible for decision-making, planning, and personality.", answer: "What is the frontal lobe?", imageUrl: "" },
+      { value: 1000, question: "Multiple sclerosis (MS) is caused by the immune system attacking this insulating structure on neurons.", answer: "What is the myelin sheath?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "An action potential propagates down a myelinated axon by jumping between these gaps in the myelin sheath.", answer: "What are nodes of Ranvier (saltatory conduction)?", imageUrl: "" },
+      { value: 400, question: "This inhibitory neurotransmitter is the most common in the brain and works by opening chloride channels.", answer: "What is GABA?", imageUrl: "" },
+      { value: 600, question: "Long-term potentiation (LTP) at synapses is the molecular basis for this cognitive process.", answer: "What is memory (learning)?", imageUrl: "" },
+      { value: 800, question: "The all-or-nothing principle states that if threshold is reached, the action potential always fires at this consistent strength.", answer: "What is full (maximum) amplitude?", imageUrl: "" },
+      { value: 1000, question: "During repolarization, these voltage-gated channels open, allowing positive ions to flow out and restore the resting potential.", answer: "What are potassium (K+) channels?", imageUrl: "" },
+    ],
+  },
+  "The Immune System": {
+    k5: [
+      { value: 200, question: "Your body has a system that fights off germs and keeps you from getting sick. This is called this.", answer: "What is the immune system?", imageUrl: "" },
+      { value: 400, question: "When you get a fever, your body temperature goes up to help fight these tiny invaders.", answer: "What are germs?", imageUrl: "" },
+      { value: 600, question: "A scab forms over a cut to protect it while your body does this underneath.", answer: "What is healing?", imageUrl: "" },
+      { value: 800, question: "After you get chicken pox, your body remembers the germ so you probably won't get it again. This is called this.", answer: "What is immunity?", imageUrl: "" },
+      { value: 1000, question: "White blood cells are like tiny soldiers in your blood that fight off infections and this.", answer: "What are germs (diseases)?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "Your skin is the body's first line of defense, acting as a barrier to keep out these.", answer: "What are germs (pathogens)?", imageUrl: "" },
+      { value: 400, question: "These blood cells, unlike red ones, fight infections and come in several different types.", answer: "What are white blood cells?", imageUrl: "" },
+      { value: 600, question: "A vaccine introduces a weakened or dead version of a germ so your body can practice fighting it and build this.", answer: "What is immunity?", imageUrl: "" },
+      { value: 800, question: "When you get a splinter and the area turns red, warm, and swollen, your body is going through this response.", answer: "What is inflammation?", imageUrl: "" },
+      { value: 1000, question: "Allergies happen when your immune system overreacts to harmless things like pollen, pet hair, or this food (common nut allergy).", answer: "What is peanuts?", imageUrl: "" },
+    ],
+    standard: [
+      { value: 200, question: "These Y-shaped proteins are produced by B cells and attach to specific antigens to help destroy pathogens.", answer: "What are antibodies?", imageUrl: "" },
+      { value: 400, question: "This type of immunity develops after you recover from an illness or receive a vaccination.", answer: "What is acquired (or adaptive) immunity?", imageUrl: "" },
+      { value: 600, question: "These immune cells directly attack and kill virus-infected cells and cancer cells.", answer: "What are T cells (killer T cells)?", imageUrl: "" },
+      { value: 800, question: "This is the body's first line of defense, including skin, mucous membranes, and stomach acid.", answer: "What are innate (nonspecific) defenses?", imageUrl: "" },
+      { value: 1000, question: "This inflammatory response causes redness, swelling, heat, and pain at an infection site.", answer: "What is inflammation?", imageUrl: "" },
+    ],
+    honors: [
+      { value: 200, question: "These memory cells remain in the body after infection, allowing a faster response if the same pathogen returns.", answer: "What are memory B cells (or memory T cells)?", imageUrl: "" },
+      { value: 400, question: "This class of immune proteins, including interferons and interleukins, coordinate the immune response between cells.", answer: "What are cytokines?", imageUrl: "" },
+      { value: 600, question: "Autoimmune diseases occur when the immune system mistakenly attacks the body's own this.", answer: "What are cells (tissues)?", imageUrl: "" },
+      { value: 800, question: "Passive immunity is acquired without the immune system making its own antibodies, such as from a mother's this.", answer: "What is breast milk (or placental transfer)?", imageUrl: "" },
+      { value: 1000, question: "HIV specifically targets and destroys these immune cells, identified by their CD4 surface marker.", answer: "What are helper T cells (CD4+ T cells)?", imageUrl: "" },
+    ],
+    ap: [
+      { value: 200, question: "MHC class I molecules present intracellular antigens to cytotoxic T cells on the surface of nearly all this type of cell.", answer: "What are nucleated cells?", imageUrl: "" },
+      { value: 400, question: "Clonal selection theory explains how a single B cell that recognizes an antigen proliferates into many copies producing identical this.", answer: "What are antibodies?", imageUrl: "" },
+      { value: 600, question: "This process of V(D)J recombination generates the enormous diversity of antibodies from a limited number of gene segments.", answer: "What is somatic recombination?", imageUrl: "" },
+      { value: 800, question: "The complement system enhances antibody function through a cascade that ultimately creates this membrane-damaging structure on pathogens.", answer: "What is the membrane attack complex (MAC)?", imageUrl: "" },
+      { value: 1000, question: "Immune checkpoint inhibitors used in cancer therapy work by blocking proteins like PD-1 that normally prevent T cells from doing this.", answer: "What is attacking cells (or maintaining self-tolerance)?", imageUrl: "" },
+    ],
   },
   "Scientific Method": {
+    k5: [
+      { value: 200, question: "A scientist asks a question, makes a guess, and then tests it. This careful process is called this.", answer: "What is the scientific method?", imageUrl: "" },
+      { value: 400, question: "Before doing an experiment, a scientist makes a smart guess about what will happen. This guess is called this.", answer: "What is a hypothesis?", imageUrl: "" },
+      { value: 600, question: "When you do a science experiment, you watch what happens and write it down. These notes are called this.", answer: "What are observations?", imageUrl: "" },
+      { value: 800, question: "To make sure a science experiment is fair, you should only change this many things at a time.", answer: "What is one?", imageUrl: "" },
+      { value: 1000, question: "After an experiment, a scientist looks at the results and decides if the guess was right. This final step is the this.", answer: "What is the conclusion?", imageUrl: "" },
+    ],
+    ms: [
+      { value: 200, question: "A hypothesis must be able to be tested and proven wrong. This quality is called being this.", answer: "What is testable (or falsifiable)?", imageUrl: "" },
+      { value: 400, question: "In an experiment, the one thing you change on purpose is called this type of variable.", answer: "What is the independent variable?", imageUrl: "" },
+      { value: 600, question: "The thing you measure in an experiment to see if the change had an effect is called this variable.", answer: "What is the dependent variable?", imageUrl: "" },
+      { value: 800, question: "A group in an experiment that does NOT receive the treatment, used for comparison, is called this.", answer: "What is the control group?", imageUrl: "" },
+      { value: 1000, question: "When many scientists repeat an experiment and get the same results, we say the results are this.", answer: "What is reproducible (or reliable)?", imageUrl: "" },
+    ],
     standard: [
       { value: 200, question: "This is a testable prediction about the outcome of an experiment.", answer: "What is a hypothesis?", imageUrl: "" },
       { value: 400, question: "In an experiment, this is the one factor that the scientist deliberately changes.", answer: "What is the independent variable?", imageUrl: "" },
@@ -409,241 +647,33 @@ const QUESTION_BANK = {
       { value: 800, question: "Repeating an experiment multiple times and getting similar results increases this quality of the data.", answer: "What is reliability (or reproducibility)?", imageUrl: "" },
       { value: 1000, question: "This type of variable is the outcome that is measured or observed in an experiment.", answer: "What is the dependent variable?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "A scientist asks a question, makes a guess, and then tests it. This careful process is called this.", answer: "What is the scientific method?", imageUrl: "" },
-      { value: 400, question: "Before doing an experiment, a scientist makes a smart guess about what will happen. This guess is called this.", answer: "What is a hypothesis?", imageUrl: "" },
-      { value: 600, question: "When you do a science experiment, you watch what happens and write it down. These notes are called this.", answer: "What are observations?", imageUrl: "" },
-      { value: 800, question: "To make sure a science experiment is fair, you should only change this many things at a time.", answer: "What is one?", imageUrl: "" },
-      { value: 1000, question: "After an experiment, a scientist looks at the results and decides if the guess was right. This final step is the this.", answer: "What is the conclusion?", imageUrl: "" },
-    ]
-  },
-  "Rocks & Minerals": {
-    standard: [
-      { value: 200, question: "This type of rock forms when molten magma or lava cools and solidifies.", answer: "What is igneous rock?", imageUrl: "" },
-      { value: 400, question: "This property measures a mineral's resistance to scratching, rated 1-10 on the Mohs scale.", answer: "What is hardness?", imageUrl: "" },
-      { value: 600, question: "This sedimentary rock is made primarily of calcium carbonate and often contains marine fossils.", answer: "What is limestone?", imageUrl: "" },
-      { value: 800, question: "This continuous process of rock formation, breakdown, and reformation is called this.", answer: "What is the rock cycle?", imageUrl: "" },
-      { value: 1000, question: "This metamorphic rock forms when limestone is subjected to intense heat and pressure.", answer: "What is marble?", imageUrl: "" },
+    honors: [
+      { value: 200, question: "A well-tested explanation supported by extensive evidence that explains a broad range of observations is called a scientific this.", answer: "What is a theory?", imageUrl: "" },
+      { value: 400, question: "Variables that are kept the same across all groups in an experiment to prevent confounding results are called this.", answer: "What are controlled (or constant) variables?", imageUrl: "" },
+      { value: 600, question: "This type of study design, where neither the subjects nor researchers know who receives the treatment, reduces bias.", answer: "What is a double-blind study?", imageUrl: "" },
+      { value: 800, question: "A correlation between two variables does NOT prove that one causes the other. This principle is stated as correlation does not imply this.", answer: "What is causation?", imageUrl: "" },
+      { value: 1000, question: "Peer review is the process where other scientists evaluate research before publication to check for errors and this.", answer: "What is validity (or scientific rigor)?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "The hard, solid, natural things you find on the ground that come in many shapes and colors are called this.", answer: "What are rocks?", imageUrl: "" },
-      { value: 400, question: "When a volcano erupts and lava cools down and becomes hard, it forms this type of rock.", answer: "What is igneous rock?", imageUrl: "" },
-      { value: 600, question: "Layers of sand, mud, and shells pressed together over a long time become this type of rock.", answer: "What is sedimentary rock?", imageUrl: "" },
-      { value: 800, question: "The hardest natural mineral on Earth, often used in rings and jewelry, is called this.", answer: "What is a diamond?", imageUrl: "" },
-      { value: 1000, question: "If you find a rock with a seashell shape pressed into it, that shape is called this.", answer: "What is a fossil?", imageUrl: "" },
-    ]
-  },
-  "Space Science": {
-    standard: [
-      { value: 200, question: "This star is the closest to Earth and provides the energy needed for life.", answer: "What is the sun?", imageUrl: "" },
-      { value: 400, question: "Earth's tilt on its axis is responsible for causing these four yearly climate patterns.", answer: "What are seasons?", imageUrl: "" },
-      { value: 600, question: "This force keeps planets in orbit around the sun and the moon in orbit around the Earth.", answer: "What is gravity?", imageUrl: "" },
-      { value: 800, question: "This planet is known as the 'Red Planet' due to iron oxide on its surface.", answer: "What is Mars?", imageUrl: "" },
-      { value: 1000, question: "This region beyond Neptune contains many icy bodies, including the dwarf planet Pluto.", answer: "What is the Kuiper Belt?", imageUrl: "" },
+    ap: [
+      { value: 200, question: "A null hypothesis states that there is no significant difference between groups and is either rejected or this.", answer: "What is failed to be rejected (not accepted)?", imageUrl: "" },
+      { value: 400, question: "A p-value less than 0.05 in statistics means the results are considered this, meaning unlikely due to chance.", answer: "What is statistically significant?", imageUrl: "" },
+      { value: 600, question: "Standard deviation measures the spread of data points around this central value.", answer: "What is the mean?", imageUrl: "" },
+      { value: 800, question: "Type I error occurs when a researcher incorrectly rejects a true null hypothesis, also called a false this.", answer: "What is a false positive?", imageUrl: "" },
+      { value: 1000, question: "The chi-square test compares observed data to expected data to determine if the difference is due to chance or this.", answer: "What is a real (significant) effect?", imageUrl: "" },
     ],
-    easy: [
-      { value: 200, question: "This giant ball of hot gas gives us light and heat during the day.", answer: "What is the sun?", imageUrl: "" },
-      { value: 400, question: "At night, you can see this glowing object in the sky that orbits around the Earth.", answer: "What is the moon?", imageUrl: "" },
-      { value: 600, question: "Earth is one of eight of these that travel around the sun.", answer: "What are planets?", imageUrl: "" },
-      { value: 800, question: "The tiny twinkling lights you see in the night sky are actually giant balls of hot gas called this.", answer: "What are stars?", imageUrl: "" },
-      { value: 1000, question: "It takes the Earth about 365 days — or one this — to travel all the way around the sun.", answer: "What is a year?", imageUrl: "" },
-    ]
-  },
-  "DNA & Biotechnology": {
-    standard: [
-      { value: 200, question: "These four bases make up the rungs of the DNA ladder: adenine, thymine, guanine, and this.", answer: "What is cytosine?", imageUrl: "" },
-      { value: 400, question: "This process makes an exact copy of a DNA molecule before cell division.", answer: "What is DNA replication?", imageUrl: "" },
-      { value: 600, question: "This technology allows scientists to cut and paste DNA from one organism into another.", answer: "What is genetic engineering (or recombinant DNA technology)?", imageUrl: "" },
-      { value: 800, question: "This laboratory technique separates DNA fragments by size using an electric current through a gel.", answer: "What is gel electrophoresis?", imageUrl: "" },
-      { value: 1000, question: "This organism that has received genes from another species is called this.", answer: "What is a transgenic organism (or GMO)?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "Inside almost every cell in your body, there is a special code that makes you, you. This code is called this.", answer: "What is DNA?", imageUrl: "" },
-      { value: 400, question: "Your DNA comes from both of your parents, which is why you might look a little like your mom and a little like your this.", answer: "Who is your dad?", imageUrl: "" },
-      { value: 600, question: "Scientists can look at DNA to help solve crimes, find family members, or learn about diseases. DNA is like a this for your body.", answer: "What is a blueprint (or instruction book)?", imageUrl: "" },
-      { value: 800, question: "Every person's DNA is unique, except for identical ones of these, who share the same DNA.", answer: "What are twins?", imageUrl: "" },
-      { value: 1000, question: "DNA is shaped like a twisted ladder. Scientists call this shape a double this.", answer: "What is a double helix?", imageUrl: "" },
-    ]
-  },
-  "Nutrition & Diet": {
-    standard: [
-      { value: 200, question: "These organic molecules are the body's preferred source of quick energy and include sugars and starches.", answer: "What are carbohydrates?", imageUrl: "" },
-      { value: 400, question: "These building blocks of proteins are linked together in chains during translation.", answer: "What are amino acids?", imageUrl: "" },
-      { value: 600, question: "This fat-soluble vitamin, produced when skin is exposed to sunlight, helps with calcium absorption.", answer: "What is vitamin D?", imageUrl: "" },
-      { value: 800, question: "This mineral is essential for oxygen transport in the blood, and a deficiency causes anemia.", answer: "What is iron?", imageUrl: "" },
-      { value: 1000, question: "This unit of measurement is used to express the amount of energy stored in food.", answer: "What is a calorie (or kilocalorie)?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "Bread, pasta, and rice give your body energy. These foods are all types of this.", answer: "What are carbohydrates (or grains)?", imageUrl: "" },
-      { value: 400, question: "Chicken, fish, beans, and eggs are all good sources of this nutrient that helps build muscles.", answer: "What is protein?", imageUrl: "" },
-      { value: 600, question: "Oranges are famous for having a lot of this vitamin that helps keep you from getting sick.", answer: "What is vitamin C?", imageUrl: "" },
-      { value: 800, question: "You should drink plenty of this every day to keep your body working well — it has no calories or sugar.", answer: "What is water?", imageUrl: "" },
-      { value: 1000, question: "Fruits and vegetables have a lot of this, which helps food move through your digestive system.", answer: "What is fiber?", imageUrl: "" },
-    ]
-  },
-  "The Five Senses": {
-    standard: [
-      { value: 200, question: "This part of the eye contains photoreceptor cells called rods and cones that detect light.", answer: "What is the retina?", imageUrl: "" },
-      { value: 400, question: "These three tiny bones in the middle ear — the hammer, anvil, and stirrup — amplify sound vibrations.", answer: "What are the ossicles?", imageUrl: "" },
-      { value: 600, question: "This structure in the inner ear is responsible for balance and detecting changes in head position.", answer: "What are the semicircular canals (or vestibular system)?", imageUrl: "" },
-      { value: 800, question: "The human tongue can detect five basic tastes: sweet, sour, salty, bitter, and this savory taste.", answer: "What is umami?", imageUrl: "" },
-      { value: 1000, question: "This transparent front part of the eye refracts light before it passes through the pupil and lens.", answer: "What is the cornea?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "You use these two body parts to see the world around you.", answer: "What are your eyes?", imageUrl: "" },
-      { value: 400, question: "The part of your body that lets you hear sounds like music, voices, and birds is this.", answer: "What are your ears?", imageUrl: "" },
-      { value: 600, question: "When you eat pizza, this body part on the inside of your mouth tells you how it tastes.", answer: "What is your tongue?", imageUrl: "" },
-      { value: 800, question: "You can tell if a flower smells nice by using this body part in the middle of your face.", answer: "What is your nose?", imageUrl: "" },
-      { value: 1000, question: "If you close your eyes and touch a stuffed animal, you can tell it's soft by using this sense.", answer: "What is touch (or feeling)?", imageUrl: "" },
-    ]
-  },
-  "Respiration & Gas Exchange": {
-    standard: [
-      { value: 200, question: "This dome-shaped muscle contracts to pull air into the lungs during inhalation.", answer: "What is the diaphragm?", imageUrl: "" },
-      { value: 400, question: "This branching tube in the lungs splits into smaller and smaller passages called bronchioles.", answer: "What is the bronchus (or bronchi)?", imageUrl: "" },
-      { value: 600, question: "The process by which cells use oxygen to break down glucose and release energy is called this.", answer: "What is cellular respiration?", imageUrl: "" },
-      { value: 800, question: "The waste gas produced by cellular respiration that you exhale is this.", answer: "What is carbon dioxide (CO₂)?", imageUrl: "" },
-      { value: 1000, question: "The equation for aerobic cellular respiration shows glucose and oxygen producing CO₂, water, and this energy molecule.", answer: "What is ATP?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "You breathe in this invisible gas that your body needs to live.", answer: "What is oxygen?", imageUrl: "" },
-      { value: 400, question: "When you breathe out, you push this waste gas out of your lungs.", answer: "What is carbon dioxide?", imageUrl: "" },
-      { value: 600, question: "Air enters your body through your mouth and nose and travels down to these two spongy organs.", answer: "What are your lungs?", imageUrl: "" },
-      { value: 800, question: "Try breathing in deeply — you can feel your chest get bigger because your lungs are filling up with this.", answer: "What is air?", imageUrl: "" },
-      { value: 1000, question: "Fish breathe underwater using these feathery organs on the sides of their heads, instead of lungs.", answer: "What are gills?", imageUrl: "" },
-    ]
-  },
-  "Homeostasis": {
-    standard: [
-      { value: 200, question: "This term means the body's ability to maintain a stable internal environment despite external changes.", answer: "What is homeostasis?", imageUrl: "" },
-      { value: 400, question: "When blood sugar rises after eating, the pancreas releases this hormone to lower it.", answer: "What is insulin?", imageUrl: "" },
-      { value: 600, question: "This type of feedback loop reverses a change to bring the body back to its set point, like cooling when overheated.", answer: "What is negative feedback?", imageUrl: "" },
-      { value: 800, question: "These organs filter waste from the blood and regulate water and electrolyte balance.", answer: "What are the kidneys?", imageUrl: "" },
-      { value: 1000, question: "This rare type of feedback loop amplifies a change rather than reversing it, as seen during childbirth contractions.", answer: "What is positive feedback?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "When you're hot, your body sweats to cool down. When you're cold, you shiver to warm up. Your body is trying to stay this.", answer: "What is balanced (or the same temperature)?", imageUrl: "" },
-      { value: 400, question: "On a hot day, your body pushes water out through your skin to cool off. This is called this.", answer: "What is sweating?", imageUrl: "" },
-      { value: 600, question: "When you're cold, your body shakes a little bit all over. This is called this.", answer: "What is shivering?", imageUrl: "" },
-      { value: 800, question: "When you run around and use up energy, you feel hungry because your body needs more of this.", answer: "What is food?", imageUrl: "" },
-      { value: 1000, question: "After running really fast, you breathe harder because your body needs more of this gas.", answer: "What is oxygen?", imageUrl: "" },
-    ]
-  },
-  "Fossils & Geologic Time": {
-    standard: [
-      { value: 200, question: "This type of fossil forms when an organism's body is replaced by minerals over time, turning it to stone.", answer: "What is petrification (permineralization)?", imageUrl: "" },
-      { value: 400, question: "This era is known as the 'Age of Dinosaurs' and includes the Triassic, Jurassic, and Cretaceous periods.", answer: "What is the Mesozoic Era?", imageUrl: "" },
-      { value: 600, question: "This dating method uses the known decay rate of radioactive isotopes to determine the age of rocks and fossils.", answer: "What is radiometric (or radioactive) dating?", imageUrl: "" },
-      { value: 800, question: "In undisturbed rock layers, the oldest layers are at the bottom. This principle is called this.", answer: "What is the Law of Superposition?", imageUrl: "" },
-      { value: 1000, question: "These fossils from widely distributed, short-lived species are used to correlate the ages of rock layers across different locations.", answer: "What are index fossils?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "When you find the shape of an ancient leaf or bone in a rock, you have found one of these.", answer: "What is a fossil?", imageUrl: "" },
-      { value: 400, question: "These giant reptiles lived millions of years ago but are now extinct. We know about them from their fossils.", answer: "What are dinosaurs?", imageUrl: "" },
-      { value: 600, question: "Scientists who dig up fossils and study ancient life are called this.", answer: "What are paleontologists?", imageUrl: "" },
-      { value: 800, question: "A footprint left in mud that turns to stone over millions of years is a type of this.", answer: "What is a fossil?", imageUrl: "" },
-      { value: 1000, question: "Sometimes an insect gets trapped inside sticky tree sap that hardens into this golden material, preserving it perfectly.", answer: "What is amber?", imageUrl: "" },
-    ]
-  },
-  "Animal Adaptations": {
-    standard: [
-      { value: 200, question: "This coloring pattern makes an animal blend in with its environment to avoid predators.", answer: "What is camouflage?", imageUrl: "" },
-      { value: 400, question: "Some non-poisonous species evolve to look like poisonous species to deter predators. This is called this.", answer: "What is mimicry?", imageUrl: "" },
-      { value: 600, question: "Animals that are active at night and sleep during the day are classified as this.", answer: "What is nocturnal?", imageUrl: "" },
-      { value: 800, question: "This type of adaptation involves body structures, such as a giraffe's long neck or a bird's beak shape.", answer: "What is a structural (or physical) adaptation?", imageUrl: "" },
-      { value: 1000, question: "This physiological adaptation allows some fish to produce antifreeze proteins to survive in sub-zero Arctic waters.", answer: "What is an antifreeze adaptation (or cryoprotection)?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "A chameleon changes its color to match what's around it. This is an example of this.", answer: "What is camouflage?", imageUrl: "" },
-      { value: 400, question: "A duck has webbed feet to help it do this in water.", answer: "What is swim?", imageUrl: "" },
-      { value: 600, question: "A giraffe has a very long neck so it can reach leaves high up in these.", answer: "What are trees?", imageUrl: "" },
-      { value: 800, question: "Owls can see very well in the dark because they are this type of animal that is active at night.", answer: "What is nocturnal?", imageUrl: "" },
-      { value: 1000, question: "A porcupine's sharp quills protect it from animals that want to eat it. These quills are an example of this.", answer: "What is a defense (or adaptation)?", imageUrl: "" },
-    ]
-  },
-  "Water & Solutions": {
-    standard: [
-      { value: 200, question: "Water is called the 'universal solvent' because it can dissolve more substances than any other this.", answer: "What is a liquid (or solvent)?", imageUrl: "" },
-      { value: 400, question: "This property of water causes it to stick to other surfaces, helping water climb up thin tubes in plants.", answer: "What is adhesion?", imageUrl: "" },
-      { value: 600, question: "This term describes a solution that cannot dissolve any more solute at a given temperature.", answer: "What is saturated?", imageUrl: "" },
-      { value: 800, question: "Water's ability to resist temperature changes due to hydrogen bonding gives it a high value of this property.", answer: "What is specific heat (or heat capacity)?", imageUrl: "" },
-      { value: 1000, question: "This property of water allows it to expand when it freezes, making ice less dense than liquid water.", answer: "What is the anomalous expansion of water?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "When you stir sugar into water and it disappears, you have made one of these.", answer: "What is a solution?", imageUrl: "" },
-      { value: 400, question: "Water can be a solid (ice), a liquid, or a gas (steam). These three forms are called states of this.", answer: "What is matter?", imageUrl: "" },
-      { value: 600, question: "When puddles disappear on a sunny day, the water has changed from a liquid into this invisible gas.", answer: "What is water vapor (or gas/steam)?", imageUrl: "" },
-      { value: 800, question: "When you put water in the freezer, it turns into this solid form.", answer: "What is ice?", imageUrl: "" },
-      { value: 1000, question: "Oil and water don't mix — if you shake them together, they separate. This means they are this.", answer: "What is immiscible (or they don't dissolve)?", imageUrl: "" },
-    ]
-  },
-  "Cycles in Nature": {
-    standard: [
-      { value: 200, question: "In the water cycle, this process turns liquid water into water vapor using heat energy.", answer: "What is evaporation?", imageUrl: "" },
-      { value: 400, question: "In the carbon cycle, plants remove CO₂ from the atmosphere during this process.", answer: "What is photosynthesis?", imageUrl: "" },
-      { value: 600, question: "This process in the nitrogen cycle converts atmospheric nitrogen gas into usable forms, often by bacteria in root nodules.", answer: "What is nitrogen fixation?", imageUrl: "" },
-      { value: 800, question: "In the water cycle, this is the process where water vapor cools and changes back into liquid droplets, forming clouds.", answer: "What is condensation?", imageUrl: "" },
-      { value: 1000, question: "This element cycles through ecosystems in organic molecules and returns to the atmosphere through combustion and respiration.", answer: "What is carbon?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "Rain falls from clouds, flows into rivers, goes to the ocean, and evaporates back into clouds. This loop is called this.", answer: "What is the water cycle?", imageUrl: "" },
-      { value: 400, question: "When the sun heats up water in a puddle and it goes up into the air, this is called this.", answer: "What is evaporation?", imageUrl: "" },
-      { value: 600, question: "When water vapor in the sky cools down and turns back into tiny water droplets, it forms these.", answer: "What are clouds?", imageUrl: "" },
-      { value: 800, question: "Plants take in carbon dioxide and release oxygen. Animals breathe in oxygen and release carbon dioxide. This is a this.", answer: "What is a cycle?", imageUrl: "" },
-      { value: 1000, question: "Dead leaves on the forest floor break down and become part of the soil, giving nutrients back to plants. This is called this.", answer: "What is decomposition?", imageUrl: "" },
-    ]
-  },
-  "Endangered Species & Conservation": {
-    standard: [
-      { value: 200, question: "This term describes a species that is at serious risk of extinction in the near future.", answer: "What is endangered?", imageUrl: "" },
-      { value: 400, question: "The destruction of natural habitats for farming, building, or logging is the leading cause of species decline and is called this.", answer: "What is habitat loss (or habitat destruction)?", imageUrl: "" },
-      { value: 600, question: "This measure of the variety of different species in an ecosystem is an indicator of its health.", answer: "What is biodiversity?", imageUrl: "" },
-      { value: 800, question: "These non-native species introduced to a new ecosystem can outcompete local species and disrupt food webs.", answer: "What are invasive species?", imageUrl: "" },
-      { value: 1000, question: "This international agreement regulates trade in endangered plant and animal species and their products.", answer: "What is CITES?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "When an animal is in danger of disappearing from the Earth forever, we say it is this.", answer: "What is endangered?", imageUrl: "" },
-      { value: 400, question: "Cutting down large areas of forest means animals lose their homes. This is called habitat this.", answer: "What is habitat loss (or destruction)?", imageUrl: "" },
-      { value: 600, question: "Pandas, tigers, and sea turtles all need our help to survive because they are this.", answer: "What is endangered?", imageUrl: "" },
-      { value: 800, question: "Places like national parks and wildlife refuges are set aside to protect animals and plants. This is called this.", answer: "What is conservation?", imageUrl: "" },
-      { value: 1000, question: "Reduce, reuse, and recycle are three things you can do to help protect the this.", answer: "What is the environment (or Earth)?", imageUrl: "" },
-    ]
-  },
-  "The Endocrine System": {
-    standard: [
-      { value: 200, question: "This system uses chemical messengers called hormones to regulate body functions.", answer: "What is the endocrine system?", imageUrl: "" },
-      { value: 400, question: "This gland in the neck produces hormones that regulate metabolism, growth, and energy use.", answer: "What is the thyroid gland?", imageUrl: "" },
-      { value: 600, question: "This hormone, produced by the adrenal glands, is released during the 'fight or flight' response.", answer: "What is adrenaline (epinephrine)?", imageUrl: "" },
-      { value: 800, question: "This gland located at the base of the brain is called the 'master gland' because it controls other endocrine glands.", answer: "What is the pituitary gland?", imageUrl: "" },
-      { value: 1000, question: "This endocrine gland located behind the stomach produces both insulin and glucagon to regulate blood sugar.", answer: "What is the pancreas?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "Special chemicals called hormones travel through your blood and tell different body parts what to do. They are made by this system.", answer: "What is the endocrine system?", imageUrl: "" },
-      { value: 400, question: "When something scares you, your body releases a chemical that makes your heart beat fast and gives you energy to run. This is called this.", answer: "What is adrenaline?", imageUrl: "" },
-      { value: 600, question: "As kids grow into teenagers, hormones cause many changes in the body. This time of change is called this.", answer: "What is puberty?", imageUrl: "" },
-      { value: 800, question: "Hormones are like tiny messengers that travel through this liquid in your body to deliver instructions.", answer: "What is blood?", imageUrl: "" },
-      { value: 1000, question: "When you eat sugar, a hormone from your pancreas helps your body use it for energy. This hormone is called this.", answer: "What is insulin?", imageUrl: "" },
-    ]
-  },
-  "Cell Organelles": {
-    standard: [
-      { value: 200, question: "This organelle is the control center of the cell and contains the cell's DNA.", answer: "What is the nucleus?", imageUrl: "" },
-      { value: 400, question: "This system of folded membranes processes and packages proteins and lipids for transport.", answer: "What is the endoplasmic reticulum (ER)?", imageUrl: "" },
-      { value: 600, question: "This organelle modifies, sorts, and ships proteins received from the endoplasmic reticulum.", answer: "What is the Golgi apparatus (Golgi body)?", imageUrl: "" },
-      { value: 800, question: "These small organelles contain digestive enzymes that break down waste, old cell parts, and foreign invaders.", answer: "What are lysosomes?", imageUrl: "" },
-      { value: 1000, question: "These organelles found only in plant cells and some protists are the site of photosynthesis.", answer: "What are chloroplasts?", imageUrl: "" },
-    ],
-    easy: [
-      { value: 200, question: "This part in the middle of a cell acts like a brain, controlling what the cell does.", answer: "What is the nucleus?", imageUrl: "" },
-      { value: 400, question: "Every cell is surrounded by a thin layer that decides what goes in and out, called the cell this.", answer: "What is the cell membrane?", imageUrl: "" },
-      { value: 600, question: "The jelly-like stuff that fills up a cell and holds all the tiny parts in place is called this.", answer: "What is cytoplasm?", imageUrl: "" },
-      { value: 800, question: "These tiny cell parts create energy for the cell to use — they are like little batteries.", answer: "What are mitochondria?", imageUrl: "" },
-      { value: 1000, question: "Plant cells have these green parts that capture sunlight to make food.", answer: "What are chloroplasts?", imageUrl: "" },
-    ]
   },
 };
 
 const CATEGORY_NAMES = Object.keys(QUESTION_BANK);
+
+const DIFFICULTY_LABELS = {
+  "k5": "K-5th Grade",
+  "ms": "6th-8th Grade",
+  "standard": "HS Non-Honors",
+  "honors": "Honors",
+  "ap": "AP Science",
+};
+
 
 // ═══════════════════════════════════════════════
 // FINAL BIO BOWL — TIERED BY DIFFICULTY
@@ -740,7 +770,8 @@ const clone = (o) => JSON.parse(JSON.stringify(o));
 const buildCategory = (name, difficulty) => {
   const bank = QUESTION_BANK[name];
   if (!bank) return { name, questions: Array(5).fill(null).map((_,i) => ({ value:(i+1)*200, question:"", answer:"", imageUrl:"", revealed:false, isDailyDouble:false })) };
-  return { name, questions: (difficulty === "easy" ? bank.easy : bank.standard).map(q => ({ ...q, revealed: false, isDailyDouble: false })) };
+  var tier = bank[difficulty] || bank["standard"] || bank["k5"];
+  return { name, questions: tier.map(q => ({ ...q, revealed: false, isDailyDouble: false })) };
 };
 
 const S = {
@@ -1050,7 +1081,7 @@ function BioBowl() {
             </div>
           ); })}
         </div>
-        <button onClick={() => { setGamePhase("setup"); setTeams(clone(DEFAULT_TEAMS)); setDifficulty("standard"); const d=["Body Systems","Cells & Life","Ecology","Earth Science","Anatomy Deep Dive"]; setSelectedCats(d); setCategories(d.map(n => buildCategory(n,"standard"))); }} style={{...S.btnGhost, marginTop:32}}>New Game</button>
+        <button onClick={() => { setGamePhase("setup"); setTeams(clone(DEFAULT_TEAMS)); setDifficulty("standard"); var d=["Body Systems","Cells & Life","Ecology","Earth Science","Anatomy Deep Dive"]; setSelectedCats(d); setCategories(d.map(function(n){return buildCategory(n,"standard");})); }} style={{...S.btnGhost, marginTop:32}}>New Game</button>
       </div>
     );
   }
@@ -1062,7 +1093,7 @@ function BioBowl() {
       <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", padding:"8px 16px", background:"#fff", borderBottom:"1px solid #e2e8f0", boxShadow:"0 1px 4px rgba(0,0,0,0.04)", flexWrap:"wrap", gap:8}}>
         <div style={{display:"flex", alignItems:"center", gap:14}}>
           <span style={{fontSize:20, fontWeight:900, letterSpacing:2, background:"linear-gradient(135deg, #2563eb, #16a34a, #dc2626, #ca8a04)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent"}}>🧬 BIO BOWL</span>
-          <span style={{fontSize:12, color:"#94a3b8", background:difficulty==="easy"?"#dcfce7":"#dbeafe", padding:"2px 10px", borderRadius:20, fontWeight:700}}>{difficulty==="easy"?"🌱 Easy":"🔬 Standard"}</span>
+          <span style={{fontSize:12, color:"#94a3b8", background:"#eef2ff", padding:"2px 10px", borderRadius:20, fontWeight:700}}>{DIFFICULTY_LABELS[difficulty] || difficulty}</span>
           <span style={{fontSize:12, color:"#94a3b8"}}>{questionsAnswered}/{totalQuestions}</span>
         </div>
         <div style={{display:"flex", alignItems:"center", gap:10, flexWrap:"wrap"}}>
@@ -1178,7 +1209,7 @@ function BioBowl() {
               <div style={{display:"flex", gap:8, justifyContent:"center"}}>
                 <button disabled={!selectedTeam} onClick={() => scoreAnswer(true)} style={{padding:"10px 22px", background:selectedTeam?"#22c55e":"#e2e8f0", border:"none", borderRadius:8, color:selectedTeam?"#fff":"#94a3b8", fontSize:15, fontWeight:800, cursor:selectedTeam?"pointer":"not-allowed", fontFamily:"inherit"}}>✓ Correct</button>
                 <button disabled={!selectedTeam} onClick={() => scoreAnswer(false)} style={{padding:"10px 22px", background:selectedTeam?"#ef4444":"#e2e8f0", border:"none", borderRadius:8, color:selectedTeam?"#fff":"#94a3b8", fontSize:15, fontWeight:800, cursor:selectedTeam?"pointer":"not-allowed", fontFamily:"inherit"}}>✗ Incorrect</button>
-                <button onClick={skipQuestion} style={{...S.btnGhost, padding:"10px 22px"}}>Skip</button>
+                <button onClick={skipQuestion} style={{padding:"10px 22px", background:"#fefce8", border:"1px solid #fde047", borderRadius:8, color:"#a16207", fontSize:14, fontWeight:700, cursor:"pointer", fontFamily:"inherit"}}>{attemptedTeams.length > 0 ? "No One Got It" : "Skip"}</button>
               </div>
             </>)}
           </div>
