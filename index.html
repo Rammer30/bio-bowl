@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bio Bowl — Science Jeopardy</title>
+<title>Bio Bowl — Science Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -30,7 +30,7 @@
 const { useState, useEffect, useRef, useCallback } = React;
 
 // ═══════════════════════════════════════════════
-// QUESTION BANK
+// QUESTION BANK — 35 CATEGORIES, STANDARD (6th–10th) & EASY (K–5th)
 // ═══════════════════════════════════════════════
 const QUESTION_BANK = {
   "Body Systems": {
@@ -78,7 +78,7 @@ const QUESTION_BANK = {
       { value: 400, question: "A pond with fish, frogs, plants, water, and sunlight is an example of this.", answer: "What is an ecosystem?", imageUrl: "" },
       { value: 600, question: "Grass → Rabbit → Fox is an example of this, showing who eats whom.", answer: "What is a food chain?", imageUrl: "" },
       { value: 800, question: "An animal that hunts and eats other animals is called this.", answer: "What is a predator?", imageUrl: "" },
-      { value: 1000, question: "When all members of a kind of animal die and none are left anywhere on Earth, this has happened.", answer: "What is extinction?", imageUrl: "" },
+      { value: 1000, question: "When all members of a species die and none are left anywhere on Earth, this has happened.", answer: "What is extinction?", imageUrl: "" },
     ]
   },
   "Earth Science": {
@@ -158,7 +158,7 @@ const QUESTION_BANK = {
       { value: 400, question: "Plants need sunlight, water, and this gas from the air to make their food.", answer: "What is carbon dioxide?", imageUrl: "" },
       { value: 600, question: "This part of the plant is underground and soaks up water and nutrients from the soil.", answer: "What are roots?", imageUrl: "" },
       { value: 800, question: "The flat green parts of a plant that catch sunlight are called this.", answer: "What are leaves?", imageUrl: "" },
-      { value: 1000, question: "When a tiny new plant starts to grow out of a seed, this process is called this.", answer: "What is germination?", imageUrl: "" },
+      { value: 1000, question: "When a tiny new plant starts to grow out of a seed, this process is happening.", answer: "What is germination?", imageUrl: "" },
     ]
   },
   "Oceans & Water": {
@@ -167,7 +167,7 @@ const QUESTION_BANK = {
       { value: 400, question: "The rise and fall of ocean water levels twice daily is caused primarily by this celestial body's gravity.", answer: "What is the moon?", imageUrl: "" },
       { value: 600, question: "This ocean zone receives no sunlight and is home to bioluminescent organisms.", answer: "What is the midnight (or aphotic / abyssal) zone?", imageUrl: "" },
       { value: 800, question: "This global pattern of ocean water movement is driven by differences in temperature and salinity.", answer: "What is thermohaline circulation (ocean conveyor belt)?", imageUrl: "" },
-      { value: 1000, question: "These underwater volcanic mountain chains run through every ocean and form where tectonic plates pull apart.", answer: "What are mid-ocean ridges?", imageUrl: "" },
+      { value: 1000, question: "These underwater volcanic mountain chains form where tectonic plates pull apart on the ocean floor.", answer: "What are mid-ocean ridges?", imageUrl: "" },
     ],
     easy: [
       { value: 200, question: "About 70% of the Earth's surface is covered by this.", answer: "What is water (or the ocean)?", imageUrl: "" },
@@ -193,35 +193,494 @@ const QUESTION_BANK = {
       { value: 1000, question: "This tool measures temperature and tells you how hot or cold it is outside.", answer: "What is a thermometer?", imageUrl: "" },
     ]
   },
+  "Chemistry of Life": {
+    standard: [
+      { value: 200, question: "Water is considered a universal solvent and has the chemical formula H₂O. The H stands for this element.", answer: "What is hydrogen?", imageUrl: "" },
+      { value: 400, question: "These four elements — carbon, hydrogen, oxygen, and nitrogen — make up about 96% of the human body.", answer: "What are CHON?", imageUrl: "" },
+      { value: 600, question: "This pH value is considered neutral, and pure water has this pH.", answer: "What is 7?", imageUrl: "" },
+      { value: 800, question: "These biological catalysts speed up chemical reactions in the body without being consumed.", answer: "What are enzymes?", imageUrl: "" },
+      { value: 1000, question: "This type of bond forms when atoms share electrons, and it holds together molecules like water and glucose.", answer: "What is a covalent bond?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Everything around you — your desk, the air, your body — is made up of tiny particles called this.", answer: "What are atoms (or matter)?", imageUrl: "" },
+      { value: 400, question: "Water is made of two types of atoms: oxygen and this gas that is the lightest element.", answer: "What is hydrogen?", imageUrl: "" },
+      { value: 600, question: "When you mix sugar into water and it disappears, the sugar has done this.", answer: "What is dissolving?", imageUrl: "" },
+      { value: 800, question: "Ice, liquid water, and steam are three forms of water called states of this.", answer: "What is matter?", imageUrl: "" },
+      { value: 1000, question: "When you combine baking soda and vinegar and it fizzes, this type of change is happening.", answer: "What is a chemical reaction (or chemical change)?", imageUrl: "" },
+    ]
+  },
+  "Evolution & Adaptation": {
+    standard: [
+      { value: 200, question: "This process proposed by Darwin explains how organisms with favorable traits survive and reproduce more successfully.", answer: "What is natural selection?", imageUrl: "" },
+      { value: 400, question: "Structures that have a similar bone structure but different functions, like a whale flipper and a human arm, are called this.", answer: "What are homologous structures?", imageUrl: "" },
+      { value: 600, question: "This type of evolution occurs when two unrelated species develop similar traits due to similar environments.", answer: "What is convergent evolution?", imageUrl: "" },
+      { value: 800, question: "The preserved remains or traces of ancient organisms found in rock layers are called this.", answer: "What are fossils?", imageUrl: "" },
+      { value: 1000, question: "This term describes the evolution of a new species from an ancestral population, often due to geographic isolation.", answer: "What is speciation?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "A polar bear's white fur helps it hide in the snow. This helpful feature is called this.", answer: "What is an adaptation?", imageUrl: "" },
+      { value: 400, question: "Over a very long time, animals can change to better survive in their homes. This slow change is called this.", answer: "What is evolution?", imageUrl: "" },
+      { value: 600, question: "Dinosaur bones found in rocks are examples of this, which teach us about animals that lived long ago.", answer: "What are fossils?", imageUrl: "" },
+      { value: 800, question: "A cactus stores water in its thick stem so it can live in the desert. This is an example of this.", answer: "What is an adaptation?", imageUrl: "" },
+      { value: 1000, question: "Animals that can't find enough food or escape from predators are less likely to survive. This idea is sometimes called 'survival of the' this.", answer: "What is the fittest?", imageUrl: "" },
+    ]
+  },
+  "The Nervous System": {
+    standard: [
+      { value: 200, question: "These specialized cells carry electrical signals throughout the nervous system.", answer: "What are neurons (nerve cells)?", imageUrl: "" },
+      { value: 400, question: "This part of the brain is responsible for balance, coordination, and fine motor movement.", answer: "What is the cerebellum?", imageUrl: "" },
+      { value: 600, question: "This gap between two neurons is where neurotransmitters carry signals from one cell to the next.", answer: "What is a synapse?", imageUrl: "" },
+      { value: 800, question: "This largest part of the brain is divided into two hemispheres and controls thinking, memory, and voluntary movement.", answer: "What is the cerebrum?", imageUrl: "" },
+      { value: 1000, question: "This automatic, rapid response to a stimulus bypasses the brain and is processed in the spinal cord.", answer: "What is a reflex arc?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Your brain sends messages to the rest of your body through special cells called these.", answer: "What are nerves?", imageUrl: "" },
+      { value: 400, question: "When you accidentally touch something hot, you pull your hand back really fast without thinking. This is called this.", answer: "What is a reflex?", imageUrl: "" },
+      { value: 600, question: "This organ protected inside your skull controls your thoughts, feelings, and movements.", answer: "What is the brain?", imageUrl: "" },
+      { value: 800, question: "This long cord inside your backbone carries messages between your brain and the rest of your body.", answer: "What is the spinal cord?", imageUrl: "" },
+      { value: 1000, question: "Your five senses — sight, hearing, smell, taste, and touch — all send information to this organ.", answer: "What is the brain?", imageUrl: "" },
+    ]
+  },
+  "The Digestive System": {
+    standard: [
+      { value: 200, question: "Digestion begins in the mouth where this enzyme in saliva starts breaking down starches.", answer: "What is amylase?", imageUrl: "" },
+      { value: 400, question: "This muscular wave-like motion moves food through the esophagus and intestines.", answer: "What is peristalsis?", imageUrl: "" },
+      { value: 600, question: "This organ produces bile, which helps break down fats in the small intestine.", answer: "What is the liver?", imageUrl: "" },
+      { value: 800, question: "These finger-like projections in the small intestine increase surface area for nutrient absorption.", answer: "What are villi?", imageUrl: "" },
+      { value: 1000, question: "This organ stores and concentrates bile produced by the liver until it is needed for digestion.", answer: "What is the gallbladder?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Digestion starts in your mouth when you chew food with these hard white things.", answer: "What are teeth?", imageUrl: "" },
+      { value: 400, question: "After you swallow, food travels down a tube to reach this bag-shaped organ that mashes it up with acid.", answer: "What is the stomach?", imageUrl: "" },
+      { value: 600, question: "This watery liquid in your mouth helps soften food and start breaking it down.", answer: "What is saliva (or spit)?", imageUrl: "" },
+      { value: 800, question: "After your stomach, food moves into this long, curvy tube where your body absorbs the good stuff from food.", answer: "What is the small intestine?", imageUrl: "" },
+      { value: 1000, question: "The parts of food your body can't use leave your body as waste, which is stored here before leaving.", answer: "What is the large intestine (or colon)?", imageUrl: "" },
+    ]
+  },
+  "Heart & Circulation": {
+    standard: [
+      { value: 200, question: "The heart has four of these compartments — two upper atria and two lower ventricles.", answer: "What are chambers?", imageUrl: "" },
+      { value: 400, question: "These blood vessels carry oxygen-poor blood back to the heart from the body.", answer: "What are veins?", imageUrl: "" },
+      { value: 600, question: "This iron-rich protein in red blood cells binds to oxygen for transport.", answer: "What is hemoglobin?", imageUrl: "" },
+      { value: 800, question: "This side of the heart pumps blood to the lungs to pick up oxygen.", answer: "What is the right side?", imageUrl: "" },
+      { value: 1000, question: "This largest artery in the body carries oxygenated blood from the left ventricle to the rest of the body.", answer: "What is the aorta?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Put your hand on your chest — you can feel this organ beating to pump blood.", answer: "What is the heart?", imageUrl: "" },
+      { value: 400, question: "These tiny tubes carry blood to every part of your body, from your toes to your fingers.", answer: "What are blood vessels?", imageUrl: "" },
+      { value: 600, question: "If you look at the inside of your wrist, you might see blue lines. These are this type of blood vessel.", answer: "What are veins?", imageUrl: "" },
+      { value: 800, question: "Blood carries this invisible gas from your lungs to the rest of your body so your cells can work.", answer: "What is oxygen?", imageUrl: "" },
+      { value: 1000, question: "When a doctor uses a stethoscope, they are listening to the sounds of this organ.", answer: "What is the heart?", imageUrl: "" },
+    ]
+  },
+  "The Immune System": {
+    standard: [
+      { value: 200, question: "These Y-shaped proteins are produced by B cells and attach to specific antigens to help destroy pathogens.", answer: "What are antibodies?", imageUrl: "" },
+      { value: 400, question: "This type of immunity develops after you recover from an illness or receive a vaccination.", answer: "What is acquired (or adaptive) immunity?", imageUrl: "" },
+      { value: 600, question: "These immune cells directly attack and kill virus-infected cells and cancer cells.", answer: "What are T cells (or killer T cells)?", imageUrl: "" },
+      { value: 800, question: "This is the body's first line of defense, including skin, mucous membranes, and stomach acid.", answer: "What are innate (nonspecific) defenses?", imageUrl: "" },
+      { value: 1000, question: "This inflammatory response causes redness, swelling, heat, and pain at the site of an infection or injury.", answer: "What is inflammation?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Your body has a system that fights off germs and keeps you from getting sick. This is called this.", answer: "What is the immune system?", imageUrl: "" },
+      { value: 400, question: "When you get a fever, your body temperature goes up to help fight these tiny invaders.", answer: "What are germs (or bacteria/viruses)?", imageUrl: "" },
+      { value: 600, question: "A scab forms over a cut to protect it while your body does this underneath.", answer: "What is healing?", imageUrl: "" },
+      { value: 800, question: "After you get chicken pox, your body remembers the germ so you probably won't get it again. This is called this.", answer: "What is immunity?", imageUrl: "" },
+      { value: 1000, question: "White blood cells are like tiny soldiers in your blood that fight off this.", answer: "What are germs (or infections)?", imageUrl: "" },
+    ]
+  },
+  "Bones & Muscles": {
+    standard: [
+      { value: 200, question: "This type of muscle is found only in the heart and contracts involuntarily to pump blood.", answer: "What is cardiac muscle?", imageUrl: "" },
+      { value: 400, question: "This tough, flexible connective tissue cushions the ends of bones at joints.", answer: "What is cartilage?", imageUrl: "" },
+      { value: 600, question: "These strong bands of tissue connect bones to other bones at joints.", answer: "What are ligaments?", imageUrl: "" },
+      { value: 800, question: "Muscles can only pull, not push. This means they must work in these types of pairs to create movement.", answer: "What are antagonistic pairs?", imageUrl: "" },
+      { value: 1000, question: "This condition occurs when bones lose density and become fragile, especially common in older adults.", answer: "What is osteoporosis?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "You have over 200 of these hard parts inside your body that make up your skeleton.", answer: "What are bones?", imageUrl: "" },
+      { value: 400, question: "When you bend your arm, this muscle on the front of your upper arm gets shorter and harder.", answer: "What is the bicep?", imageUrl: "" },
+      { value: 600, question: "The place where two bones meet and can bend or move is called this.", answer: "What is a joint?", imageUrl: "" },
+      { value: 800, question: "This strong, stretchy tissue connects your muscles to your bones so you can move.", answer: "What are tendons?", imageUrl: "" },
+      { value: 1000, question: "Drinking milk and eating cheese helps keep your bones strong because they contain this mineral.", answer: "What is calcium?", imageUrl: "" },
+    ]
+  },
+  "Reproduction & Development": {
+    standard: [
+      { value: 200, question: "This type of reproduction requires two parents and produces genetically unique offspring.", answer: "What is sexual reproduction?", imageUrl: "" },
+      { value: 400, question: "In human development, this structure connects the developing fetus to the mother's uterine wall for nutrient exchange.", answer: "What is the placenta?", imageUrl: "" },
+      { value: 600, question: "This is the term for an organism in the first eight weeks of development after fertilization.", answer: "What is an embryo?", imageUrl: "" },
+      { value: 800, question: "This process occurs when a sperm cell and egg cell combine to form a zygote.", answer: "What is fertilization?", imageUrl: "" },
+      { value: 1000, question: "This type of reproduction produces genetically identical offspring from a single parent, common in bacteria.", answer: "What is asexual reproduction?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Baby chicks hatch from these hard-shelled objects laid by a hen.", answer: "What are eggs?", imageUrl: "" },
+      { value: 400, question: "A tadpole grows legs and loses its tail as it slowly turns into this animal.", answer: "What is a frog?", imageUrl: "" },
+      { value: 600, question: "A caterpillar wraps itself in a chrysalis and comes out as this beautiful flying insect.", answer: "What is a butterfly?", imageUrl: "" },
+      { value: 800, question: "Most baby mammals grow inside their mother before being born alive, instead of hatching from this.", answer: "What is an egg?", imageUrl: "" },
+      { value: 1000, question: "The stages an animal goes through from birth to adulthood is called a life this.", answer: "What is a life cycle?", imageUrl: "" },
+    ]
+  },
+  "Microorganisms": {
+    standard: [
+      { value: 200, question: "These single-celled organisms lack a nucleus and include bacteria.", answer: "What are prokaryotes?", imageUrl: "" },
+      { value: 400, question: "This type of microorganism is not considered living because it can only reproduce inside a host cell.", answer: "What is a virus?", imageUrl: "" },
+      { value: 600, question: "These rod-shaped, sphere-shaped, and spiral-shaped forms describe the three main shapes of bacteria.", answer: "What are bacilli, cocci, and spirilla?", imageUrl: "" },
+      { value: 800, question: "This beneficial process uses bacteria or yeast to convert sugars into alcohol or acids, used in making bread and yogurt.", answer: "What is fermentation?", imageUrl: "" },
+      { value: 1000, question: "This type of relationship between gut bacteria and humans benefits both organisms.", answer: "What is mutualism?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "These living things are so tiny you need a microscope to see them.", answer: "What are germs (or microorganisms)?", imageUrl: "" },
+      { value: 400, question: "This kitchen tool keeps food cold to slow down the germs that make food go bad.", answer: "What is a refrigerator?", imageUrl: "" },
+      { value: 600, question: "Not all tiny organisms are bad — the good bacteria in yogurt help your this stay healthy.", answer: "What is your stomach (or digestive system)?", imageUrl: "" },
+      { value: 800, question: "When bread dough rises and gets puffy, this tiny living thing is making bubbles of gas inside.", answer: "What is yeast?", imageUrl: "" },
+      { value: 1000, question: "If you leave bread out too long, fuzzy green stuff grows on it. This is a type of this.", answer: "What is mold?", imageUrl: "" },
+    ]
+  },
+  "Animal Behavior": {
+    standard: [
+      { value: 200, question: "This seasonal movement of animals from one region to another for food or breeding is called this.", answer: "What is migration?", imageUrl: "" },
+      { value: 400, question: "This sleep-like state allows animals like bears to conserve energy during winter months.", answer: "What is hibernation?", imageUrl: "" },
+      { value: 600, question: "This type of learned behavior occurs when a young animal forms a strong attachment to the first moving object it sees.", answer: "What is imprinting?", imageUrl: "" },
+      { value: 800, question: "This behavior, where an animal marks and defends an area from others of the same species, is called this.", answer: "What is territoriality?", imageUrl: "" },
+      { value: 1000, question: "This type of behavior is present from birth and does not need to be learned, like a spider spinning a web.", answer: "What is instinct (or innate behavior)?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Birds fly south in the fall and come back in the spring. This long journey is called this.", answer: "What is migration?", imageUrl: "" },
+      { value: 400, question: "Bears sleep through most of the winter in a deep sleep called this.", answer: "What is hibernation?", imageUrl: "" },
+      { value: 600, question: "A dog learning to sit when you say 'sit' is an example of this kind of behavior.", answer: "What is a learned behavior (or training)?", imageUrl: "" },
+      { value: 800, question: "Some animals change their color to blend in with their surroundings. This hiding trick is called this.", answer: "What is camouflage?", imageUrl: "" },
+      { value: 1000, question: "Baby sea turtles know to crawl toward the ocean as soon as they hatch, even though no one teaches them. This is called this.", answer: "What is instinct?", imageUrl: "" },
+    ]
+  },
+  "Classification & Taxonomy": {
+    standard: [
+      { value: 200, question: "This Swedish scientist developed the two-part naming system used to classify all living organisms.", answer: "Who is Carolus Linnaeus?", imageUrl: "" },
+      { value: 400, question: "In the classification system, this level falls between phylum and order.", answer: "What is class?", imageUrl: "" },
+      { value: 600, question: "Organisms in this kingdom are multicellular, have cell walls made of chitin, and absorb nutrients externally.", answer: "What is Fungi?", imageUrl: "" },
+      { value: 800, question: "This two-word naming system gives each organism a genus and species name, such as Homo sapiens.", answer: "What is binomial nomenclature?", imageUrl: "" },
+      { value: 1000, question: "The three domains of life are Bacteria, Eukarya, and this domain of extremophile single-celled organisms.", answer: "What is Archaea?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Scientists sort living things into groups based on how they are alike. This sorting is called this.", answer: "What is classification?", imageUrl: "" },
+      { value: 400, question: "Dogs, cats, and elephants are all part of this kingdom of living things that move and eat food.", answer: "What is the animal kingdom?", imageUrl: "" },
+      { value: 600, question: "Trees, flowers, and grass are all part of this kingdom of living things that make their own food.", answer: "What is the plant kingdom?", imageUrl: "" },
+      { value: 800, question: "Animals with backbones like fish, birds, and humans are called this.", answer: "What are vertebrates?", imageUrl: "" },
+      { value: 1000, question: "Insects, spiders, and worms do NOT have a backbone, so they are called this.", answer: "What are invertebrates?", imageUrl: "" },
+    ]
+  },
+  "Biomes & Habitats": {
+    standard: [
+      { value: 200, question: "This frozen biome has permafrost, very little precipitation, and is home to caribou and arctic foxes.", answer: "What is the tundra?", imageUrl: "" },
+      { value: 400, question: "This biome has the greatest biodiversity on Earth and receives more than 80 inches of rain per year.", answer: "What is the tropical rainforest?", imageUrl: "" },
+      { value: 600, question: "This grassland biome found in Africa is home to large herds of grazing animals and their predators.", answer: "What is the savanna?", imageUrl: "" },
+      { value: 800, question: "This biome is dominated by coniferous trees like spruce and fir, forming a belt across northern North America and Eurasia.", answer: "What is the taiga (boreal forest)?", imageUrl: "" },
+      { value: 1000, question: "These transitional ecosystems where freshwater meets saltwater are among the most productive on Earth.", answer: "What are estuaries?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "A hot, dry place with very little rain and lots of sand, like the Sahara, is called this.", answer: "What is a desert?", imageUrl: "" },
+      { value: 400, question: "A place with many tall trees, lots of rain, and animals like monkeys and parrots is called a rain this.", answer: "What is a rainforest?", imageUrl: "" },
+      { value: 600, question: "The icy cold area around the North Pole and South Pole where polar bears and penguins live is called this.", answer: "What is the Arctic (or polar region)?", imageUrl: "" },
+      { value: 800, question: "A flat area with lots of grass but very few trees, where bison and prairie dogs live, is called this.", answer: "What is a grassland (or prairie)?", imageUrl: "" },
+      { value: 1000, question: "The specific place where an animal lives, finds food, and raises its babies is called its this.", answer: "What is a habitat?", imageUrl: "" },
+    ]
+  },
+  "Energy in Ecosystems": {
+    standard: [
+      { value: 200, question: "Organisms that make their own food through photosynthesis are at the base of every food chain and are called this.", answer: "What are producers (autotrophs)?", imageUrl: "" },
+      { value: 400, question: "Only about this percentage of energy is transferred from one trophic level to the next.", answer: "What is 10 percent?", imageUrl: "" },
+      { value: 600, question: "These organisms break down dead organic matter and recycle nutrients back into the ecosystem.", answer: "What are decomposers?", imageUrl: "" },
+      { value: 800, question: "This type of pyramid shows the decreasing amount of energy available at each trophic level.", answer: "What is an energy pyramid?", imageUrl: "" },
+      { value: 1000, question: "Unlike energy, this is recycled through ecosystems via biogeochemical cycles rather than flowing in one direction.", answer: "What is matter (or nutrients)?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Plants get their energy from this big, bright thing in the sky.", answer: "What is the sun?", imageUrl: "" },
+      { value: 400, question: "When a deer eats grass, the deer gets its energy from the grass. The grass is called this in a food chain.", answer: "What is a producer?", imageUrl: "" },
+      { value: 600, question: "Animals that eat plants or other animals to get energy are called this in a food chain.", answer: "What are consumers?", imageUrl: "" },
+      { value: 800, question: "Mushrooms and bacteria that break down dead leaves and logs are called this.", answer: "What are decomposers?", imageUrl: "" },
+      { value: 1000, question: "All the energy in most food chains can be traced back to this original source.", answer: "What is the sun?", imageUrl: "" },
+    ]
+  },
+  "Scientific Method": {
+    standard: [
+      { value: 200, question: "This is a testable prediction about the outcome of an experiment.", answer: "What is a hypothesis?", imageUrl: "" },
+      { value: 400, question: "In an experiment, this is the one factor that the scientist deliberately changes.", answer: "What is the independent variable?", imageUrl: "" },
+      { value: 600, question: "This type of group in an experiment is not exposed to the variable being tested and serves as a baseline.", answer: "What is the control group?", imageUrl: "" },
+      { value: 800, question: "Repeating an experiment multiple times and getting similar results increases this quality of the data.", answer: "What is reliability (or reproducibility)?", imageUrl: "" },
+      { value: 1000, question: "This type of variable is the outcome that is measured or observed in an experiment.", answer: "What is the dependent variable?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "A scientist asks a question, makes a guess, and then tests it. This careful process is called this.", answer: "What is the scientific method?", imageUrl: "" },
+      { value: 400, question: "Before doing an experiment, a scientist makes a smart guess about what will happen. This guess is called this.", answer: "What is a hypothesis?", imageUrl: "" },
+      { value: 600, question: "When you do a science experiment, you watch what happens and write it down. These notes are called this.", answer: "What are observations?", imageUrl: "" },
+      { value: 800, question: "To make sure a science experiment is fair, you should only change this many things at a time.", answer: "What is one?", imageUrl: "" },
+      { value: 1000, question: "After an experiment, a scientist looks at the results and decides if the guess was right. This final step is the this.", answer: "What is the conclusion?", imageUrl: "" },
+    ]
+  },
+  "Rocks & Minerals": {
+    standard: [
+      { value: 200, question: "This type of rock forms when molten magma or lava cools and solidifies.", answer: "What is igneous rock?", imageUrl: "" },
+      { value: 400, question: "This property measures a mineral's resistance to scratching, rated 1-10 on the Mohs scale.", answer: "What is hardness?", imageUrl: "" },
+      { value: 600, question: "This sedimentary rock is made primarily of calcium carbonate and often contains marine fossils.", answer: "What is limestone?", imageUrl: "" },
+      { value: 800, question: "This continuous process of rock formation, breakdown, and reformation is called this.", answer: "What is the rock cycle?", imageUrl: "" },
+      { value: 1000, question: "This metamorphic rock forms when limestone is subjected to intense heat and pressure.", answer: "What is marble?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "The hard, solid, natural things you find on the ground that come in many shapes and colors are called this.", answer: "What are rocks?", imageUrl: "" },
+      { value: 400, question: "When a volcano erupts and lava cools down and becomes hard, it forms this type of rock.", answer: "What is igneous rock?", imageUrl: "" },
+      { value: 600, question: "Layers of sand, mud, and shells pressed together over a long time become this type of rock.", answer: "What is sedimentary rock?", imageUrl: "" },
+      { value: 800, question: "The hardest natural mineral on Earth, often used in rings and jewelry, is called this.", answer: "What is a diamond?", imageUrl: "" },
+      { value: 1000, question: "If you find a rock with a seashell shape pressed into it, that shape is called this.", answer: "What is a fossil?", imageUrl: "" },
+    ]
+  },
+  "Space Science": {
+    standard: [
+      { value: 200, question: "This star is the closest to Earth and provides the energy needed for life.", answer: "What is the sun?", imageUrl: "" },
+      { value: 400, question: "Earth's tilt on its axis is responsible for causing these four yearly climate patterns.", answer: "What are seasons?", imageUrl: "" },
+      { value: 600, question: "This force keeps planets in orbit around the sun and the moon in orbit around the Earth.", answer: "What is gravity?", imageUrl: "" },
+      { value: 800, question: "This planet is known as the 'Red Planet' due to iron oxide on its surface.", answer: "What is Mars?", imageUrl: "" },
+      { value: 1000, question: "This region beyond Neptune contains many icy bodies, including the dwarf planet Pluto.", answer: "What is the Kuiper Belt?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "This giant ball of hot gas gives us light and heat during the day.", answer: "What is the sun?", imageUrl: "" },
+      { value: 400, question: "At night, you can see this glowing object in the sky that orbits around the Earth.", answer: "What is the moon?", imageUrl: "" },
+      { value: 600, question: "Earth is one of eight of these that travel around the sun.", answer: "What are planets?", imageUrl: "" },
+      { value: 800, question: "The tiny twinkling lights you see in the night sky are actually giant balls of hot gas called this.", answer: "What are stars?", imageUrl: "" },
+      { value: 1000, question: "It takes the Earth about 365 days — or one this — to travel all the way around the sun.", answer: "What is a year?", imageUrl: "" },
+    ]
+  },
+  "DNA & Biotechnology": {
+    standard: [
+      { value: 200, question: "These four bases make up the rungs of the DNA ladder: adenine, thymine, guanine, and this.", answer: "What is cytosine?", imageUrl: "" },
+      { value: 400, question: "This process makes an exact copy of a DNA molecule before cell division.", answer: "What is DNA replication?", imageUrl: "" },
+      { value: 600, question: "This technology allows scientists to cut and paste DNA from one organism into another.", answer: "What is genetic engineering (or recombinant DNA technology)?", imageUrl: "" },
+      { value: 800, question: "This laboratory technique separates DNA fragments by size using an electric current through a gel.", answer: "What is gel electrophoresis?", imageUrl: "" },
+      { value: 1000, question: "This organism that has received genes from another species is called this.", answer: "What is a transgenic organism (or GMO)?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Inside almost every cell in your body, there is a special code that makes you, you. This code is called this.", answer: "What is DNA?", imageUrl: "" },
+      { value: 400, question: "Your DNA comes from both of your parents, which is why you might look a little like your mom and a little like your this.", answer: "Who is your dad?", imageUrl: "" },
+      { value: 600, question: "Scientists can look at DNA to help solve crimes, find family members, or learn about diseases. DNA is like a this for your body.", answer: "What is a blueprint (or instruction book)?", imageUrl: "" },
+      { value: 800, question: "Every person's DNA is unique, except for identical ones of these, who share the same DNA.", answer: "What are twins?", imageUrl: "" },
+      { value: 1000, question: "DNA is shaped like a twisted ladder. Scientists call this shape a double this.", answer: "What is a double helix?", imageUrl: "" },
+    ]
+  },
+  "Nutrition & Diet": {
+    standard: [
+      { value: 200, question: "These organic molecules are the body's preferred source of quick energy and include sugars and starches.", answer: "What are carbohydrates?", imageUrl: "" },
+      { value: 400, question: "These building blocks of proteins are linked together in chains during translation.", answer: "What are amino acids?", imageUrl: "" },
+      { value: 600, question: "This fat-soluble vitamin, produced when skin is exposed to sunlight, helps with calcium absorption.", answer: "What is vitamin D?", imageUrl: "" },
+      { value: 800, question: "This mineral is essential for oxygen transport in the blood, and a deficiency causes anemia.", answer: "What is iron?", imageUrl: "" },
+      { value: 1000, question: "This unit of measurement is used to express the amount of energy stored in food.", answer: "What is a calorie (or kilocalorie)?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Bread, pasta, and rice give your body energy. These foods are all types of this.", answer: "What are carbohydrates (or grains)?", imageUrl: "" },
+      { value: 400, question: "Chicken, fish, beans, and eggs are all good sources of this nutrient that helps build muscles.", answer: "What is protein?", imageUrl: "" },
+      { value: 600, question: "Oranges are famous for having a lot of this vitamin that helps keep you from getting sick.", answer: "What is vitamin C?", imageUrl: "" },
+      { value: 800, question: "You should drink plenty of this every day to keep your body working well — it has no calories or sugar.", answer: "What is water?", imageUrl: "" },
+      { value: 1000, question: "Fruits and vegetables have a lot of this, which helps food move through your digestive system.", answer: "What is fiber?", imageUrl: "" },
+    ]
+  },
+  "The Five Senses": {
+    standard: [
+      { value: 200, question: "This part of the eye contains photoreceptor cells called rods and cones that detect light.", answer: "What is the retina?", imageUrl: "" },
+      { value: 400, question: "These three tiny bones in the middle ear — the hammer, anvil, and stirrup — amplify sound vibrations.", answer: "What are the ossicles?", imageUrl: "" },
+      { value: 600, question: "This structure in the inner ear is responsible for balance and detecting changes in head position.", answer: "What are the semicircular canals (or vestibular system)?", imageUrl: "" },
+      { value: 800, question: "The human tongue can detect five basic tastes: sweet, sour, salty, bitter, and this savory taste.", answer: "What is umami?", imageUrl: "" },
+      { value: 1000, question: "This transparent front part of the eye refracts light before it passes through the pupil and lens.", answer: "What is the cornea?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "You use these two body parts to see the world around you.", answer: "What are your eyes?", imageUrl: "" },
+      { value: 400, question: "The part of your body that lets you hear sounds like music, voices, and birds is this.", answer: "What are your ears?", imageUrl: "" },
+      { value: 600, question: "When you eat pizza, this body part on the inside of your mouth tells you how it tastes.", answer: "What is your tongue?", imageUrl: "" },
+      { value: 800, question: "You can tell if a flower smells nice by using this body part in the middle of your face.", answer: "What is your nose?", imageUrl: "" },
+      { value: 1000, question: "If you close your eyes and touch a stuffed animal, you can tell it's soft by using this sense.", answer: "What is touch (or feeling)?", imageUrl: "" },
+    ]
+  },
+  "Respiration & Gas Exchange": {
+    standard: [
+      { value: 200, question: "This dome-shaped muscle contracts to pull air into the lungs during inhalation.", answer: "What is the diaphragm?", imageUrl: "" },
+      { value: 400, question: "This branching tube in the lungs splits into smaller and smaller passages called bronchioles.", answer: "What is the bronchus (or bronchi)?", imageUrl: "" },
+      { value: 600, question: "The process by which cells use oxygen to break down glucose and release energy is called this.", answer: "What is cellular respiration?", imageUrl: "" },
+      { value: 800, question: "The waste gas produced by cellular respiration that you exhale is this.", answer: "What is carbon dioxide (CO₂)?", imageUrl: "" },
+      { value: 1000, question: "The equation for aerobic cellular respiration shows glucose and oxygen producing CO₂, water, and this energy molecule.", answer: "What is ATP?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "You breathe in this invisible gas that your body needs to live.", answer: "What is oxygen?", imageUrl: "" },
+      { value: 400, question: "When you breathe out, you push this waste gas out of your lungs.", answer: "What is carbon dioxide?", imageUrl: "" },
+      { value: 600, question: "Air enters your body through your mouth and nose and travels down to these two spongy organs.", answer: "What are your lungs?", imageUrl: "" },
+      { value: 800, question: "Try breathing in deeply — you can feel your chest get bigger because your lungs are filling up with this.", answer: "What is air?", imageUrl: "" },
+      { value: 1000, question: "Fish breathe underwater using these feathery organs on the sides of their heads, instead of lungs.", answer: "What are gills?", imageUrl: "" },
+    ]
+  },
+  "Homeostasis": {
+    standard: [
+      { value: 200, question: "This term means the body's ability to maintain a stable internal environment despite external changes.", answer: "What is homeostasis?", imageUrl: "" },
+      { value: 400, question: "When blood sugar rises after eating, the pancreas releases this hormone to lower it.", answer: "What is insulin?", imageUrl: "" },
+      { value: 600, question: "This type of feedback loop reverses a change to bring the body back to its set point, like cooling when overheated.", answer: "What is negative feedback?", imageUrl: "" },
+      { value: 800, question: "These organs filter waste from the blood and regulate water and electrolyte balance.", answer: "What are the kidneys?", imageUrl: "" },
+      { value: 1000, question: "This rare type of feedback loop amplifies a change rather than reversing it, as seen during childbirth contractions.", answer: "What is positive feedback?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "When you're hot, your body sweats to cool down. When you're cold, you shiver to warm up. Your body is trying to stay this.", answer: "What is balanced (or the same temperature)?", imageUrl: "" },
+      { value: 400, question: "On a hot day, your body pushes water out through your skin to cool off. This is called this.", answer: "What is sweating?", imageUrl: "" },
+      { value: 600, question: "When you're cold, your body shakes a little bit all over. This is called this.", answer: "What is shivering?", imageUrl: "" },
+      { value: 800, question: "When you run around and use up energy, you feel hungry because your body needs more of this.", answer: "What is food?", imageUrl: "" },
+      { value: 1000, question: "After running really fast, you breathe harder because your body needs more of this gas.", answer: "What is oxygen?", imageUrl: "" },
+    ]
+  },
+  "Fossils & Geologic Time": {
+    standard: [
+      { value: 200, question: "This type of fossil forms when an organism's body is replaced by minerals over time, turning it to stone.", answer: "What is petrification (permineralization)?", imageUrl: "" },
+      { value: 400, question: "This era is known as the 'Age of Dinosaurs' and includes the Triassic, Jurassic, and Cretaceous periods.", answer: "What is the Mesozoic Era?", imageUrl: "" },
+      { value: 600, question: "This dating method uses the known decay rate of radioactive isotopes to determine the age of rocks and fossils.", answer: "What is radiometric (or radioactive) dating?", imageUrl: "" },
+      { value: 800, question: "In undisturbed rock layers, the oldest layers are at the bottom. This principle is called this.", answer: "What is the Law of Superposition?", imageUrl: "" },
+      { value: 1000, question: "These fossils from widely distributed, short-lived species are used to correlate the ages of rock layers across different locations.", answer: "What are index fossils?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "When you find the shape of an ancient leaf or bone in a rock, you have found one of these.", answer: "What is a fossil?", imageUrl: "" },
+      { value: 400, question: "These giant reptiles lived millions of years ago but are now extinct. We know about them from their fossils.", answer: "What are dinosaurs?", imageUrl: "" },
+      { value: 600, question: "Scientists who dig up fossils and study ancient life are called this.", answer: "What are paleontologists?", imageUrl: "" },
+      { value: 800, question: "A footprint left in mud that turns to stone over millions of years is a type of this.", answer: "What is a fossil?", imageUrl: "" },
+      { value: 1000, question: "Sometimes an insect gets trapped inside sticky tree sap that hardens into this golden material, preserving it perfectly.", answer: "What is amber?", imageUrl: "" },
+    ]
+  },
+  "Animal Adaptations": {
+    standard: [
+      { value: 200, question: "This coloring pattern makes an animal blend in with its environment to avoid predators.", answer: "What is camouflage?", imageUrl: "" },
+      { value: 400, question: "Some non-poisonous species evolve to look like poisonous species to deter predators. This is called this.", answer: "What is mimicry?", imageUrl: "" },
+      { value: 600, question: "Animals that are active at night and sleep during the day are classified as this.", answer: "What is nocturnal?", imageUrl: "" },
+      { value: 800, question: "This type of adaptation involves body structures, such as a giraffe's long neck or a bird's beak shape.", answer: "What is a structural (or physical) adaptation?", imageUrl: "" },
+      { value: 1000, question: "This physiological adaptation allows some fish to produce antifreeze proteins to survive in sub-zero Arctic waters.", answer: "What is an antifreeze adaptation (or cryoprotection)?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "A chameleon changes its color to match what's around it. This is an example of this.", answer: "What is camouflage?", imageUrl: "" },
+      { value: 400, question: "A duck has webbed feet to help it do this in water.", answer: "What is swim?", imageUrl: "" },
+      { value: 600, question: "A giraffe has a very long neck so it can reach leaves high up in these.", answer: "What are trees?", imageUrl: "" },
+      { value: 800, question: "Owls can see very well in the dark because they are this type of animal that is active at night.", answer: "What is nocturnal?", imageUrl: "" },
+      { value: 1000, question: "A porcupine's sharp quills protect it from animals that want to eat it. These quills are an example of this.", answer: "What is a defense (or adaptation)?", imageUrl: "" },
+    ]
+  },
+  "Water & Solutions": {
+    standard: [
+      { value: 200, question: "Water is called the 'universal solvent' because it can dissolve more substances than any other this.", answer: "What is a liquid (or solvent)?", imageUrl: "" },
+      { value: 400, question: "This property of water causes it to stick to other surfaces, helping water climb up thin tubes in plants.", answer: "What is adhesion?", imageUrl: "" },
+      { value: 600, question: "This term describes a solution that cannot dissolve any more solute at a given temperature.", answer: "What is saturated?", imageUrl: "" },
+      { value: 800, question: "Water's ability to resist temperature changes due to hydrogen bonding gives it a high value of this property.", answer: "What is specific heat (or heat capacity)?", imageUrl: "" },
+      { value: 1000, question: "This property of water allows it to expand when it freezes, making ice less dense than liquid water.", answer: "What is the anomalous expansion of water?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "When you stir sugar into water and it disappears, you have made one of these.", answer: "What is a solution?", imageUrl: "" },
+      { value: 400, question: "Water can be a solid (ice), a liquid, or a gas (steam). These three forms are called states of this.", answer: "What is matter?", imageUrl: "" },
+      { value: 600, question: "When puddles disappear on a sunny day, the water has changed from a liquid into this invisible gas.", answer: "What is water vapor (or gas/steam)?", imageUrl: "" },
+      { value: 800, question: "When you put water in the freezer, it turns into this solid form.", answer: "What is ice?", imageUrl: "" },
+      { value: 1000, question: "Oil and water don't mix — if you shake them together, they separate. This means they are this.", answer: "What is immiscible (or they don't dissolve)?", imageUrl: "" },
+    ]
+  },
+  "Cycles in Nature": {
+    standard: [
+      { value: 200, question: "In the water cycle, this process turns liquid water into water vapor using heat energy.", answer: "What is evaporation?", imageUrl: "" },
+      { value: 400, question: "In the carbon cycle, plants remove CO₂ from the atmosphere during this process.", answer: "What is photosynthesis?", imageUrl: "" },
+      { value: 600, question: "This process in the nitrogen cycle converts atmospheric nitrogen gas into usable forms, often by bacteria in root nodules.", answer: "What is nitrogen fixation?", imageUrl: "" },
+      { value: 800, question: "In the water cycle, this is the process where water vapor cools and changes back into liquid droplets, forming clouds.", answer: "What is condensation?", imageUrl: "" },
+      { value: 1000, question: "This element cycles through ecosystems in organic molecules and returns to the atmosphere through combustion and respiration.", answer: "What is carbon?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Rain falls from clouds, flows into rivers, goes to the ocean, and evaporates back into clouds. This loop is called this.", answer: "What is the water cycle?", imageUrl: "" },
+      { value: 400, question: "When the sun heats up water in a puddle and it goes up into the air, this is called this.", answer: "What is evaporation?", imageUrl: "" },
+      { value: 600, question: "When water vapor in the sky cools down and turns back into tiny water droplets, it forms these.", answer: "What are clouds?", imageUrl: "" },
+      { value: 800, question: "Plants take in carbon dioxide and release oxygen. Animals breathe in oxygen and release carbon dioxide. This is a this.", answer: "What is a cycle?", imageUrl: "" },
+      { value: 1000, question: "Dead leaves on the forest floor break down and become part of the soil, giving nutrients back to plants. This is called this.", answer: "What is decomposition?", imageUrl: "" },
+    ]
+  },
+  "Endangered Species & Conservation": {
+    standard: [
+      { value: 200, question: "This term describes a species that is at serious risk of extinction in the near future.", answer: "What is endangered?", imageUrl: "" },
+      { value: 400, question: "The destruction of natural habitats for farming, building, or logging is the leading cause of species decline and is called this.", answer: "What is habitat loss (or habitat destruction)?", imageUrl: "" },
+      { value: 600, question: "This measure of the variety of different species in an ecosystem is an indicator of its health.", answer: "What is biodiversity?", imageUrl: "" },
+      { value: 800, question: "These non-native species introduced to a new ecosystem can outcompete local species and disrupt food webs.", answer: "What are invasive species?", imageUrl: "" },
+      { value: 1000, question: "This international agreement regulates trade in endangered plant and animal species and their products.", answer: "What is CITES?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "When an animal is in danger of disappearing from the Earth forever, we say it is this.", answer: "What is endangered?", imageUrl: "" },
+      { value: 400, question: "Cutting down large areas of forest means animals lose their homes. This is called habitat this.", answer: "What is habitat loss (or destruction)?", imageUrl: "" },
+      { value: 600, question: "Pandas, tigers, and sea turtles all need our help to survive because they are this.", answer: "What is endangered?", imageUrl: "" },
+      { value: 800, question: "Places like national parks and wildlife refuges are set aside to protect animals and plants. This is called this.", answer: "What is conservation?", imageUrl: "" },
+      { value: 1000, question: "Reduce, reuse, and recycle are three things you can do to help protect the this.", answer: "What is the environment (or Earth)?", imageUrl: "" },
+    ]
+  },
+  "The Endocrine System": {
+    standard: [
+      { value: 200, question: "This system uses chemical messengers called hormones to regulate body functions.", answer: "What is the endocrine system?", imageUrl: "" },
+      { value: 400, question: "This gland in the neck produces hormones that regulate metabolism, growth, and energy use.", answer: "What is the thyroid gland?", imageUrl: "" },
+      { value: 600, question: "This hormone, produced by the adrenal glands, is released during the 'fight or flight' response.", answer: "What is adrenaline (epinephrine)?", imageUrl: "" },
+      { value: 800, question: "This gland located at the base of the brain is called the 'master gland' because it controls other endocrine glands.", answer: "What is the pituitary gland?", imageUrl: "" },
+      { value: 1000, question: "This endocrine gland located behind the stomach produces both insulin and glucagon to regulate blood sugar.", answer: "What is the pancreas?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "Special chemicals called hormones travel through your blood and tell different body parts what to do. They are made by this system.", answer: "What is the endocrine system?", imageUrl: "" },
+      { value: 400, question: "When something scares you, your body releases a chemical that makes your heart beat fast and gives you energy to run. This is called this.", answer: "What is adrenaline?", imageUrl: "" },
+      { value: 600, question: "As kids grow into teenagers, hormones cause many changes in the body. This time of change is called this.", answer: "What is puberty?", imageUrl: "" },
+      { value: 800, question: "Hormones are like tiny messengers that travel through this liquid in your body to deliver instructions.", answer: "What is blood?", imageUrl: "" },
+      { value: 1000, question: "When you eat sugar, a hormone from your pancreas helps your body use it for energy. This hormone is called this.", answer: "What is insulin?", imageUrl: "" },
+    ]
+  },
+  "Cell Organelles": {
+    standard: [
+      { value: 200, question: "This organelle is the control center of the cell and contains the cell's DNA.", answer: "What is the nucleus?", imageUrl: "" },
+      { value: 400, question: "This system of folded membranes processes and packages proteins and lipids for transport.", answer: "What is the endoplasmic reticulum (ER)?", imageUrl: "" },
+      { value: 600, question: "This organelle modifies, sorts, and ships proteins received from the endoplasmic reticulum.", answer: "What is the Golgi apparatus (Golgi body)?", imageUrl: "" },
+      { value: 800, question: "These small organelles contain digestive enzymes that break down waste, old cell parts, and foreign invaders.", answer: "What are lysosomes?", imageUrl: "" },
+      { value: 1000, question: "These organelles found only in plant cells and some protists are the site of photosynthesis.", answer: "What are chloroplasts?", imageUrl: "" },
+    ],
+    easy: [
+      { value: 200, question: "This part in the middle of a cell acts like a brain, controlling what the cell does.", answer: "What is the nucleus?", imageUrl: "" },
+      { value: 400, question: "Every cell is surrounded by a thin layer that decides what goes in and out, called the cell this.", answer: "What is the cell membrane?", imageUrl: "" },
+      { value: 600, question: "The jelly-like stuff that fills up a cell and holds all the tiny parts in place is called this.", answer: "What is cytoplasm?", imageUrl: "" },
+      { value: 800, question: "These tiny cell parts create energy for the cell to use — they are like little batteries.", answer: "What are mitochondria?", imageUrl: "" },
+      { value: 1000, question: "Plant cells have these green parts that capture sunlight to make food.", answer: "What are chloroplasts?", imageUrl: "" },
+    ]
+  },
 };
 
 const CATEGORY_NAMES = Object.keys(QUESTION_BANK);
 
 // ═══════════════════════════════════════════════
-// EXPANDED FINAL JEOPARDY BANK (20 options)
+// FINAL BIO BOWL — HONORS LEVEL (AP/Advanced)
 // ═══════════════════════════════════════════════
 const FINAL_JEOPARDY_BANK = [
-  { category: "The Human Body", question: "This organ is the largest organ in the human body by surface area and serves as the first line of defense against pathogens.", answer: "What is the skin?" },
-  { category: "Evolution", question: "This naturalist sailed on the HMS Beagle and proposed the theory of natural selection after studying finches in the Galápagos.", answer: "Who is Charles Darwin?" },
-  { category: "The Living World", question: "This kingdom of life includes organisms that decompose dead material and can be single-celled or multicellular, like mushrooms.", answer: "What is Fungi?" },
-  { category: "Planet Earth", question: "This supercontinent existed approximately 250 million years ago before breaking apart into the continents we know today.", answer: "What is Pangaea?" },
-  { category: "Body Chemistry", question: "This molecule, made of iron-containing heme groups, carries oxygen in red blood cells from the lungs to the body.", answer: "What is hemoglobin?" },
-  { category: "Microbiology", question: "This scientist is considered the father of microbiology after discovering 'animalcules' using a homemade microscope in the 1670s.", answer: "Who is Antonie van Leeuwenhoek?" },
-  { category: "The Brain", question: "This lobe of the brain, located at the back of the skull, is primarily responsible for processing visual information.", answer: "What is the occipital lobe?" },
-  { category: "Bones & Muscles", question: "The human body is born with about 270 bones, but adults have only this many because some fuse together during growth.", answer: "What is 206?" },
-  { category: "Animal Kingdom", question: "This is the only group of animals that possesses feathers, a trait that distinguishes them from all other vertebrates.", answer: "What are birds (Aves)?" },
-  { category: "Blood & Circulation", question: "This blood type is called the 'universal donor' because it can be given to patients of any blood type in emergencies.", answer: "What is O negative (O-)?" },
-  { category: "Biomes of the World", question: "This biome is the most biodiverse on Earth, with warm temperatures year-round and over 80 inches of rainfall annually.", answer: "What is the tropical rainforest?" },
-  { category: "Digestive System", question: "This organ is the longest part of the digestive tract at roughly 20 feet and is where most nutrient absorption occurs.", answer: "What is the small intestine?" },
-  { category: "Space & Earth", question: "This layer of gas in Earth's stratosphere absorbs most of the sun's harmful ultraviolet radiation.", answer: "What is the ozone layer?" },
-  { category: "Famous Scientists", question: "This English scientist discovered penicillin in 1928 when he noticed mold killing bacteria in a petri dish.", answer: "Who is Alexander Fleming?" },
-  { category: "Respiratory System", question: "This dome-shaped muscle below the lungs contracts and flattens to draw air into the chest during inhalation.", answer: "What is the diaphragm?" },
-  { category: "Ecosystems", question: "In an energy pyramid, only about this percentage of energy is transferred from one trophic level to the next.", answer: "What is 10 percent?" },
-  { category: "Geology", question: "This type of volcano has broad, gently sloping sides built from many layers of fluid lava flows, like Mauna Loa in Hawaii.", answer: "What is a shield volcano?" },
-  { category: "Genetics", question: "Humans have this many pairs of chromosomes in each body cell, for a total of 46.", answer: "What is 23 pairs?" },
-  { category: "Water & Life", question: "This property of water allows insects like water striders to walk on its surface without sinking.", answer: "What is surface tension?" },
-  { category: "Classification", question: "In the modern system of classification, these are the three domains of life that all organisms fall into.", answer: "What are Bacteria, Archaea, and Eukarya?" },
+  { category: "Molecular Biology", question: "This enzyme unwinds the DNA double helix at the replication fork, breaking the hydrogen bonds between complementary base pairs.", answer: "What is helicase?" },
+  { category: "Cell Signaling", question: "In this type of signaling, a cell releases chemical messengers that affect only neighboring cells, as seen in neurotransmitter release at a synapse.", answer: "What is paracrine signaling?" },
+  { category: "Biochemistry", question: "This cycle, occurring in the mitochondrial matrix, produces NADH and FADH₂ as electron carriers from the oxidation of acetyl-CoA.", answer: "What is the Krebs cycle (or citric acid cycle)?" },
+  { category: "Genetics", question: "This phenomenon occurs when a single gene influences multiple, seemingly unrelated phenotypic traits, such as in Marfan syndrome.", answer: "What is pleiotropy?" },
+  { category: "Immunology", question: "These proteins on the surface of nearly all nucleated cells present intracellular antigens to cytotoxic T cells and are critical for organ transplant compatibility.", answer: "What are MHC class I molecules (or HLA)?" },
+  { category: "Ecology", question: "This hypothesis proposes that a moderate frequency of disturbance in an ecosystem maximizes species diversity by preventing competitive exclusion.", answer: "What is the intermediate disturbance hypothesis?" },
+  { category: "Evolution", question: "This pattern of evolution occurs when a single ancestral species rapidly diversifies into many new species to fill different ecological niches, as seen in Darwin's finches.", answer: "What is adaptive radiation?" },
+  { category: "Cellular Respiration", question: "This process in the inner mitochondrial membrane uses the flow of hydrogen ions down their concentration gradient through ATP synthase to produce ATP.", answer: "What is chemiosmosis (or oxidative phosphorylation)?" },
+  { category: "Plant Biology", question: "This plant hormone promotes cell elongation, causes phototropism toward light, and is produced primarily in the apical meristem.", answer: "What is auxin?" },
+  { category: "Protein Structure", question: "The four levels of protein structure are primary, secondary, tertiary, and this level, which involves multiple polypeptide chains assembling into a functional complex.", answer: "What is quaternary structure?" },
+  { category: "Neuroscience", question: "This all-or-nothing electrical signal travels down an axon when voltage-gated sodium channels open and the membrane potential reaches threshold.", answer: "What is an action potential?" },
+  { category: "Photosynthesis", question: "In the light-dependent reactions, water molecules are split at this photosystem, releasing oxygen, electrons, and hydrogen ions.", answer: "What is Photosystem II (PSII)?" },
+  { category: "Molecular Genetics", question: "This regulatory mechanism in gene expression involves small RNA molecules binding to mRNA to prevent translation, effectively silencing gene expression.", answer: "What is RNA interference (RNAi)?" },
+  { category: "Anatomy", question: "This specialized cardiac tissue, located in the right atrium, generates the electrical impulse that initiates each heartbeat and is called the natural pacemaker.", answer: "What is the sinoatrial (SA) node?" },
+  { category: "Microbiology", question: "This horizontal gene transfer mechanism occurs when a bacteriophage accidentally packages host DNA and transfers it to a new bacterial cell during infection.", answer: "What is transduction?" },
+  { category: "Developmental Biology", question: "These clusters of genes control the body plan of an embryo along the head-to-tail axis and are remarkably conserved across animal species.", answer: "What are Hox genes (homeobox genes)?" },
+  { category: "Endocrinology", question: "This feedback loop involving the hypothalamus, anterior pituitary, and target endocrine gland maintains hormone homeostasis through three levels of hormonal signaling.", answer: "What is the hypothalamic-pituitary axis (HPA/HPT/HPG axis)?" },
+  { category: "Biogeochemistry", question: "In this step of the nitrogen cycle, anaerobic bacteria convert nitrates back into nitrogen gas, returning it to the atmosphere.", answer: "What is denitrification?" },
+  { category: "Cell Division", question: "This checkpoint protein, often called the 'guardian of the genome,' can halt the cell cycle, activate DNA repair, or trigger apoptosis when mutations are detected.", answer: "What is p53?" },
+  { category: "Enzymology", question: "This model of enzyme function proposes that the enzyme changes shape slightly when the substrate binds, creating an optimal fit at the active site.", answer: "What is the induced fit model?" },
+  { category: "Taxonomy", question: "This method of classification groups organisms based on shared derived characteristics called synapomorphies, creating branching diagrams called cladograms.", answer: "What is cladistics?" },
+  { category: "Marine Biology", question: "These symbiotic photosynthetic algae living within coral tissue provide up to 90% of the coral's energy, and their loss causes coral bleaching.", answer: "What are zooxanthellae?" },
+  { category: "Population Genetics", question: "This principle states that allele frequencies in a population remain constant across generations only if five specific conditions are met, including no mutation and random mating.", answer: "What is Hardy-Weinberg equilibrium?" },
+  { category: "Membrane Biology", question: "This transport protein uses the energy from ATP hydrolysis to pump 3 sodium ions out of the cell and 2 potassium ions in, maintaining the resting membrane potential.", answer: "What is the sodium-potassium pump (Na⁺/K⁺-ATPase)?" },
+  { category: "Virology", question: "In this phase of the viral life cycle, the viral genome integrates into the host chromosome and can remain dormant for generations before activating.", answer: "What is the lysogenic cycle?" },
+  { category: "Human Physiology", question: "This countercurrent multiplication system in the loop of Henle creates an osmotic gradient in the kidney medulla essential for concentrating urine.", answer: "What is the countercurrent multiplier?" },
+  { category: "Organic Chemistry of Life", question: "This type of chemical bond forms between amino acids during a dehydration synthesis reaction, linking the carboxyl group of one to the amino group of another.", answer: "What is a peptide bond?" },
+  { category: "Evolutionary Biology", question: "This type of reproductive isolation occurs after mating when hybrid offspring are either inviable or infertile, as in the case of mules.", answer: "What is postzygotic isolation?" },
+  { category: "Bioinformatics", question: "This large-scale collaborative project, completed in 2003, determined the sequence of approximately 3 billion base pairs in the human genome.", answer: "What is the Human Genome Project?" },
+  { category: "Earth Systems", question: "This hypothesis, proposed by James Lovelock, suggests that living organisms interact with their inorganic surroundings to form a self-regulating system that maintains conditions for life.", answer: "What is the Gaia hypothesis?" },
 ];
+
 
 const TEAM_COLORS = {
   blue:   { bg: "#dbeafe", mid: "#3b82f6", dark: "#1e40af", text: "#1e3a5f", border: "#93c5fd", glow: "rgba(59,130,246,0.2)", badge: "#2563eb" },
@@ -359,7 +818,7 @@ function BioBowl() {
         <div style={{maxWidth: 940, margin: "0 auto"}}>
           <div style={{textAlign:"center", marginBottom: 32}}>
             <h1 style={{fontSize:52, fontWeight:900, margin:0, letterSpacing:2, background:"linear-gradient(135deg, #2563eb, #16a34a, #dc2626, #ca8a04)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent"}}>🧬 Bio Bowl</h1>
-            <p style={{color:"#94a3b8", fontSize:15, margin:"6px 0 0"}}>Science Jeopardy — Configure &amp; Launch</p>
+            <p style={{color:"#94a3b8", fontSize:15, margin:"6px 0 0"}}>Science Challenge — Configure &amp; Launch</p>
           </div>
 
           {/* Difficulty */}
@@ -427,10 +886,10 @@ function BioBowl() {
             ))}
           </div>
 
-          {/* Final Jeopardy */}
+          {/* Final Bio Bowl */}
           <div style={{...S.card, padding:20, marginBottom:20}}>
             <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14, flexWrap:"wrap", gap:8}}>
-              <div style={{fontWeight:800, fontSize:16}}>Final Jeopardy</div>
+              <div style={{fontWeight:800, fontSize:16}}>Final Bio Bowl</div>
               <select value={finalBankIdx} onChange={e => { const idx=Number(e.target.value); setFinalBankIdx(idx); if(idx<FINAL_JEOPARDY_BANK.length){ setFinalCategory(FINAL_JEOPARDY_BANK[idx].category); setFinalQuestion(FINAL_JEOPARDY_BANK[idx].question); setFinalAnswer(FINAL_JEOPARDY_BANK[idx].answer); } }} style={{...S.select, width:"auto", maxWidth:300}}>
                 {FINAL_JEOPARDY_BANK.map((fj,i) => <option key={i} value={i}>{fj.category}</option>)}
                 <option value={99}>✏️ Custom</option>
@@ -449,11 +908,11 @@ function BioBowl() {
     );
   }
 
-  // ═══════════ FINAL JEOPARDY ═══════════
+  // ═══════════ FINAL BIO BOWL ═══════════
   if (gamePhase === "final") {
     return (
       <div style={{...S.page, padding:24, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", minHeight:"100vh"}}>
-        <h1 style={{fontSize:38, fontWeight:900, letterSpacing:2, marginBottom:4, background:"linear-gradient(135deg, #f97316, #eab308)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent"}}>⭐ Final Jeopardy ⭐</h1>
+        <h1 style={{fontSize:38, fontWeight:900, letterSpacing:2, marginBottom:4, background:"linear-gradient(135deg, #f97316, #eab308)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent"}}>⭐ Final Bio Bowl ⭐</h1>
         <button onClick={() => setShowFinalEdit(!showFinalEdit)} style={{...S.btnGhost, marginBottom:16, fontSize:12}}>{showFinalEdit?"Close Editor":"✏️ Edit Final Q"}</button>
         {showFinalEdit && (
           <div style={{...S.card, padding:16, marginBottom:20, width:"100%", maxWidth:600}}>
@@ -464,8 +923,8 @@ function BioBowl() {
             <div style={{display:"flex", flexDirection:"column", gap:8}}>
               <div><label style={S.label}>Category</label><input value={finalCategory} onChange={e => setFinalCategory(e.target.value)} style={S.input} /></div>
               <div><label style={S.label}>Question</label><textarea value={finalQuestion} onChange={e => setFinalQuestion(e.target.value)} rows={2} style={{...S.input, resize:"vertical"}} /></div>
-              <div><label style={S.label}>Answer</label><input value={finalAnswer} onChange={e => setFinalAnswer(e.target.value)} style={{...S.input, color:"#16a34a"}} /></div>
             </div>
+            <button onClick={() => { setFinalPhase("category"); setShowFinalEdit(false); setFinalWagers({}); setTeams(function(prev){ return prev.map(function(t){ return Object.assign({}, t, {finalWager: 0, finalCorrect: null}); }); }); }} style={{...S.btnPrimary, width:"100%", marginTop:12, fontSize:14, padding:"10px"}}>✓ Use This Question &amp; Restart Round</button>
           </div>
         )}
 
@@ -473,42 +932,41 @@ function BioBowl() {
           <div style={{textAlign:"center"}}>
             <p style={{color:"#94a3b8", marginBottom:16}}>The category is...</p>
             <div style={{fontSize:34, fontWeight:900, color:"#ca8a04", marginBottom:32, padding:"16px 32px", background:"#fefce8", borderRadius:12, border:"2px solid #fde047", animation:"ddGlow 2s ease-in-out infinite"}}>{finalCategory}</div>
-            <p style={{fontSize:13, color:"#94a3b8", marginBottom:16}}>Have teams place their wagers now.</p>
-            <div style={{display:"flex", gap:14, flexWrap:"wrap", justifyContent:"center", marginBottom:24}}>
-              {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; const wv = finalWagers.hasOwnProperty(t.id) ? finalWagers[t.id] : ""; return (
-                <div key={t.id} style={{background:c.bg, borderRadius:12, padding:14, minWidth:160, textAlign:"center", border:"2px solid "+c.border}}>
-                  <div style={{fontWeight:800, color:c.dark, marginBottom:6}}>{t.name}: {t.score}</div>
-                  <input type="text" inputMode="numeric" pattern="[0-9]*" placeholder="Wager" value={wv} onChange={e => { const v = e.target.value.replace(/[^0-9]/g, ""); setFinalWagers(function(p) { var n = Object.assign({}, p); n[t.id] = v; return n; }); }} style={{...S.input, textAlign:"center", fontWeight:800, fontSize:16, color:c.dark}} />
-                </div>
-              ); })}
-            </div>
-            <button onClick={() => { setTeams(prev => prev.map(t => { var w = parseInt(finalWagers[t.id]); return Object.assign({}, t, {finalWager: isNaN(w) ? 0 : w}); })); setFinalPhase("question"); }} style={S.btnPrimary}>Reveal Question →</button>
+            <button onClick={() => setFinalPhase("question")} style={S.btnPrimary}>Reveal Question →</button>
           </div>
         )}
 
         {finalPhase === "question" && (
           <div style={{textAlign:"center", maxWidth:640}}>
             <div style={{fontSize:13, color:"#94a3b8", textTransform:"uppercase", letterSpacing:2, marginBottom:8}}>{finalCategory}</div>
-            <div style={{...S.card, fontSize:22, fontWeight:600, lineHeight:1.6, padding:24, marginBottom:24}}>{finalQuestion}</div>
-            <button onClick={() => setFinalPhase("answer")} style={{...S.btnPrimary, background:"linear-gradient(135deg, #7c3aed, #a855f7)"}}>Reveal Answer</button>
+            <div style={{...S.card, fontSize:22, fontWeight:600, lineHeight:1.6, padding:24, marginBottom:16}}>{finalQuestion}</div>
+            <p style={{fontSize:13, color:"#94a3b8", marginBottom:16}}>Teams: write your answers now!</p>
+            <button onClick={() => setFinalPhase("resolve")} style={{...S.btnPrimary, background:"linear-gradient(135deg, #7c3aed, #a855f7)"}}>Reveal Answer &amp; Collect Wagers →</button>
           </div>
         )}
 
-        {finalPhase === "answer" && (
-          <div style={{textAlign:"center", maxWidth:720, width:"100%"}}>
-            <div style={{padding:16, background:"#f0fdf4", border:"2px solid #86efac", borderRadius:12, marginBottom:24, fontSize:24, fontWeight:800, color:"#15803d"}}>{finalAnswer}</div>
+        {finalPhase === "resolve" && (
+          <div style={{textAlign:"center", maxWidth:780, width:"100%"}}>
+            <div style={{padding:16, background:"#f0fdf4", border:"2px solid #86efac", borderRadius:12, marginBottom:20, fontSize:24, fontWeight:800, color:"#15803d"}}>{finalAnswer}</div>
+            <p style={{fontSize:13, color:"#94a3b8", marginBottom:16}}>Enter each team's wager, then mark correct or incorrect.</p>
             <div style={{display:"flex", gap:14, flexWrap:"wrap", justifyContent:"center", marginBottom:24}}>
-              {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; return (
+              {activeTeams.map(t => { const c=TEAM_COLORS[t.color]; var wv = finalWagers.hasOwnProperty(t.id) ? finalWagers[t.id] : ""; return (
                 <div key={t.id} style={{background:c.bg, borderRadius:12, padding:16, minWidth:170, textAlign:"center", border:"2px solid "+c.border}}>
-                  <div style={{fontWeight:800, color:c.dark, fontSize:17}}>{t.name}</div>
-                  <div style={{fontSize:12, color:"#94a3b8", marginBottom:8}}>Wagered: {t.finalWager}</div>
+                  <div style={{fontWeight:800, color:c.dark, fontSize:17, marginBottom:2}}>{t.name}</div>
+                  <div style={{fontSize:12, color:"#94a3b8", marginBottom:6}}>Score: {t.score}</div>
                   {t.finalCorrect === null ? (
-                    <div style={{display:"flex", gap:8}}>
-                      <button onClick={() => setTeams(p => p.map(x => x.id===t.id?{...x, score:x.score+x.finalWager, finalCorrect:true}:x))} style={{flex:1, padding:8, background:"#22c55e", border:"none", borderRadius:8, color:"#fff", fontWeight:800, cursor:"pointer", fontSize:16, fontFamily:"inherit"}}>✓</button>
-                      <button onClick={() => setTeams(p => p.map(x => x.id===t.id?{...x, score:x.score-x.finalWager, finalCorrect:false}:x))} style={{flex:1, padding:8, background:"#ef4444", border:"none", borderRadius:8, color:"#fff", fontWeight:800, cursor:"pointer", fontSize:16, fontFamily:"inherit"}}>✗</button>
+                    <div>
+                      <input type="text" inputMode="numeric" pattern="[0-9]*" placeholder="Wager" value={wv} onChange={e => { var v = e.target.value.replace(/[^0-9]/g, ""); setFinalWagers(function(p) { var n = Object.assign({}, p); n[t.id] = v; return n; }); }} style={{...S.input, textAlign:"center", fontWeight:800, fontSize:16, color:c.dark, marginBottom:8}} />
+                      <div style={{display:"flex", gap:8}}>
+                        <button onClick={() => { var w = parseInt(finalWagers[t.id]) || 0; setTeams(function(p){ return p.map(function(x){ if(x.id!==t.id) return x; return Object.assign({}, x, {score: x.score + w, finalWager: w, finalCorrect: true}); }); }); }} style={{flex:1, padding:8, background:"#22c55e", border:"none", borderRadius:8, color:"#fff", fontWeight:800, cursor:"pointer", fontSize:16, fontFamily:"inherit"}}>✓ Correct</button>
+                        <button onClick={() => { var w = parseInt(finalWagers[t.id]) || 0; setTeams(function(p){ return p.map(function(x){ if(x.id!==t.id) return x; return Object.assign({}, x, {score: x.score - w, finalWager: w, finalCorrect: false}); }); }); }} style={{flex:1, padding:8, background:"#ef4444", border:"none", borderRadius:8, color:"#fff", fontWeight:800, cursor:"pointer", fontSize:16, fontFamily:"inherit"}}>✗ Wrong</button>
+                      </div>
                     </div>
                   ) : (
-                    <div style={{fontSize:22, fontWeight:900, color:t.finalCorrect?"#16a34a":"#dc2626"}}>{t.finalCorrect?"✓":"✗"} → {t.score}</div>
+                    <div>
+                      <div style={{fontSize:12, color:"#94a3b8", marginBottom:4}}>Wagered: {t.finalWager}</div>
+                      <div style={{fontSize:22, fontWeight:900, color:t.finalCorrect?"#16a34a":"#dc2626"}}>{t.finalCorrect?"✓":"✗"} → {t.score}</div>
+                    </div>
                   )}
                 </div>
               ); })}
@@ -566,7 +1024,7 @@ function BioBowl() {
           </div>
           <button onClick={() => setShowSettings(!showSettings)} style={{...S.btnGhost, padding:"4px 10px"}}>⚙</button>
           <button onClick={() => setDeductOnWrong(!deductOnWrong)} style={{background:deductOnWrong?"#fee2e2":"#f0fdf4", border:"1px solid "+(deductOnWrong?"#fca5a5":"#86efac"), color:deductOnWrong?"#dc2626":"#16a34a", padding:"4px 10px", borderRadius:8, cursor:"pointer", fontSize:11, fontWeight:700, fontFamily:"inherit"}}>{deductOnWrong?"−pts ON":"−pts OFF"}</button>
-          <button onClick={startFinalJeopardy} style={{background:"#fefce8", border:"1px solid #fde047", color:"#a16207", padding:"4px 10px", borderRadius:8, cursor:"pointer", fontSize:11, fontWeight:700, fontFamily:"inherit"}}>Final Jeopardy →</button>
+          <button onClick={startFinalJeopardy} style={{background:"#fefce8", border:"1px solid #fde047", color:"#a16207", padding:"4px 10px", borderRadius:8, cursor:"pointer", fontSize:11, fontWeight:700, fontFamily:"inherit"}}>Final Bio Bowl →</button>
         </div>
       </div>
 
